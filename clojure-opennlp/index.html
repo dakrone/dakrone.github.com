@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><script type="text/javascript">/*!
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Natural Language Processing with Clojure, library for opennlp. http://github.com/dakrone/clojure-opennlp" name="description" /><script type="text/javascript">/*!
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
  *
@@ -2525,14 +2525,14 @@ $(document).ready(function() {
   font-style: italic !important;
   color: #2a00ff !important;
 }
-</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><title>Marginalia Output</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.2-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp. http://github.com/dakrone/clojure-opennlp</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.2.3</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.2-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp. http://github.com/dakrone/clojure-opennlp</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.3.2</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns #^{:doc &quot;The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.&quot;
        :author &quot;Lee Hinman&quot;}
   opennlp.nlp
   (:use [clojure.contrib.seq-utils :only [indexed]])
-  (:use [clojure.contrib.pprint :only [pprint]])
+  (:use [clojure.pprint :only [pprint]])
   (:import [java.io File FileNotFoundException FileInputStream])
   (:import [opennlp.tools.util Span])
   (:import [opennlp.tools.tokenize TokenizerModel TokenizerME])
@@ -2560,10 +2560,9 @@ $(document).ready(function() {
 </td><td class="codes"><pre class="brush: clojure">
 (defn- files-exist?
   [filenames]
-  (reduce 'and (map file-exist? filenames)))</pre></td></tr><tr><td class="docs">
+  (reduce 'and (map file-exist? filenames)))</pre></td></tr><tr><td class="docs"><p>Return a function for splitting sentences given a model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-sentence-detector
-  &quot;Return a function for splitting sentences given a model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-sentence-detector String
@@ -2583,10 +2582,9 @@ $(document).ready(function() {
               probs (seq (.getSentenceProbabilities detector))]
           (with-meta
             (into [] sentences)
-            {:probabilities probs}))))</pre></td></tr><tr><td class="docs">
+            {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for tokenizing a sentence based on a given model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-tokenizer
-  &quot;Return a function for tokenizing a sentence based on a given model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-tokenizer String
@@ -2606,10 +2604,9 @@ $(document).ready(function() {
           probs (seq (.getTokenProbabilities tokenizer))]
       (with-meta
         (into [] tokens)
-        {:probabilities probs}))))</pre></td></tr><tr><td class="docs">
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for tagging tokens based on a givel model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-pos-tagger
-  &quot;Return a function for tagging tokens based on a givel model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-pos-tagger String
@@ -2630,11 +2627,10 @@ $(document).ready(function() {
           probs (seq (.probs tagger))]
       (with-meta
         (map vector tokens tags)
-        {:probabilities probs}))))</pre></td></tr><tr><td class="docs">
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for finding names from tokens based on a given
+model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-name-finder
-  &quot;Return a function for finding names from tokens based on a given
-   model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-name-finder String
@@ -2690,11 +2686,10 @@ $(document).ready(function() {
   [(map first s) (map last s)])
 </pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
-(defstruct treebank-phrase :phrase :tag)</pre></td></tr><tr><td class="docs">
+(defstruct treebank-phrase :phrase :tag)</pre></td></tr><tr><td class="docs"><p>Return a function for chunking phrases from pos-tagged tokens based on
+  a given model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-treebank-chunker
-  &quot;Return a function for chunking phrases from pos-tagged tokens based on
-  a given model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-treebank-chunker String
@@ -2760,11 +2755,10 @@ Treebank parsing
         parse-num 1]
     (.show (first (ParserTool/parseLine line parser parse-num)) results)
     (.toString results)))
-</pre></td></tr><tr><td class="docs">
+</pre></td></tr><tr><td class="docs"><p>Return a function for treebank parsing a sequence of sentences, based on
+  a given model file.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmulti make-treebank-parser
-  &quot;Return a function for treebank parsing a sequence of sentences, based on
-  a given model file.&quot;
   class)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-treebank-parser String
@@ -2899,11 +2893,10 @@ Given a list of parses and entities, print them out.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defn parse-extent
   [extent tblinker parses]
-  (let [mention-array (into-array Mention extent)
+  (let [e (filter #(not (nil? (:parse (bean %)))) extent)
+        mention-array (into-array Mention e)
         entities (.getEntities tblinker mention-array)]
-    #_(println :mentions (seq mention-array) (bean (first mention-array)))
-    #_(println :entities (seq entities) (bean (first entities)))
-    (show-parses @parses entities)))</pre></td></tr><tr><td class="docs">
+    (println :entities (seq entities) (bean (first entities)))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>Second Attempt
 Make a TreebankLinker, given a model directory.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn make-treebank-linker
@@ -2916,8 +2909,12 @@ Make a TreebankLinker, given a model directory.</p>
             extents (doall (map #(coref-sentence (second %) parses
                                                  (first %) tblinker)
                                 indexed-sentences))]
-        (map #(parse-extent % tblinker parses) extents)))))
-
+        (map #(parse-extent % tblinker parses) extents)))))</pre></td></tr><tr><td class="docs"><p>this is used for the treebank linking, it is a system property for
+the location of the wordnet installation 'dict' directory</p>
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>see: http://wordnet.princeton.edu/wordnet/</p>
+</td><td class="codes"><pre class="brush: clojure">(defn set-wordnet-location!
+  [location]
+  (System/setProperty &quot;WNSEARCHDIR&quot; location))
 
 (comment</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs">
@@ -2925,7 +2922,7 @@ Make a TreebankLinker, given a model directory.</p>
   (def treebank-parser</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">    (make-treebank-parser &quot;parser-model/en-parser-chunking.bin&quot;))
   (def s (treebank-parser [&quot;Mary said she would help me .&quot;
-                           &quot;I told her I didn't need her help.&quot;]))
+                           &quot;I told her I didn't need her help .&quot;]))
 
   (tbl s)
 </pre></td></tr><tr><td class="docs"><p> This is currently what I get back:</p>
@@ -2960,20 +2957,18 @@ Make a TreebankLinker, given a model directory.</p>
 
 
 </pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></td></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmacro pos-filter
-  &quot;Declare a filter for pos-tagged vectors with the given name and regex.&quot;
   [n r]
   (let [docstring (str &quot;Given a list of pos-tagged elements, return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
        ~docstring
        [elements#]
        (filter (fn [t#] (re-find ~r (second t#))) elements#))))
-</pre></td></tr><tr><td class="docs">
+</pre></td></tr><tr><td class="docs"><p>Declare a filter for treebank-chunked lists with the given name and regex.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defmacro chunk-filter
-  &quot;Declare a filter for treebank-chunked lists with the given name and regex.&quot;
   [n r]
   (let [docstring (str &quot;Given a list of treebank-chunked elements, return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
@@ -3141,5 +3136,5 @@ may be assigned</p>
 	    (new PlainTextByLineStream) 
 	    (new SentenceSampleStream))
        true
-       nil)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_opennlp.nlp">opennlp.nlp</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.filters">opennlp.tools.filters</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.lazy">opennlp.tools.lazy</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.train">opennlp.tools.train</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
+       nil)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_opennlp.nlp">opennlp.nlp</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.filters">opennlp.tools.filters</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.lazy">opennlp.tools.lazy</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.train">opennlp.tools.train</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>
