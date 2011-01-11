@@ -2534,7 +2534,9 @@ $(document).ready(function() {
   (:use [clojure.contrib.seq-utils :only [indexed]])
   (:import [java.io File FileNotFoundException FileInputStream])
   (:import [opennlp.tools.util Span])
-  (:import [opennlp.tools.tokenize TokenizerModel TokenizerME])
+  (:import [opennlp.tools.tokenize TokenizerModel TokenizerME
+            DictionaryDetokenizer DetokenizationDictionary Detokenizer
+            Detokenizer$DetokenizationOperation])
   (:import [opennlp.tools.sentdetect SentenceModel SentenceDetectorME])
   (:import [opennlp.tools.namefind TokenNameFinderModel NameFinderME])
   (:import [opennlp.tools.postag POSModel POSTaggerME]))
@@ -2641,7 +2643,46 @@ model file.</p>
           probs (seq (.probs finder))]
       (with-meta
         (distinct (map #(get tokens (.getStart %)) matches))
-        {:probabilities probs}))))
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Retun a functin for taking tokens and recombining them into a sentence
+  based on a given model file.</p>
+</td><td class="codes"><pre class="brush: clojure">
+(defmulti make-detokenizer
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">
+(defmethod make-detokenizer String
+  [modelfile]
+  (if-not (file-exist? modelfile)
+    (throw (FileNotFoundException. &quot;Model file does not exist.&quot;))
+    (with-open [model-stream (FileInputStream. modelfile)]
+      (make-name-finder (DetokenizationDictionary. model-stream)))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">
+(defn- collapse-tokens
+  [tokens detoken-ops]
+  (println :tokens tokens)
+  (println :detoken-ops detoken-ops)
+  (let [sb (StringBuilder.)]
+    (loop [s sb tokens tokens detoken-ops detoken-ops]
+      (let [op (first detoken-ops)
+            op2 (second detoken-ops)]
+        (if (and op
+                 (or op2
+                     (= op2 Detokenizer$DetokenizationOperation/MERGE_TO_LEFT)
+                     (= op Detokenizer$DetokenizationOperation/MERGE_TO_RIGHT)))
+          (.append s (first tokens))
+          (.append s (str (first tokens) &quot; &quot;)))
+        (when op2
+          (recur s (next tokens) (next detoken-ops)))))
+    (.toString sb)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">
+(defmethod make-detokenizer DetokenizationDictionary
+  [model]
+  (fn detokenizer
+    [tokens]
+    {:pre [(seq tokens)
+           (every? #(= (class %) String) tokens)]}
+    (let [detoken (DictionaryDetokenizer. model)
+          ops (.detokenize detoken (into-array String tokens))]
+      (collapse-tokens tokens ops))))
 </pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></td></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
 </td><td class="codes"><pre class="brush: clojure">
