@@ -2592,7 +2592,7 @@ $(document).ready(function() {
     [sentence]
     {:pre [(string? sentence)]}
     (let [tokenizer (TokenizerME. model)
-	  tokens (.tokenize tokenizer sentence)
+          tokens (.tokenize tokenizer sentence)
           probs (seq (.getTokenProbabilities tokenizer))]
       (with-meta
         (into [] tokens)
@@ -2614,8 +2614,8 @@ $(document).ready(function() {
     [tokens]
     {:pre [(vector? tokens)]}
     (let [token-array (into-array tokens)
-	  tagger (POSTaggerME. model *beam-size* *cache-size*)
-	  tags (.tag tagger token-array)
+          tagger (POSTaggerME. model *beam-size* *cache-size*)
+          tags (.tag tagger token-array)
           probs (seq (.probs tagger))]
       (with-meta
         (map vector tokens tags)
@@ -2637,7 +2637,7 @@ model file.</p>
   (fn name-finder
     [tokens &amp; contexts]
     {:pre [(seq tokens)
-	   (every? #(= (class %) String) tokens)]}
+           (every? #(= (class %) String) tokens)]}
     (let [finder (NameFinderME. model)
           matches (.find finder (into-array String tokens))
           probs (seq (.probs finder))]
@@ -2654,24 +2654,28 @@ model file.</p>
   (if-not (file-exist? modelfile)
     (throw (FileNotFoundException. &quot;Model file does not exist.&quot;))
     (with-open [model-stream (FileInputStream. modelfile)]
-      (make-name-finder (DetokenizationDictionary. model-stream)))))</pre></td></tr><tr><td class="docs">
+      (make-detokenizer (DetokenizationDictionary. model-stream)))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defn- collapse-tokens
   [tokens detoken-ops]
-  (println :tokens tokens)
-  (println :detoken-ops detoken-ops)
   (let [sb (StringBuilder.)]
-    (loop [s sb tokens tokens detoken-ops detoken-ops]
-      (let [op (first detoken-ops)
-            op2 (second detoken-ops)]
+    (loop [ts tokens dt-ops detoken-ops]
+      (println :ts ts)
+      (println :dt dt-ops)
+      (let [op (first dt-ops)
+            op2 (second dt-ops)]
+        (println :op op)
+        (println :op2 op2)
         (if (and op
                  (or op2
                      (= op2 Detokenizer$DetokenizationOperation/MERGE_TO_LEFT)
                      (= op Detokenizer$DetokenizationOperation/MERGE_TO_RIGHT)))
-          (.append s (first tokens))
-          (.append s (str (first tokens) &quot; &quot;)))
-        (when op2
-          (recur s (next tokens) (next detoken-ops)))))
+          (.append sb (first ts))
+          (if (&gt; (count dt-ops) 1)
+            (.append sb (str (first ts) &quot; &quot;))
+            (.append sb (str (first ts)))))
+        (when (and op op2)
+          (recur (next ts) (next dt-ops)))))
     (.toString sb)))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">
 (defmethod make-detokenizer DetokenizationDictionary
@@ -2932,16 +2936,17 @@ may be assigned</p>
   (fn treebank-chunker
     [pos-tagged-tokens]
     (let [chunker (ChunkerME. model *beam-size*)
-	  [tokens tags] (de-interleave pos-tagged-tokens)
-	  chunks  (into [] (seq (.chunk chunker tokens tags)))
-	  sized-chunks (map size-chunk (split-chunks chunks))
-	  [types sizes] (de-interleave sized-chunks)
-	  token-chunks (split-with-size sizes tokens)
+          [tokens tags] (de-interleave pos-tagged-tokens)
+          chunks  (into [] (seq (.chunk chunker tokens tags)))
+          sized-chunks (map size-chunk (split-chunks chunks))
+          [types sizes] (de-interleave sized-chunks)
+          token-chunks (split-with-size sizes tokens)
           probs (seq (.probs chunker))]
       (with-meta
         (map #(struct treebank-phrase (into [] (last %)) (first %))
              (partition 2 (interleave types token-chunks)))
-        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Given the chunks from a treebank-chunker, return just a list of phrase word-lists.</p>
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Given the chunks from a treebank-chunker, return just a list of phrase
+  word-lists.</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defn phrases
   [phrases]
@@ -2951,15 +2956,25 @@ may be assigned</p>
   [phrase-chunks]
   (map #(apply str (interpose &quot; &quot; %)) (phrases phrase-chunks)))</pre></td></tr><tr><td class="docs"><p>Docs for treebank chunking:</p>
 </td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>(def chunker (make-treebank-chunker "models/EnglishChunk.bin.gz"))
-(pprint (chunker (pos-tag (tokenize "The override system is meant to deactivate the accelerator when the brake pedal is pressed."))))</p>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>(map size-chunk (split-chunks (chunker (pos-tag (tokenize "The override system is meant to deactivate the accelerator when the brake pedal is pressed.")))))</p>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>opennlp.nlp=> (split-with-size (sizes (map size-chunk (split-chunks (chunker (pos-tag (tokenize "The override system is meant to deactivate the accelerator when the brake pedal is pressed.")))))) (tokenize "The override system is meant to deactivate the accelerator when the brake pedal is pressed."))
-(("The" "override" "system") ("is" "meant" "to" "deactivate") ("the" "accelerator") ("when") ("the" "brake" "pedal") ("is" "pressed") ("."))</p>
+(pprint (chunker (pos-tag (tokenize "The override system is meant to
+deactivate the accelerator when the brake pedal is pressed."))))</p>
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>(map size-chunk (split-chunks (chunker (pos-tag (tokenize "The
+override system is meant to deactivate the accelerator when the
+brake pedal is pressed.")))))</p>
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>opennlp.nlp=> (split-with-size (sizes (map size-chunk (split-chunks
+(chunker (pos-tag (tokenize "The override system is meant to
+deactivate the accelerator when the brake pedal is pressed."))))))
+(tokenize "The override system is meant to deactivate the
+accelerator when the brake pedal is pressed."))  (("The" "override"
+"system") ("is" "meant" "to" "deactivate") ("the" "accelerator")
+("when") ("the" "brake" "pedal") ("is" "pressed") ("."))</p>
 </td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>(["NP" 3] ["VP" 4] ["NP" 2] ["ADVP" 1] ["NP" 3] ["VP" 2])</p>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>opennlp.nlp=> (pprint (chunker (pos-tag (tokenize "The override system is meant to deactivate the accelerator when the brake pedal is pressed."))))</p>
-
-<h1><ArrayList [B-NP, I-NP, I-NP, B-VP, I-VP, I-VP, I-VP, B-NP, I-NP, B-ADVP, B-NP, I-NP, I-NP, B-VP, I-VP, O]></h1>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><h2>So, B-* starts a sequence, I-* continues it. New phrase starts when B-* is encountered</h2>
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>opennlp.nlp=> (pprint (chunker (pos-tag (tokenize "The override
+system is meant to deactivate the accelerator when the brake pedal
+is pressed."))))  #&lt;ArrayList [B-NP, I-NP, I-NP, B-VP, I-VP, I-VP,
+I-VP, B-NP, I-NP, B-ADVP, B-NP, I-NP, I-NP, B-VP, I-VP, O]></p>
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>So, B-* starts a sequence, I-* continues it. New phrase starts when
+B-* is encountered</p>
 </td><td class="codes"><pre class="brush: clojure">
 
 </pre></td></tr><tr><td class="docs"><p>;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -3001,9 +3016,9 @@ Treebank parsing
   (fn treebank-parser
     [text]
     (let [parser (ParserFactory/create model
-				       *beam-size*
-				       *advance-percentage*)
-	  parses (map #(parse-line % parser) text)]
+                                       *beam-size*
+                                       *advance-percentage*)
+          parses (map #(parse-line % parser) text)]
       (vec parses))))
 </pre></td></tr><tr><td class="docs"><p>Strip out some characters that might cause trouble parsing the tree.</p>
 </td><td class="codes"><pre class="brush: clojure">
@@ -3115,14 +3130,16 @@ Given a list of parses and entities, print them out.</p>
   (let [p (Parse/parseParse sentence)
         extents (.getMentions (.getMentionFinder tblinker)
                               (DefaultParse. p index))]
-    (swap! parses #(assoc % (count %) p))
-    (map #(coref-extent % p index) extents)
-    extents))</pre></td></tr><tr><td class="docs"><p>Given an coref extent, a treebank linker, a parses atom and the index of
+    (swap! parses #(assoc % (count %) p))</pre></td></tr><tr><td class="docs"><p>(println :es (map #(println (bean %)) extents))</p>
+</td><td class="codes"><pre class="brush: clojure">    (map #(coref-extent % p index) extents)
+    (map bean extents)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>TODO: fix this function, currently doesn't parse correctly
+Given an coref extent, a treebank linker, a parses atom and the index of
   the extent, return a tuple of the coresponding parse and discourse entities</p>
-</td><td class="codes"><pre class="brush: clojure">
-(defn parse-extent
+</td><td class="codes"><pre class="brush: clojure">(defn parse-extent
   [extent tblinker parses pindex]
-  (let [e (filter #(not (nil? (:parse (bean %)))) extent)
+  (println :ext (bean extent))</pre></td></tr><tr><td class="docs"><p>_ (println :e e)</p>
+</td><td class="codes"><pre class="brush: clojure">  (let [e (filter #(not (nil? (:parse (bean %)))) extent)
         mention-array (into-array Mention e)
         entities (.getEntities tblinker mention-array)]
     (println :entities (seq entities) (bean (first entities)))
@@ -3139,7 +3156,9 @@ Make a TreebankLinker, given a model directory.</p>
             extents (doall (map #(coref-sentence (second %) parses
                                                  (first %) tblinker)
                                 indexed-sentences))]
-        (map #(parse-extent %1 tblinker parses %2) (indexed extents))))))</pre></td></tr><tr><td class="docs"><p>this is used for the treebank linking, it is a system property for
+        #_(doall (map #(parse-extent %1 tblinker parses %2) (indexed extents)))
+        (doall (map println extents))
+        extents))))</pre></td></tr><tr><td class="docs"><p>this is used for the treebank linking, it is a system property for
 the location of the wordnet installation 'dict' directory</p>
 </td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>see: http://wordnet.princeton.edu/wordnet/
 Set the location of the WordNet 'dict' directory</p>
@@ -3151,31 +3170,9 @@ Set the location of the WordNet 'dict' directory</p>
 </td><td class="codes"><pre class="brush: clojure">  (def tbl (make-treebank-linker &quot;coref&quot;))
   (def treebank-parser</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">    (make-treebank-parser &quot;parser-model/en-parser-chunking.bin&quot;))
-  (def s (treebank-parser [&quot;Mary said she would help me .&quot;
-                           &quot;I told her I didn't need her help .&quot;]))
-  (tbl s)o)</pre></td></tr><tr><td class="docs"><p>First (dumb) Attempt, copied almost entirely from the java way of
-doing things</p>
-</td><td class="codes"><pre class="brush: clojure">
-#_(defn make-treebank-linker
-  [modeldir]
-  (let [tblinker (TreebankLinker. modeldir LinkerMode/TEST)
-        document (ArrayList.) ; do this without an arraylist
-        parses   (ArrayList.)
-        sentencenum (atom 0)]
-    (fn treebank-linker
-      [sentences]
-      (for [sentence sentences]
-        (let [p (Parse/parseParse sentence)
-              extents (.getMentions (.getMentionFinder tblinker) (DefaultParse. p sentencenum))]
-          (.add parses p)
-          (for [extent extents]
-            (if (nil? extent)
-              (let [snp (Parse. (.getText p) (.getSpan extent) &quot;NML&quot; 1.0 0)]
-                (.insert p snp)
-                (.setParse extent (DefaultParse. snp sentencenum)))
-              nil))
-          (.addAll document (Arrays/asList extents))
-          (swap! sentencenum inc))))))
+  (def s (treebank-parser [&quot;Mary said she liked me .&quot;]))
+  (tbl s)
+  )
 
 
 </pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_opennlp.nlp">opennlp.nlp</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.filters">opennlp.tools.filters</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.lazy">opennlp.tools.lazy</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.train">opennlp.tools.train</li><li class="floating-toc-li" id="floating-toc_opennlp.treebank">opennlp.treebank</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
