@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Natural Language Processing with Clojure, library for opennlp. http://github.com/dakrone/clojure-opennlp" name="description" /><style type="text/css">/**
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Natural Language Processing with Clojure, library for opennlp.
+                http://github.com/dakrone/clojure-opennlp" name="description" /><style type="text/css">/**
  * SyntaxHighlighter
  * http://alexgorbatchev.com/SyntaxHighlighter
  *
@@ -2526,10 +2527,11 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.4-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp. http://github.com/dakrone/clojure-opennlp</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(ns #^{:doc 
-       :author "Lee Hinman"}
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.5-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
+                http://github.com/dakrone/clojure-opennlp</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
+  creating NLP performers can be created with the tools in this namespace.</p>
+</td><td class="codes" /><pre class="brush: clojure">(ns #^{:author "Lee Hinman"}
   opennlp.nlp
   (:use [clojure.contrib.seq-utils :only [indexed]])
   (:use [clojure.java.io :only [file input-stream]])
@@ -2694,32 +2696,49 @@ calling the tagging creators</p>
 (chunk-filter adjective-phrases #"^ADJP$")</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.lazy" name="opennlp.tools.lazy"><h1 class="project-name">opennlp.tools.lazy</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Tools for lazily separating, tokenizing and tagging sentences.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.lazy)</pre></tr><tr><td class="docs"><p>Given a sequence of texts and a sentence-finder, return a lazy sequence of
   sentences for each text.</p>
+
+<p>TODO: collapse these 3 functions into a generic one</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn lazy-get-sentences
   [text sentence-finder]
   (lazy-seq
-    (when-let [s (seq text)]
-      (cons (sentence-finder (first text))
-            (lazy-get-sentences (rest s) sentence-finder)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, and a tokenizer, return a lazy sequence of
+   (when-let [s (seq text)]
+     (cons (sentence-finder (first text))
+           (lazy-get-sentences (rest s) sentence-finder)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, and a tokenizer, return a lazy sequence of
   tokenized sentences.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn lazy-tokenize
   [sentences tokenizer]
   (lazy-seq
-    (when-let [s (seq sentences)]
-      (cons (tokenizer (first s)) (lazy-tokenize (rest s) tokenizer)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer and a pos-tagger, return a lazy
+   (when-let [s (seq sentences)]
+     (cons (tokenizer (first s)) (lazy-tokenize (rest s) tokenizer)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer and a pos-tagger, return a lazy
   sequence of pos-tagged sentences.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn lazy-tag
   [sentences tokenizer pos-tagger]
   (lazy-seq
-    (when-let [s (seq sentences)]
-      (cons (pos-tagger (tokenizer (first s)))
-            (lazy-tag (rest s) tokenizer pos-tagger)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer, a pos-tagger and a chunker,
+   (when-let [s (seq sentences)]
+     (cons (pos-tagger (tokenizer (first s)))
+           (lazy-tag (rest s) tokenizer pos-tagger)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer, a pos-tagger and a chunker,
   return a lazy sequence of treebank-chunked sentences.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn lazy-chunk
   [sentences tokenizer pos-tagger chunker]
   (lazy-seq
-    (when-let [s (seq sentences)]
-      (cons (chunker (pos-tagger (tokenizer (first s))))
-            (lazy-chunk (rest s) tokenizer pos-tagger chunker)))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+   (when-let [s (seq sentences)]
+     (cons (chunker (pos-tagger (tokenizer (first s))))
+           (lazy-chunk (rest s) tokenizer pos-tagger chunker)))))</pre></tr><tr><td class="docs"><p>lazily read sentences from rdr as a lazy sequence of strings using the
+  given sentence-finder. rdr must implement java.io.BufferedReader.</p>
+</td><td class="codes" /><pre class="brush: clojure">(defn sentence-seq
+  [^java.io.BufferedReader rdr sentence-finder]
+  (.mark rdr 0)
+  (loop [c (.read rdr) sb (StringBuilder.)]
+    (if-not (= -1 c)
+      (do (.append sb (char c))
+          (let [sents (sentence-finder (.toString sb))]
+            (if (> (count sents) 1)
+              (do (.reset rdr)
+                  (cons (first sents)
+                        (lazy-seq (sentence-seq rdr sentence-finder))))
+              (do (.mark rdr 0)
+                  (recur (.read rdr) sb)))))
+      [(.trim (.toString sb))])))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.train
   (:use [clojure.contrib.io :only [output-stream reader]])
   (:import [opennlp.tools.util PlainTextByLineStream])
@@ -2817,11 +2836,11 @@ calling the tagging creators</p>
   ([in] (train-sentence-detector "en" in))
   ([lang in]
      (SentenceDetectorME/train lang
-       (->> (reader in)
-            (PlainTextByLineStream.)
-            (SentenceSampleStream.))
-       true
-       nil)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.treebank" name="opennlp.treebank"><h1 class="project-name">opennlp.treebank</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+                               (->> (reader in)
+                                    (PlainTextByLineStream.)
+                                    (SentenceSampleStream.))
+                               true
+                               nil)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.treebank" name="opennlp.treebank"><h1 class="project-name">opennlp.treebank</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns #^{:doc 
        :author "Lee Hinman"}
   opennlp.treebank
