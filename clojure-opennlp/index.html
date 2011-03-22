@@ -2244,7 +2244,7 @@ return sh;
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
 </script><script type="text/javascript">/*!
- * Copyright © 2010 Sattvik Software & Technology Resources, Ltd. Co.
+ * Copyright ¬© 2010 Sattvik Software & Technology Resources, Ltd. Co.
  * All rights reserved.
  *
  * sh-clojure may be used under the terms of either the GNU Lesser General Public
@@ -2252,7 +2252,7 @@ typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighte
  * sh-clojure, you may choose which license to receive the code under.  See the
  * LICENSE file distributed with sh-clojure for details.
  *
- * Written by Daniel Solano Gómez
+ * Written by Daniel Solano G√≥mez
  *
  * Version 0.9.1 - 10 Apr 2010
  */
@@ -2527,9 +2527,9 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.5-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.6-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
                 http://github.com/dakrone/clojure-opennlp</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns #^{:author "Lee Hinman"}
   opennlp.nlp
@@ -2538,7 +2538,8 @@ $(document).ready(function() {
   (:import [opennlp.tools.util Span])
   (:import [opennlp.tools.tokenize TokenizerModel TokenizerME
             DictionaryDetokenizer DetokenizationDictionary Detokenizer
-            Detokenizer$DetokenizationOperation])
+            Detokenizer$DetokenizationOperation
+            DetokenizationDictionary$Operation])
   (:import [opennlp.tools.sentdetect SentenceModel SentenceDetectorME])
   (:import [opennlp.tools.namefind TokenNameFinderModel NameFinderME])
   (:import [opennlp.tools.postag POSModel POSTaggerME]))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
@@ -2626,41 +2627,45 @@ calling the tagging creators</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmethod make-detokenizer :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-detokenizer (DetokenizationDictionary. model-stream))))</pre></tr><tr><td class="docs"><p>TODO: clean this up, recursion is a smell</p>
+    (make-detokenizer (DetokenizationDictionary. model-stream))))</pre></tr><tr><td class="docs"><p>TODO: clean this up, recursion is a smell
+TODO: remove debug printlns once I'm satisfied</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- collapse-tokens
   [tokens detoken-ops]
-  (let [sb (StringBuilder.)]
+  (let [sb (StringBuilder.)
+        token-set (atom #{})]
+    ;;(println :ops detoken-ops)
     (loop [ts tokens dt-ops detoken-ops]
       (let [op (first dt-ops)
             op2 (second dt-ops)]
-        (if (or (= op2 nil)
-                (= op2 Detokenizer$DetokenizationOperation/MERGE_TO_LEFT))
-          (.append sb (first ts))
-          (.append sb (str (first ts) " ")))
+        ;; (println :op op)
+        ;; (println :op2 op)
+        ;; (println :ts (first ts))
+        ;; (println :sb (.toString sb))
+        (cond
+         (or (= op2 nil)
+             (= op2 Detokenizer$DetokenizationOperation/MERGE_TO_LEFT))
+         (.append sb (first ts))
+         (or (= op nil)
+             (= op Detokenizer$DetokenizationOperation/MERGE_TO_RIGHT))
+         (.append sb (first ts))
+         (= op DetokenizationDictionary$Operation/RIGHT_LEFT_MATCHING)
+         (if (contains? @token-set (first ts))
+           (do
+             ;; (println :token-set @token-set)
+             ;; (println :ts (first ts))
+             (swap! token-set disj (first ts))
+             (.append sb (first ts)))
+           (do
+             ;;(println :token-set @token-set)
+             ;;(println :ts (first ts))
+             (swap! token-set conj (first ts))
+             (.append sb (str (first ts) " "))))
+         :else
+         (.append sb (str (first ts) " ")))
         (when (and op op2)
           (recur (next ts) (next dt-ops)))))
-    (.toString sb)))</pre></tr><tr><td class="docs"><p>older, cruddier version</p>
-</td><td class="codes" /><pre class="brush: clojure">#_(defn- collapse-tokens
-  [tokens detoken-ops]
-  (let [sb (StringBuilder.)]
-    (loop [ts tokens dt-ops detoken-ops]
-      (let [op (first dt-ops)
-            op2 (second dt-ops)]
-        (println :ts ts)
-        (println :op op)
-        (println :op2 op2)
-        (if (and op
-                 (or op2
-                     (= op2 Detokenizer$DetokenizationOperation/MERGE_TO_LEFT)
-                     (= op Detokenizer$DetokenizationOperation/MERGE_TO_RIGHT)))
-          (.append sb (first ts))
-          (if (> (count dt-ops) 1)
-            (.append sb (str (first ts) " "))
-            (.append sb (str (first ts)))))
-        (when (and op op2)
-          (recur (next ts) (next dt-ops)))))
-    (.toString sb)))
-(defmethod make-detokenizer DetokenizationDictionary
+    (.toString sb)))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defmethod make-detokenizer DetokenizationDictionary
   [model]
   (fn detokenizer
     [tokens]
