@@ -2244,7 +2244,7 @@ return sh;
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
 </script><script type="text/javascript">/*!
- * Copyright ¬© 2010 Sattvik Software & Technology Resources, Ltd. Co.
+ * Copyright © 2010 Sattvik Software & Technology Resources, Ltd. Co.
  * All rights reserved.
  *
  * sh-clojure may be used under the terms of either the GNU Lesser General Public
@@ -2252,7 +2252,7 @@ typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighte
  * sh-clojure, you may choose which license to receive the code under.  See the
  * LICENSE file distributed with sh-clojure for details.
  *
- * Written by Daniel Solano G√≥mez
+ * Written by Daniel Solano Gómez
  *
  * Version 0.9.1 - 10 Apr 2010
  */
@@ -2527,22 +2527,23 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.6-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.7-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
                 http://github.com/dakrone/clojure-opennlp</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">opennlp/tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.0</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">org.clojure/clojure-contrib</td><td class="dotted"><hr /></td><td class="dep-version">1.2.0</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.1-incubating</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.5.1</td></tr><tr><td class="dep-name">slamhound</td><td class="dotted"><hr /></td><td class="dep-version">1.1.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns #^{:author "Lee Hinman"}
-  opennlp.nlp
-  (:use [clojure.contrib.seq-utils :only [indexed]])
-  (:use [clojure.java.io :only [file input-stream]])
-  (:import [opennlp.tools.util Span])
-  (:import [opennlp.tools.tokenize TokenizerModel TokenizerME
-            DictionaryDetokenizer DetokenizationDictionary Detokenizer
-            Detokenizer$DetokenizationOperation
-            DetokenizationDictionary$Operation])
-  (:import [opennlp.tools.sentdetect SentenceModel SentenceDetectorME])
-  (:import [opennlp.tools.namefind TokenNameFinderModel NameFinderME])
-  (:import [opennlp.tools.postag POSModel POSTaggerME]))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
+</td><td class="codes" /><pre class="brush: clojure">(ns opennlp.nlp
+  (:use [clojure.java.io :only [input-stream]])
+  (:import
+   (opennlp.tools.namefind NameFinderME TokenNameFinderModel)
+   (opennlp.tools.postag POSModel POSTaggerME)
+   (opennlp.tools.sentdetect SentenceDetectorME SentenceModel)
+   (opennlp.tools.tokenize
+    DetokenizationDictionary
+    DetokenizationDictionary$Operation
+    Detokenizer$DetokenizationOperation
+    DictionaryDetokenizer
+    TokenizerME
+    TokenizerModel)))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
 calling the tagging creators</p>
 </td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *beam-size* 3)</pre></tr><tr><td class="docs"><p>Caching to use for pos-tagging</p>
 </td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *cache-size* 1024)</pre></tr><tr><td class="docs"><p>Return a function for splitting sentences given a model file.</p>
@@ -2555,14 +2556,14 @@ calling the tagging creators</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmethod make-sentence-detector SentenceModel
   [model]
   (fn sentence-detector
-      [text]
-      {:pre [(string? text)]}
-        (let [detector (SentenceDetectorME. model)
-              sentences (.sentDetect detector text)
-              probs (seq (.getSentenceProbabilities detector))]
-          (with-meta
-            (into [] sentences)
-            {:probabilities probs}))))</pre></tr><tr><td class="docs"><p>Return a function for tokenizing a sentence based on a given model file.</p>
+    [text]
+    {:pre [(string? text)]}
+    (let [detector (SentenceDetectorME. model)
+          sentences (.sentDetect detector text)
+          probs (seq (.getSentenceProbabilities detector))]
+      (with-meta
+        (into [] sentences)
+        {:probabilities probs}))))</pre></tr><tr><td class="docs"><p>Return a function for tokenizing a sentence based on a given model file.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmulti make-tokenizer
   class)</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defmethod make-tokenizer :default
@@ -2612,7 +2613,7 @@ calling the tagging creators</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmethod make-name-finder TokenNameFinderModel
   [model]
   (fn name-finder
-    [tokens & contexts]
+    [tokens &amp; contexts]
     {:pre [(seq tokens)
            (every? #(= (class %) String) tokens)]}
     (let [finder (NameFinderME. model)
@@ -2659,9 +2660,9 @@ TODO: remove debug printlns once I'm satisfied</p>
              ;;(println :token-set @token-set)
              ;;(println :ts (first ts))
              (swap! token-set conj (first ts))
-             (.append sb (str (first ts) " "))))
+             (.append sb (str (first ts) &quot; &quot;))))
          :else
-         (.append sb (str (first ts) " ")))
+         (.append sb (str (first ts) &quot; &quot;)))
         (when (and op op2)
           (recur (next ts) (next dt-ops)))))
     (.toString sb)))</pre></tr><tr><td class="docs">
@@ -2677,28 +2678,28 @@ TODO: remove debug printlns once I'm satisfied</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmacro pos-filter
   [n r]
-  (let [docstring (str "Given a list of pos-tagged elements, "
-                       "return only the " n " in a list.")]
+  (let [docstring (str &quot;Given a list of pos-tagged elements, &quot;
+                       &quot;return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
        ~docstring
        [elements#]
        (filter (fn [t#] (re-find ~r (second t#))) elements#))))</pre></tr><tr><td class="docs"><p>Declare a filter for treebank-chunked lists with the given name and regex.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmacro chunk-filter
   [n r]
-  (let [docstring (str "Given a list of treebank-chunked elements, "
-                       "return only the " n " in a list.")]
+  (let [docstring (str &quot;Given a list of treebank-chunked elements, &quot;
+                       &quot;return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
        ~docstring
        [elements#]
-       (filter (fn [t#] (re-find ~r (:tag t#))) elements#))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(pos-filter nouns #"^NN")
-(pos-filter nouns-and-verbs #"^(NN|VB)")
-(pos-filter proper-nouns #"^NNP")
-(pos-filter verbs #"^VB")</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(chunk-filter verb-phrases #"^VP$")
-(chunk-filter noun-phrases #"^NP$")
-(chunk-filter adverb-phrases #"^ADVP$")
-(chunk-filter adjective-phrases #"^ADJP$")</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.lazy" name="opennlp.tools.lazy"><h1 class="project-name">opennlp.tools.lazy</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Tools for lazily separating, tokenizing and tagging sentences.</p>
+       (filter (fn [t#] (re-find ~r (:tag t#))) elements#))))</pre></tr><tr><td class="docs"><p>It's easy to define your own filters!</p>
+</td><td class="codes" /><pre class="brush: clojure">(pos-filter nouns #&quot;^NN&quot;)
+(pos-filter nouns-and-verbs #&quot;^(NN|VB)&quot;)
+(pos-filter proper-nouns #&quot;^NNP&quot;)
+(pos-filter verbs #&quot;^VB&quot;)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(chunk-filter verb-phrases #&quot;^VP$&quot;)
+(chunk-filter noun-phrases #&quot;^NP$&quot;)
+(chunk-filter adverb-phrases #&quot;^ADVP$&quot;)
+(chunk-filter adjective-phrases #&quot;^ADJP$&quot;)</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.lazy" name="opennlp.tools.lazy"><h1 class="project-name">opennlp.tools.lazy</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Tools for lazily separating, tokenizing and tagging sentences.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.lazy)</pre></tr><tr><td class="docs"><p>Given a sequence of texts and a sentence-finder, return a lazy sequence of
   sentences for each text.</p>
 
@@ -2733,17 +2734,18 @@ TODO: remove debug printlns once I'm satisfied</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn sentence-seq
   [^java.io.BufferedReader rdr sentence-finder]
   (.mark rdr 0)
-  (loop [c (.read rdr) sb (StringBuilder.)]
-    (if-not (= -1 c)
-      (do (.append sb (char c))
-          (let [sents (sentence-finder (.toString sb))]
-            (if (> (count sents) 1)
-              (do (.reset rdr)
-                  (cons (first sents)
-                        (lazy-seq (sentence-seq rdr sentence-finder))))
-              (do (.mark rdr 0)
-                  (recur (.read rdr) sb)))))
-      [(.trim (.toString sb))])))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
+  (let [sb (StringBuilder.)]
+    (loop [c (.read rdr)]
+      (if-not (= -1 c)
+        (do (.append sb (char c))
+            (let [sents (sentence-finder (.toString sb))]
+              (if (&gt; (count sents) 1)
+                (do (.reset rdr)
+                    (cons (first sents)
+                          (lazy-seq (sentence-seq rdr sentence-finder))))
+                (do (.mark rdr 0)
+                    (recur (.read rdr))))))
+        [(.trim (.toString sb))]))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.train
   (:use [clojure.contrib.io :only [output-stream reader]])
   (:import [opennlp.tools.util PlainTextByLineStream])
@@ -2781,7 +2783,7 @@ TODO: remove debug printlns once I'm satisfied</p>
   [in]
   (POSDictionary/create (reader in)))</pre></tr><tr><td class="docs"><p>Returns a treebank chunker based on given training file</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^ChunkerModel train-treebank-chunker
-  ([in] (train-treebank-chunker "en" in))
+  ([in] (train-treebank-chunker &quot;en&quot; in))
   ([lang in] (train-treebank-chunker lang in 100 5))
   ([lang in iter cut] (ChunkerME/train
                        lang
@@ -2790,42 +2792,42 @@ TODO: remove debug printlns once I'm satisfied</p>
                          (reader in)))
                        cut iter)))</pre></tr><tr><td class="docs"><p>Returns a treebank parser based a training file and a set of head rules</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^ParserModel train-treebank-parser
-  ([in headrules] (train-treebank-parser "en" in headrules))
+  ([in headrules] (train-treebank-parser &quot;en&quot; in headrules))
   ([lang in headrules] (train-treebank-parser lang in headrules 100 5))
   ([lang in headrules iter cut]
      (Parser/train
       lang
       (ParseSampleStream.
        (PlainTextByLineStream.
-        (.getChannel (java.io.FileInputStream. in)) "UTF-8"))
+        (.getChannel (java.io.FileInputStream. in)) &quot;UTF-8&quot;))
       (HeadRules. (reader headrules)) iter cut)))</pre></tr><tr><td class="docs"><p>Returns a name finder based on a given training file</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^TokenNameFinderModel train-name-finder
-  ([in] (train-name-finder "en" in))
+  ([in] (train-name-finder &quot;en&quot; in))
   ([lang in] (train-name-finder lang in 100 5))
   ([lang in iter cut]
      (NameFinderME/train
       lang
-      "default"
-      (->> (reader in)
+      &quot;default&quot;
+      (-&gt;&gt; (reader in)
            (PlainTextByLineStream.)
            (NameSampleDataStream.))
       {}
       iter
       cut)))</pre></tr><tr><td class="docs"><p>Returns a tokenizer based on given training file</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^TokenizerModel train-tokenizer
-  ([in] (train-tokenizer "en" in))
+  ([in] (train-tokenizer &quot;en&quot; in))
   ([lang in] (train-tokenizer lang in 100 5))
   ([lang in iter cut]
      (TokenizerME/train
       lang
-      (->> (reader in)
+      (-&gt;&gt; (reader in)
            (PlainTextByLineStream.)
            (TokenSampleStream.))
       false
       cut
       iter)))</pre></tr><tr><td class="docs"><p>Returns a pos-tagger based on given training file</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^POSModel train-pos-tagger
-  ([in] (train-pos-tagger "en" in))
+  ([in] (train-pos-tagger &quot;en&quot; in))
   ([lang in] (train-pos-tagger lang in nil))
   ([lang in tagdict] (train-pos-tagger lang in tagdict 100 5))
   ([lang in tagdict iter cut]
@@ -2838,16 +2840,16 @@ TODO: remove debug printlns once I'm satisfied</p>
       cut
       iter)))</pre></tr><tr><td class="docs"><p>Returns a sentence model based on a given training file</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^SentenceModel train-sentence-detector
-  ([in] (train-sentence-detector "en" in))
+  ([in] (train-sentence-detector &quot;en&quot; in))
   ([lang in]
      (SentenceDetectorME/train lang
-                               (->> (reader in)
+                               (-&gt;&gt; (reader in)
                                     (PlainTextByLineStream.)
                                     (SentenceSampleStream.))
                                true
                                nil)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.treebank" name="opennlp.treebank"><h1 class="project-name">opennlp.treebank</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns #^{:doc 
-       :author "Lee Hinman"}
+       :author &quot;Lee Hinman&quot;}
   opennlp.treebank
   (:use [opennlp.nlp :only [*beam-size*]])
   (:use [clojure.contrib.seq-utils :only [indexed]])
@@ -2866,7 +2868,7 @@ AbstractBottomUpParser.defaultAdvancePercentage</p>
   (let [seqnum    (atom 0)
         splitfunc (fn
                     [item]
-                    (if (.startsWith item "B-")
+                    (if (.startsWith item &quot;B-&quot;)
                       (swap! seqnum inc)
                       @seqnum))]
     (partition-by splitfunc (pop chunks))))</pre></tr><tr><td class="docs"><p>Given a chunk ('B-NP' 'I-NP' 'I-NP' ...), return a vector of the
@@ -2874,11 +2876,11 @@ AbstractBottomUpParser.defaultAdvancePercentage</p>
   So, for ('B-NP' 'I-NP' 'I-NP') it would return ['B-NP' 3].</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- size-chunk
   [tb-chunk]
-  (let [chunk-type  (second (re-find #"B-(.*)" (first tb-chunk)))
+  (let [chunk-type  (second (re-find #&quot;B-(.*)&quot; (first tb-chunk)))
         chunk-count (count tb-chunk)]
     [chunk-type chunk-count]))</pre></tr><tr><td class="docs"><p>Thanks chouser</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- split-with-size
-  [[v & vs] s]
+  [[v &amp; vs] s]
   (if-not v
     (list s)
     (cons (take v s) (split-with-size vs (drop v s)))))</pre></tr><tr><td class="docs"><p>De-interleave a sequence, returning a vector of the two resulting
@@ -2915,7 +2917,7 @@ AbstractBottomUpParser.defaultAdvancePercentage</p>
   (map :phrase phrases))</pre></tr><tr><td class="docs"><p>Given the chunks from a treebank-chunker, return a list of phrase strings.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn phrase-strings
   [phrase-chunks]
-  (map #(apply str (interpose " " %)) (phrases phrase-chunks)))</pre></tr><tr><td class="docs"><p>Docs for treebank chunking:</p>
+  (map #(apply str (interpose &quot; &quot; %)) (phrases phrase-chunks)))</pre></tr><tr><td class="docs"><p>Docs for treebank chunking:</p>
 </td><td class="codes" /></tr><tr><td class="docs"><p>(def chunker (make-treebank-chunker "models/EnglishChunk.bin.gz"))
 (pprint (chunker (pos-tag (tokenize "The override system is meant to
 deactivate the accelerator when the brake pedal is pressed."))))</p>
@@ -2940,11 +2942,11 @@ B-* is encountered</p>
 </td><td class="codes" /></tr><tr><td class="docs"><p>Treebank-parser does not like parens and braces, so replace them.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- strip-parens
   [s]
-  (-> s
-    (.replaceAll "\\(" "-LRB-")
-    (.replaceAll "\\)" "-RRB-")
-    (.replaceAll "\\{" "-LCB-")
-    (.replaceAll "\\}" "-RCB-")))</pre></tr><tr><td class="docs"><p>Given a line and Parser object, return a list of Parses.</p>
+  (-&gt; s
+      (.replaceAll &quot;\\(&quot; &quot;-LRB-&quot;)
+      (.replaceAll &quot;\\)&quot; &quot;-RRB-&quot;)
+      (.replaceAll &quot;\\{&quot; &quot;-LCB-&quot;)
+      (.replaceAll &quot;\\}&quot; &quot;-RCB-&quot;)))</pre></tr><tr><td class="docs"><p>Given a line and Parser object, return a list of Parses.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- parse-line
   [line parser]
   (let [line (strip-parens line)
@@ -2970,22 +2972,24 @@ B-* is encountered</p>
       (vec parses))))</pre></tr><tr><td class="docs"><p>Strip out some characters that might cause trouble parsing the tree.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- strip-funny-chars
   [s]
-  (-> s
-    (.replaceAll "'" "-SQUOTE-")
-    (.replaceAll "\"" "-DQUOTE-")
-    (.replaceAll "~" "-TILDE-")
-    (.replaceAll "`" "-BACKTICK-")
-    (.replaceAll "," "-COMMA-")
-    (.replaceAll "\\\\" "-BSLASH-")
-    (.replaceAll "\\/" "-FSLASH-")
-    (.replaceAll "\\^" "-CARROT-")
-    (.replaceAll "@" "-ATSIGN-")
-    (.replaceAll "#" "-HASH-")))</pre></tr><tr><td class="docs"><p>Generate a tree from the string output of a treebank-parser.</p>
+  (-&gt; s
+      (.replaceAll &quot;'&quot; &quot;-SQUOTE-&quot;)
+      (.replaceAll &quot;\&quot;&quot; &quot;-DQUOTE-&quot;)
+      (.replaceAll &quot;~&quot; &quot;-TILDE-&quot;)
+      (.replaceAll &quot;`&quot; &quot;-BACKTICK-&quot;)
+      (.replaceAll &quot;,&quot; &quot;-COMMA-&quot;)
+      (.replaceAll &quot;\\\\&quot; &quot;-BSLASH-&quot;)
+      (.replaceAll &quot;\\/&quot; &quot;-FSLASH-&quot;)
+      (.replaceAll &quot;\\^&quot; &quot;-CARROT-&quot;)
+      (.replaceAll &quot;@&quot; &quot;-ATSIGN-&quot;)
+      (.replaceAll &quot;#&quot; &quot;-HASH-&quot;)))</pre></tr><tr><td class="docs"><p>Generate a tree from the string output of a treebank-parser.</p>
+
+<p>Credit for this function goes to carkh in #clojure</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- tr
   [to-parse]
   (cond (symbol? to-parse) (str to-parse)
-        (seq to-parse) (let [[tag & body] to-parse]
-                         `{:tag ~tag :chunk ~(if (> (count body) 1)
+        (seq to-parse) (let [[tag &amp; body] to-parse]
+                         `{:tag ~tag :chunk ~(if (&gt; (count body) 1)
                                                (map tr body)
                                                (tr (first body)))})))</pre></tr><tr><td class="docs"><p>Make a tree from the string output of a treebank-parser.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn make-tree
@@ -3000,7 +3004,7 @@ WIP, do not use yet.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn print-child
   [c p start]
   (let [s (.getSpan c)]
-    (if (< @start (.getStart s))
+    (if (&lt; @start (.getStart s))
       (print (.substring (.getText p) start (.getStart s))))
     (print-parse c)
     (reset! start (.getEnd s))))</pre></tr><tr><td class="docs"><p>Given a parse and the EntityMentions-to-parse map, print out the parse.</p>
@@ -3012,15 +3016,15 @@ WIP, do not use yet.</p>
         children (.getChildren p)]
     (if-not (= Parser/TOK_NODE (.getType p))
       (do
-        (print (str "(" (.getType p)))
+        (print (str &quot;(&quot; (.getType p)))
         (if (contains? parse-map p)
-          (print (str "#" (get parse-map p))))
-        (print " ")))
+          (print (str &quot;#&quot; (get parse-map p))))
+        (print &quot; &quot;)))
     (map #(print-child % p start) children)
     ;; FIXME: don't use substring
     (print (.substring (.getText p) @start (.getEnd (.getSpan p))))
     (if-not (= Parser/TOK_NODE (.getType p))
-      (print ")"))))</pre></tr><tr><td class="docs"><p>Add a single mention to the parse-map with index.</p>
+      (print &quot;)&quot;))))</pre></tr><tr><td class="docs"><p>Add a single mention to the parse-map with index.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn add-mention!
   [mention index parse-map]
   (let [mention-parse (.getParse (.getParse mention))]
@@ -3041,14 +3045,14 @@ WIP, do not use yet.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn show-parses
   [parse entities]
   (let [parse-map (add-entities entities)]
-    (println "parse-map:" parse-map)
-    (println "parse:" parse)
+    (println &quot;parse-map:&quot; parse-map)
+    (println &quot;parse:&quot; parse)
     (print-parse parse parse-map)
     parse-map))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn coref-extent
   [extent p index]
   (if (nil? extent)
-    (let [snp (Parse. (.getText p) (.getSpan extent) "NML" 1.0 0)]
+    (let [snp (Parse. (.getText p) (.getSpan extent) &quot;NML&quot; 1.0 0)]
       (.insert p snp) ; FIXME
       (.setParse extent (DefaultParse. snp index)))
     nil))</pre></tr><tr><td class="docs">
@@ -3094,12 +3098,12 @@ the location of the wordnet installation 'dict' directory
 see: http://wordnet.princeton.edu/wordnet/</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn set-wordnet-location!
   [location]
-  (System/setProperty "WNSEARCHDIR" location))</pre></tr><tr><td class="docs"><p>What I really need is a good way to express this in Clojure's datastructures.</p>
+  (System/setProperty &quot;WNSEARCHDIR&quot; location))</pre></tr><tr><td class="docs"><p>What I really need is a good way to express this in Clojure's datastructures.</p>
 </td><td class="codes" /><pre class="brush: clojure">(comment
-  (def tbl (make-treebank-linker "coref"))
+  (def tbl (make-treebank-linker &quot;coref&quot;))
   (def treebank-parser
-    (make-treebank-parser "parser-model/en-parser-chunking.bin"))
-  (def s (treebank-parser ["Mary said she liked me ."]))
+    (make-treebank-parser &quot;parser-model/en-parser-chunking.bin&quot;))
+  (def s (treebank-parser [&quot;Mary said she liked me .&quot;]))
   (tbl s)
   )</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_opennlp.nlp">opennlp.nlp</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.filters">opennlp.tools.filters</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.lazy">opennlp.tools.lazy</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.train">opennlp.tools.train</li><li class="floating-toc-li" id="floating-toc_opennlp.treebank">opennlp.treebank</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>
