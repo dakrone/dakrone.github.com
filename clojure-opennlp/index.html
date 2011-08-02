@@ -2527,7 +2527,7 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.7-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.8-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
                 http://github.com/dakrone/clojure-opennlp</p>
 </div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.1-incubating</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">slamhound</td><td class="dotted"><hr /></td><td class="dep-version">1.1.1</td></tr><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.</p>
@@ -2537,13 +2537,12 @@ $(document).ready(function() {
    (opennlp.tools.namefind NameFinderME TokenNameFinderModel)
    (opennlp.tools.postag POSModel POSTaggerME)
    (opennlp.tools.sentdetect SentenceDetectorME SentenceModel)
-   (opennlp.tools.tokenize
-    DetokenizationDictionary
-    DetokenizationDictionary$Operation
-    Detokenizer$DetokenizationOperation
-    DictionaryDetokenizer
-    TokenizerME
-    TokenizerModel)))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
+   (opennlp.tools.tokenize DetokenizationDictionary
+                           DetokenizationDictionary$Operation
+                           Detokenizer$DetokenizationOperation
+                           DictionaryDetokenizer
+                           TokenizerME
+                           TokenizerModel)))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
 calling the tagging creators</p>
 </td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *beam-size* 3)</pre></tr><tr><td class="docs"><p>Caching to use for pos-tagging</p>
 </td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *cache-size* 1024)</pre></tr><tr><td class="docs">
@@ -2679,7 +2678,8 @@ TODO: remove debug printlns once I'm satisfied</p>
            (every? #(= (class %) String) tokens)]}
     (let [detoken (DictionaryDetokenizer. model)
           ops (.detokenize detoken (into-array String tokens))]
-      (collapse-tokens tokens ops))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+      (collapse-tokens tokens ops))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace used for filtering POS-tagged datastructures by grammatical
+  classification. Also provides methods for building your own filters.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defmacro pos-filter
   [n r]
@@ -2753,28 +2753,28 @@ TODO: remove debug printlns once I'm satisfied</p>
         [(.trim (.toString sb))]))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.train
   (:use [clojure.java.io :only [output-stream reader]])
-  (:import [opennlp.tools.util PlainTextByLineStream])
-  (:import [opennlp.tools.util.model BaseModel ModelType])
-  (:import [opennlp.tools.dictionary Dictionary])
-  (:import [opennlp.tools.tokenize TokenizerME
-            TokenizerModel
-            TokenSampleStream])
-  (:import [opennlp.tools.sentdetect SentenceDetectorME
-            SentenceModel
-            SentenceSampleStream])
-  (:import [opennlp.tools.namefind NameFinderEventStream
-            NameSampleDataStream
-            NameFinderME
-            TokenNameFinderModel])
-  (:import [opennlp.tools.chunker ChunkerME ChunkSampleStream ChunkerModel])
-  (:import [opennlp.tools.parser ParseSampleStream ParserModel])
-  (:import [opennlp.tools.parser.lang.en HeadRules])
-  (:import [opennlp.tools.parser.chunking Parser])
-  (:import [opennlp.tools.postag POSTaggerME
-            POSModel
-            POSDictionary
-            WordTagSampleStream
-            POSContextGenerator]))</pre></tr><tr><td class="docs">
+  (:import (opennlp.tools.util PlainTextByLineStream)
+           (opennlp.tools.util.model BaseModel ModelType)
+           (opennlp.tools.dictionary Dictionary)
+           (opennlp.tools.tokenize TokenizerME
+                                   TokenizerModel
+                                   TokenSampleStream)
+           (opennlp.tools.sentdetect SentenceDetectorME
+                                     SentenceModel
+                                     SentenceSampleStream)
+           (opennlp.tools.namefind NameFinderEventStream
+                                   NameSampleDataStream
+                                   NameFinderME
+                                   TokenNameFinderModel)
+           (opennlp.tools.chunker ChunkerME ChunkSampleStream ChunkerModel)
+           (opennlp.tools.parser ParseSampleStream ParserModel)
+           (opennlp.tools.parser.lang.en HeadRules)
+           (opennlp.tools.parser.chunking Parser)
+           (opennlp.tools.postag POSTaggerME
+                                 POSModel
+                                 POSDictionary
+                                 WordTagSampleStream
+                                 POSContextGenerator)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn write-model
   &quot;Write a model to disk&quot;
   [#^BaseModel model out-stream]
