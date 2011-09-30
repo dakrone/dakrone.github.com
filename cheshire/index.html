@@ -2526,8 +2526,8 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">2.0.1-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.8.3</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.8.3</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">2.0.3-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.8.5</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.8.5</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.core
   (:use [cheshire.factory]
         [cheshire.generate :only [generate]]
@@ -2622,6 +2622,7 @@ $(document).ready(function() {
   (:import (java.io BufferedWriter ByteArrayOutputStream StringWriter)
            (java.util Date SimpleTimeZone)
            (java.text SimpleDateFormat)
+           (java.sql Timestamp)
            (org.codehaus.jackson.smile SmileFactory)
            (org.codehaus.jackson JsonFactory JsonGenerator JsonParser)))</pre></tr><tr><td class="docs"><p>for testing only
 (set! <em>warn-on-reflection</em> true)</p>
@@ -2698,7 +2699,9 @@ structure into a clojure one, these can just be called.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn encode-named
   &quot;Encode a keyword to the json generator.&quot;
   [^clojure.lang.Keyword k ^JsonGenerator jg]
-  (.writeString jg (name k)))</pre></tr><tr><td class="docs">
+  (.writeString jg (if-let [ns (namespace k)]
+                     (str ns &quot;/&quot; (name k))
+                     (name k))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn encode-map
   &quot;Encode a clojure map to the json generator.&quot;
   [^clojure.lang.IPersistentMap m ^JsonGenerator jg]
@@ -2745,6 +2748,9 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(extend java.util.Date
   JSONable
   {:to-json encode-date})</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(extend java.sql.Timestamp
+  JSONable
+  {:to-json #(encode-date (Date. (.getTime %1)) %2)})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend java.util.UUID
   JSONable
   {:to-json encode-str})</pre></tr><tr><td class="docs">
@@ -2787,7 +2793,9 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.generate
   (:import (org.codehaus.jackson JsonGenerator)
            (java.util List Date SimpleTimeZone UUID)
+           (java.sql Timestamp)
            (java.text SimpleDateFormat)
+           (java.math BigInteger)
            (clojure.lang IPersistentCollection Keyword Symbol)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(definline write-string [^JsonGenerator jg ^String str]
   `(.writeString ~jg ~str))</pre></tr><tr><td class="docs">
@@ -2801,6 +2809,7 @@ in 1.3 clojure/core :-/</p>
          Long (.writeNumber ~jg (long ~obj))
          Double (.writeNumber ~jg (double ~obj))
          Float (.writeNumber ~jg (double ~obj))
+         BigInteger (.writeNumber ~jg ^BigInteger ~obj)
          clojure.lang.BigInt (.writeNumber ~jg (.toBigInteger (bigint ~obj)))
          (fail ~obj)))
     (do
@@ -2840,13 +2849,20 @@ in 1.3 clojure/core :-/</p>
                               (.writeEndArray jg)))
     Number (number-dispatch ^JsonGenerator jg obj)
     String (write-string ^JsonGenerator jg ^String obj)
-    Keyword (write-string ^JsonGenerator jg (name obj))
+    Keyword (write-string ^JsonGenerator jg
+                          (if-let [ns (namespace obj)]
+                            (str ns &quot;/&quot; (name obj))
+                            (name obj)))
     UUID (write-string ^JsonGenerator jg (.toString obj))
     Symbol (write-string ^JsonGenerator jg (.toString obj))
     Boolean (.writeBoolean ^JsonGenerator jg ^Boolean obj)
     Date (let [sdf (doto (SimpleDateFormat. date-format)
                      (.setTimeZone (SimpleTimeZone. 0 &quot;UTC&quot;)))]
            (write-string ^JsonGenerator jg (.format sdf obj)))
+    Timestamp (let [date (Date. (.getTime obj))
+                    sdf (doto (SimpleDateFormat. date-format)
+                          (.setTimeZone (SimpleTimeZone. 0 &quot;UTC&quot;)))]
+                (write-string ^JsonGenerator jg (.format sdf obj)))
     (if (nil? obj)
       (.writeNull ^JsonGenerator jg)
       ;; it must be a primative then
