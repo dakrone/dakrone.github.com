@@ -2526,13 +2526,14 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">2.0.4-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.9.2</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.9.2</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">2.1.1-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.9.4</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.9.4</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.core
   (:use [cheshire.factory]
         [cheshire.generate :only [generate]]
         [cheshire.parse :only [parse]])
-  (:import (org.codehaus.jackson JsonParser)
+  (:import (org.codehaus.jackson JsonParser JsonFactory)
+           (org.codehaus.jackson.smile SmileFactory)
            (java.io StringWriter StringReader BufferedReader BufferedWriter
                     ByteArrayOutputStream)))</pre></tr><tr><td class="docs"><p>Generators</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn ^String generate-string
@@ -2541,7 +2542,8 @@ $(document).ready(function() {
   The default date format (in UTC) is: yyyy-MM-dd'T'HH:mm:ss'Z'&quot;
   [obj &amp; [^String date-format]]
   (let [sw (StringWriter.)
-        generator (.createJsonGenerator factory sw)]
+        generator (.createJsonGenerator ^JsonFactory (or *json-factory*
+                                                         json-factory) sw)]
     (generate generator obj (or date-format default-date-format))
     (.flush generator)
     (.toString sw)))</pre></tr><tr><td class="docs">
@@ -2551,7 +2553,8 @@ $(document).ready(function() {
   format string that Date objects will be encoded with.
   The default date format (in UTC) is: yyyy-MM-dd'T'HH:mm:ss'Z'&quot;
   [obj ^BufferedWriter writer &amp; [^String date-format]]
-  (let [generator (.createJsonGenerator factory writer)]
+  (let [generator (.createJsonGenerator ^JsonFactory (or *json-factory*
+                                                         json-factory) writer)]
     (generate generator obj (or date-format default-date-format))
     (.flush generator)
     writer))</pre></tr><tr><td class="docs">
@@ -2561,59 +2564,79 @@ $(document).ready(function() {
   The default date format (in UTC) is: yyyy-MM-dd'T'HH:mm:ss'Z'&quot;
   [obj &amp; [^String date-format]]
   (let [baos (ByteArrayOutputStream.)
-        generator (.createJsonGenerator smile-factory baos)]
+        generator (.createJsonGenerator ^SmileFactory
+                                        (or *smile-factory* smile-factory)
+                                        baos)]
     (generate generator obj (or date-format default-date-format))
     (.flush generator)
     (.toByteArray baos)))</pre></tr><tr><td class="docs"><p>Parsers</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-string
   &quot;Returns the Clojure object corresponding to the given JSON-encoded string.
   keywords? should be true if keyword keys are needed, the default is false
-  maps will use strings as keywords.&quot;
-  [^String string &amp; [^Boolean keywords?]]
+  maps will use strings as keywords.
+  The array-coerce-fn is an optional function taking the name of an array field,
+  and returning the collection to be used for array values.&quot;
+  [^String string &amp; [^Boolean keywords? array-coerce-fn]]
   (when string
     (parse
-     (.createJsonParser factory (StringReader. string))
-     true (or keywords? false) nil)))</pre></tr><tr><td class="docs">
+     (.createJsonParser ^JsonFactory (or *json-factory* json-factory)
+                        (StringReader. string))
+     true (or keywords? false) nil
+     array-coerce-fn)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-stream
   &quot;Returns the Clojure object corresponding to the given reader, reader must
   implement BufferedReader. keywords? should be true if keyword keys are needed
   the default is false, maps will use strings as keywords.
+  The array-coerce-fn is an optional function taking the name of an array field,
+  and returning the collection to be used for array values.
   If laziness is needed, see parsed-seq.&quot;
-  [^BufferedReader rdr &amp; [^Boolean keywords?]]
+  [^BufferedReader rdr &amp; [^Boolean keywords? array-coerce-fn] ]
   (when rdr
     (parse
-     (.createJsonParser factory rdr)
-     true (or keywords? false) nil)))</pre></tr><tr><td class="docs">
+     (.createJsonParser ^JsonFactory (or *json-factory* json-factory) rdr)
+     true (or keywords? false) nil array-coerce-fn)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-smile
   &quot;Returns the Clojure object corresponding to the given SMILE-encoded bytes.
   keywords? should be true if keyword keys are needed, the default is false
-  maps will use strings as keywords.&quot;
-  [^bytes bytes &amp; [^Boolean keywords?]]
+  maps will use strings as keywords.
+  The array-coerce-fn is an optional function taking the name of an array field,
+  and returning the collection to be used for array values.&quot;
+  [^bytes bytes &amp; [^Boolean keywords? array-coerce-fn]]
   (when bytes
     (parse
-     (.createJsonParser smile-factory bytes)
-     true (or keywords? false) nil)))</pre></tr><tr><td class="docs"><p>Lazy parsers</p>
+     (.createJsonParser ^SmileFactory (or *smile-factory* smile-factory) bytes)
+     true (or keywords? false) nil array-coerce-fn)))</pre></tr><tr><td class="docs"><p>Lazy parsers</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn- parsed-seq*
   &quot;Internal lazy-seq parser&quot;
-  [^JsonParser parser ^Boolean keywords?]
+  [^JsonParser parser ^Boolean keywords? array-coerce-fn]
   (let [eof (Object.)]
     (lazy-seq
-     (let [elem (parse parser true keywords? eof)]
+     (let [elem (parse parser true keywords? eof array-coerce-fn)]
        (if-not (identical? elem eof)
-         (cons elem (parsed-seq* parser keywords?)))))))</pre></tr><tr><td class="docs">
+         (cons elem (parsed-seq* parser keywords? array-coerce-fn)))))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parsed-seq
   &quot;Returns a lazy seq of Clojure objects corresponding to the JSON read from
   the given reader. The seq continues until the end of the reader is reached.
+  The array-coerce-fn is an optional function taking the name of an array field,
+  and returning the collection to be used for array values.
   If non-laziness is needed, see parse-stream.&quot;
-  [^BufferedReader reader &amp; [^Boolean keywords?]]
+  [^BufferedReader reader &amp; [^Boolean keywords? array-coerce-fn]]
   (when reader
-    (parsed-seq* (.createJsonParser factory reader) (or keywords? false))))</pre></tr><tr><td class="docs">
+    (parsed-seq* (.createJsonParser ^JsonFactory
+                                    (or *json-factory* json-factory) reader)
+                 (or keywords? false)
+                 array-coerce-fn)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parsed-smile-seq
   &quot;Returns a lazy seq of Clojure objects corresponding to the SMILE read from
-  the given reader. The seq continues until the end of the reader is reached.&quot;
-  [^BufferedReader reader &amp; [^Boolean keywords?]]
+  the given reader. The seq continues until the end of the reader is reached.
+  The array-coerce-fn is an optional function taking the name of an array field,
+  and returning the collection to be used for array values.&quot;
+  [^BufferedReader reader &amp; [^Boolean keywords? array-coerce-fn]]
   (when reader
-    (parsed-seq* (.createJsonParser smile-factory reader) (or keywords? false))))</pre></tr><tr><td class="docs"><p>aliases for clojure-json users</p>
+    (parsed-seq* (.createJsonParser ^SmileFactory
+                                    (or *smile-factory* smile-factory) reader)
+                 (or keywords? false)
+                 array-coerce-fn)))</pre></tr><tr><td class="docs"><p>aliases for clojure-json users</p>
 </td><td class="codes" /><pre class="brush: clojure">(def encode generate-string)
 (def encode-stream generate-stream)
 (def encode-smile generate-smile)
@@ -2629,16 +2652,15 @@ $(document).ready(function() {
            (java.text SimpleDateFormat)
            (java.sql Timestamp)
            (org.codehaus.jackson.smile SmileFactory)
-           (org.codehaus.jackson JsonFactory JsonGenerator JsonParser)))</pre></tr><tr><td class="docs"><p>for testing only
-(set! <em>warn-on-reflection</em> true)</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>date format rebound for custom encoding</p>
+           (org.codehaus.jackson JsonFactory JsonGenerator JsonParser)))</pre></tr><tr><td class="docs"><p>date format rebound for custom encoding</p>
 </td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :private true} *date-format*)</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defprotocol JSONable
   (to-json [t jg]))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn ^String encode [obj &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
     (let [sw (StringWriter.)
-          generator (.createJsonGenerator ^JsonFactory factory sw)]
+          generator (.createJsonGenerator ^JsonFactory
+                                          (or *json-factory* json-factory) sw)]
       (if obj
         (to-json obj generator)
         (.writeNull generator))
@@ -2646,7 +2668,8 @@ $(document).ready(function() {
       (.toString sw))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn ^String encode-stream [obj ^BufferedWriter w &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
-    (let [generator (.createJsonGenerator factory w)]
+    (let [generator (.createJsonGenerator ^JsonFactory
+                                          (or *json-factory* json-factory) w)]
       (to-json obj generator)
       (.flush generator)
       w)))</pre></tr><tr><td class="docs">
@@ -2654,7 +2677,9 @@ $(document).ready(function() {
   [obj &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
     (let [baos (ByteArrayOutputStream.)
-          generator (.createJsonGenerator smile-factory baos)]
+          generator (.createJsonGenerator ^SmileFactory
+                                          (or *smile-factory* smile-factory)
+                                          baos)]
       (to-json obj generator)
       (.flush generator)
       (.toByteArray baos))))</pre></tr><tr><td class="docs"><p>there are no differences in parsing, but these are here to make
@@ -2725,9 +2750,11 @@ structure into a clojure one, these can just be called.</p>
   &quot;Encode a clojure symbol to the json generator. Symbols will be encoded as
   &lt;namespace&gt;/&lt;symbol-name&gt;&quot;
   [^clojure.lang.Symbol s ^JsonGenerator jg]
-  (.writeString jg (str (:ns (meta (resolve s)))
-                        &quot;/&quot;
-                        (:name (meta (resolve s))))))</pre></tr><tr><td class="docs"><p>extended implementations for clojure datastructures</p>
+  (.writeString jg (if-let [sym (resolve s)]
+                     (str (:ns (meta sym))
+                          &quot;/&quot;
+                          (:name (meta sym)))
+                     (str s))))</pre></tr><tr><td class="docs"><p>extended implementations for clojure datastructures</p>
 </td><td class="codes" /><pre class="brush: clojure">(extend nil
   JSONable
   {:to-json encode-nil})</pre></tr><tr><td class="docs">
@@ -2762,7 +2789,7 @@ in 1.3 clojure/core :-/</p>
   {:to-json encode-date})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend java.sql.Timestamp
   JSONable
-  {:to-json #(encode-date (Date. (.getTime %1)) %2)})</pre></tr><tr><td class="docs">
+  {:to-json #(encode-date (Date. (.getTime ^java.sql.Timestamp %1)) %2)})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend java.util.UUID
   JSONable
   {:to-json encode-str})</pre></tr><tr><td class="docs">
@@ -2795,13 +2822,71 @@ in 1.3 clojure/core :-/</p>
  custom generators.</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.factory
   (:import (org.codehaus.jackson.smile SmileFactory)
-           (org.codehaus.jackson JsonFactory JsonParser$Feature)))</pre></tr><tr><td class="docs"><p>Factory objects that are needed to do the encoding and decoding</p>
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:tag JsonFactory} factory
-  (doto (JsonFactory.)
-    (.configure JsonParser$Feature/ALLOW_UNQUOTED_CONTROL_CHARS true)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(def ^{:tag SmileFactory} smile-factory
-  (SmileFactory.))</pre></tr><tr><td class="docs"><p>default date format used to JSON-encode Date objects</p>
-</td><td class="codes" /><pre class="brush: clojure">(def default-date-format &quot;yyyy-MM-dd'T'HH:mm:ss'Z'&quot;)</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.generate" name="cheshire.generate"><h1 class="project-name">cheshire.generate</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+           (org.codehaus.jackson JsonFactory JsonParser$Feature)))</pre></tr><tr><td class="docs"><p>default date format used to JSON-encode Date objects</p>
+</td><td class="codes" /><pre class="brush: clojure">(def default-date-format &quot;yyyy-MM-dd'T'HH:mm:ss'Z'&quot;)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defonce default-factory-options
+  {:auto-close-source false
+   :allow-comments false
+   :allow-unquoted-field-names false
+   :allow-single-quotes false
+   :allow-unquoted-control-chars true
+   :allow-backslash-escaping false
+   :allow-numeric-leading-zeros false
+   :allow-non-numeric-numbers false
+   :intern-field-names false
+   :canonicalize-field-names false})</pre></tr><tr><td class="docs"><p>Factory objects that are needed to do the encoding and decoding</p>
+</td><td class="codes" /><pre class="brush: clojure">(defn ^JsonFactory make-json-factory
+  [opts]
+  (let [opts (merge default-factory-options opts)]
+    (doto (JsonFactory.)
+      (.configure JsonParser$Feature/AUTO_CLOSE_SOURCE
+                  (boolean (:auto-close-source opts)))
+      (.configure JsonParser$Feature/ALLOW_COMMENTS
+                  (boolean (:allow-comments opts)))
+      (.configure JsonParser$Feature/ALLOW_UNQUOTED_FIELD_NAMES
+                  (boolean (:allow-unquoted-field-names opts)))
+      (.configure JsonParser$Feature/ALLOW_SINGLE_QUOTES
+                  (boolean (:allow-single-quotes opts)))
+      (.configure JsonParser$Feature/ALLOW_UNQUOTED_CONTROL_CHARS
+                  (boolean (:allow-unquoted-control-chars opts)))
+      (.configure JsonParser$Feature/ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER
+                  (boolean (:allow-backslash-escaping opts)))
+      (.configure JsonParser$Feature/ALLOW_NUMERIC_LEADING_ZEROS
+                  (boolean (:allow-numeric-leading-zeros opts)))
+      (.configure JsonParser$Feature/ALLOW_NON_NUMERIC_NUMBERS
+                  (boolean (:allow-non-numeric-numbers opts)))
+      (.configure JsonParser$Feature/INTERN_FIELD_NAMES
+                  (boolean (:intern-field-names opts)))
+      (.configure JsonParser$Feature/CANONICALIZE_FIELD_NAMES
+                  (boolean (:canonicalize-field-names opts))))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn ^SmileFactory make-smile-factory
+  [opts]
+  (let [opts (merge default-factory-options opts)]
+    (doto (SmileFactory.)
+      (.configure JsonParser$Feature/AUTO_CLOSE_SOURCE
+                  (boolean (:auto-close-source opts)))
+      (.configure JsonParser$Feature/ALLOW_COMMENTS
+                  (boolean (:allow-comments opts)))
+      (.configure JsonParser$Feature/ALLOW_UNQUOTED_FIELD_NAMES
+                  (boolean (:allow-unquoted-field-names opts)))
+      (.configure JsonParser$Feature/ALLOW_SINGLE_QUOTES
+                  (boolean (:allow-single-quotes opts)))
+      (.configure JsonParser$Feature/ALLOW_UNQUOTED_CONTROL_CHARS
+                  (boolean (:allow-unquoted-control-chars opts)))
+      (.configure JsonParser$Feature/ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER
+                  (boolean (:allow-backslash-escaping opts)))
+      (.configure JsonParser$Feature/ALLOW_NUMERIC_LEADING_ZEROS
+                  (boolean (:allow-numeric-leading-zeros opts)))
+      (.configure JsonParser$Feature/ALLOW_NON_NUMERIC_NUMBERS
+                  (boolean (:allow-non-numeric-numbers opts)))
+      (.configure JsonParser$Feature/INTERN_FIELD_NAMES
+                  (boolean (:intern-field-names opts)))
+      (.configure JsonParser$Feature/CANONICALIZE_FIELD_NAMES
+                  (boolean (:canonicalize-field-names opts))))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defonce ^JsonFactory json-factory (make-json-factory default-factory-options))
+(defonce ^SmileFactory smile-factory (make-smile-factory default-factory-options))</pre></tr><tr><td class="docs"><p>dynamically rebindable json factory, if desired</p>
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :tag JsonFactory} *json-factory* nil)</pre></tr><tr><td class="docs"><p>dynamically rebindable smile factory, if desired</p>
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :tag SmileFactory} *smile-factory* nil)</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.generate" name="cheshire.generate"><h1 class="project-name">cheshire.generate</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.generate
   (:import (org.codehaus.jackson JsonGenerator)
            (java.util List Date SimpleTimeZone UUID)
@@ -2825,7 +2910,8 @@ in 1.3 clojure/core :-/</p>
          BigInteger (.writeNumber ~jg ^BigInteger ~obj)
          BigDecimal (.writeNumber ~jg ^BigDecimal ~obj)
          Ratio (.writeNumber ~jg (double ~obj))
-         clojure.lang.BigInt (.writeNumber ~jg (.toBigInteger (bigint ~obj)))
+         clojure.lang.BigInt (.writeNumber ~jg ^clojure.lang.BigInt
+                                           (.toBigInteger (bigint ~obj)))
          (fail ~obj)))
     (do
       `(condp instance? ~obj
@@ -2870,13 +2956,17 @@ in 1.3 clojure/core :-/</p>
                           (if-let [ns (namespace obj)]
                             (str ns &quot;/&quot; (name obj))
                             (name obj)))
-    UUID (write-string ^JsonGenerator jg (.toString obj))
-    Symbol (write-string ^JsonGenerator jg (.toString obj))
+    UUID (write-string ^JsonGenerator jg (.toString ^UUID obj))
+    Symbol (write-string ^JsonGenerator jg (if-let [sym (resolve obj)]
+                                             (str (:ns (meta sym))
+                                                  &quot;/&quot;
+                                                  (:name (meta sym)))
+                                             (.toString ^Symbol obj)))
     Boolean (.writeBoolean ^JsonGenerator jg ^Boolean obj)
     Date (let [sdf (doto (SimpleDateFormat. date-format)
                      (.setTimeZone (SimpleTimeZone. 0 &quot;UTC&quot;)))]
            (write-string ^JsonGenerator jg (.format sdf obj)))
-    Timestamp (let [date (Date. (.getTime obj))
+    Timestamp (let [date (Date. (.getTime ^Timestamp obj))
                     sdf (doto (SimpleDateFormat. date-format)
                           (.setTimeZone (SimpleTimeZone. 0 &quot;UTC&quot;)))]
                 (write-string ^JsonGenerator jg (.format sdf obj)))
@@ -2889,7 +2979,7 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.parse
   (:import (org.codehaus.jackson JsonParser JsonToken)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(declare parse)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(definline parse-object [^JsonParser jp fst? keywords? eof]
+</td><td class="codes" /><pre class="brush: clojure">(definline parse-object [^JsonParser jp fst? keywords? eof array-coerce-fn]
   `(do
      (.nextToken ~jp)
      (loop [mmap# (transient {})]
@@ -2904,27 +2994,30 @@ in 1.3 clojure/core :-/</p>
                       mmap#
                       key#
                       (parse
-                       ~jp ~false ~keywords? ~eof))]
+                       ~jp ~false ~keywords? ~eof ~array-coerce-fn))]
            (.nextToken ~jp)
            (recur mmap#))
          (persistent! mmap#)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(definline parse-array [^JsonParser jp fst? keywords? eof]
-  `(do
+</td><td class="codes" /><pre class="brush: clojure">(definline parse-array [^JsonParser jp fst? keywords? eof array-coerce-fn]
+  `(let [array-field-name# (.getCurrentName ~jp)]
      (.nextToken ~jp)
-     (loop [vvec# (transient [])]
+     (loop [coll# (transient (if ~array-coerce-fn
+                               (~array-coerce-fn array-field-name#)
+                               []))]
        (if-not (= (.getCurrentToken ~jp)
                   JsonToken/END_ARRAY)
-         (let [vvec# (conj!
-                     vvec#
+         (let [coll# (conj!
+                     coll#
                      (parse
                       ~jp
                       false
                       ~keywords?
-                      ~eof))]
+                      ~eof
+                      ~array-coerce-fn))]
            (.nextToken ~jp)
-           (recur vvec#))
-         (persistent! vvec#)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn parse [^JsonParser jp fst? keywords? eof]
+           (recur coll#))
+         (persistent! coll#)))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn parse [^JsonParser jp fst? keywords? eof array-coerce-fn]
   (let [fst? (boolean fst?)
         keywords? (boolean keywords?)
         x (if fst?
@@ -2937,8 +3030,8 @@ in 1.3 clojure/core :-/</p>
     (if (= x eof)
       eof
       (case (.toString (.getCurrentToken jp))
-            &quot;START_OBJECT&quot; (parse-object jp fst? keywords? eof)
-            &quot;START_ARRAY&quot; (parse-array jp fst? keywords? eof)
+            &quot;START_OBJECT&quot; (parse-object jp fst? keywords? eof array-coerce-fn)
+            &quot;START_ARRAY&quot; (parse-array jp fst? keywords? eof array-coerce-fn)
             &quot;VALUE_STRING&quot; (.getText jp)
             &quot;VALUE_NUMBER_INT&quot; (.getNumberValue jp)
             &quot;VALUE_NUMBER_FLOAT&quot; (.getDoubleValue jp)
