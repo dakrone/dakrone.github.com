@@ -2243,7 +2243,7 @@ return sh;
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
 </script><script type="text/javascript">/*!
- * Copyright ¬© 2010 Sattvik Software & Technology Resources, Ltd. Co.
+ * Copyright © 2010 Sattvik Software & Technology Resources, Ltd. Co.
  * All rights reserved.
  *
  * sh-clojure may be used under the terms of either the GNU Lesser General Public
@@ -2251,7 +2251,7 @@ typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighte
  * sh-clojure, you may choose which license to receive the code under.  See the
  * LICENSE file distributed with sh-clojure for details.
  *
- * Written by Daniel Solano G√≥mez
+ * Written by Daniel Solano Gómez
  *
  * Version 0.9.1 - 10 Apr 2010
  */
@@ -2526,8 +2526,8 @@ $(document).ready(function() {
     ul.css('margin-top', '0px')
 
 })
-</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">2.1.1-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.9.4</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.9.4</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</script><title>cheshire -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">cheshire</h1><h2 class="project-version">3.0.1-SNAPSHOT</h2><br /><p>JSON and JSON SMILE encoding, fast.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-core-asl</td><td class="dotted"><hr /></td><td class="dep-version">1.9.5</td></tr><tr><td class="dep-name">org.codehaus.jackson/jackson-smile</td><td class="dotted"><hr /></td><td class="dep-version">1.9.5</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.1.0</td></tr><tr><td class="dep-name">criterium</td><td class="dotted"><hr /></td><td class="dep-version">0.2.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#cheshire.core">cheshire.core</a></li><li><a href="#cheshire.custom">cheshire.custom</a></li><li><a href="#cheshire.factory">cheshire.factory</a></li><li><a href="#cheshire.generate">cheshire.generate</a></li><li><a href="#cheshire.parse">cheshire.parse</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.core" name="cheshire.core"><h1 class="project-name">cheshire.core</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.core
   (:use [cheshire.factory]
         [cheshire.generate :only [generate]]
@@ -2581,8 +2581,7 @@ $(document).ready(function() {
     (parse
      (.createJsonParser ^JsonFactory (or *json-factory* json-factory)
                         (StringReader. string))
-     true (or keywords? false) nil
-     array-coerce-fn)))</pre></tr><tr><td class="docs">
+     true (or keywords? false) nil array-coerce-fn)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse-stream
   &quot;Returns the Clojure object corresponding to the given reader, reader must
   implement BufferedReader. keywords? should be true if keyword keys are needed
@@ -2590,7 +2589,7 @@ $(document).ready(function() {
   The array-coerce-fn is an optional function taking the name of an array field,
   and returning the collection to be used for array values.
   If laziness is needed, see parsed-seq.&quot;
-  [^BufferedReader rdr &amp; [^Boolean keywords? array-coerce-fn] ]
+  [^BufferedReader rdr &amp; [^Boolean keywords? array-coerce-fn]]
   (when rdr
     (parse
      (.createJsonParser ^JsonFactory (or *json-factory* json-factory) rdr)
@@ -2612,7 +2611,7 @@ $(document).ready(function() {
   (let [eof (Object.)]
     (lazy-seq
      (let [elem (parse parser true keywords? eof array-coerce-fn)]
-       (if-not (identical? elem eof)
+       (when-not (identical? elem eof)
          (cons elem (parsed-seq* parser keywords? array-coerce-fn)))))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parsed-seq
   &quot;Returns a lazy seq of Clojure objects corresponding to the JSON read from
@@ -2652,28 +2651,39 @@ $(document).ready(function() {
            (java.text SimpleDateFormat)
            (java.sql Timestamp)
            (org.codehaus.jackson.smile SmileFactory)
-           (org.codehaus.jackson JsonFactory JsonGenerator JsonParser)))</pre></tr><tr><td class="docs"><p>date format rebound for custom encoding</p>
+           (org.codehaus.jackson JsonFactory JsonGenerator
+                                 JsonGenerationException JsonParser)))</pre></tr><tr><td class="docs"><p>date format rebound for custom encoding</p>
 </td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :private true} *date-format*)</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defprotocol JSONable
   (to-json [t jg]))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode [obj &amp; [^String date-format]]
+</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode* [obj &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
     (let [sw (StringWriter.)
-          generator (.createJsonGenerator ^JsonFactory
-                                          (or *json-factory* json-factory) sw)]
+          generator (.createJsonGenerator
+                     ^JsonFactory (or *json-factory* json-factory) sw)]
       (if obj
         (to-json obj generator)
         (.writeNull generator))
       (.flush generator)
       (.toString sw))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode-stream [obj ^BufferedWriter w &amp; [^String date-format]]
+</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode [obj &amp; [^String date-format]]
+  (try
+    (core/encode obj date-format)
+    (catch JsonGenerationException _
+      (encode* obj date-format))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode-stream* [obj ^BufferedWriter w &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
     (let [generator (.createJsonGenerator ^JsonFactory
                                           (or *json-factory* json-factory) w)]
       (to-json obj generator)
       (.flush generator)
       w)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn encode-smile
+</td><td class="codes" /><pre class="brush: clojure">(defn ^String encode-stream [obj ^BufferedWriter w &amp; [^String date-format]]
+  (try
+    (core/encode-stream obj w date-format)
+    (catch JsonGenerationException _
+      (encode-stream* obj date-format))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn encode-smile*
   [obj &amp; [^String date-format]]
   (binding [*date-format* (or date-format default-date-format)]
     (let [baos (ByteArrayOutputStream.)
@@ -2682,7 +2692,13 @@ $(document).ready(function() {
                                           baos)]
       (to-json obj generator)
       (.flush generator)
-      (.toByteArray baos))))</pre></tr><tr><td class="docs"><p>there are no differences in parsing, but these are here to make
+      (.toByteArray baos))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn encode-smile
+  [obj &amp; [^String date-format]]
+  (try
+    (core/encode-smile obj date-format)
+    (catch JsonGenerationException _
+      (encode-smile* obj date-format))))</pre></tr><tr><td class="docs"><p>there are no differences in parsing, but these are here to make
 this a self-contained namespace if desired</p>
 </td><td class="codes" /><pre class="brush: clojure">(def parse core/decode)
 (def parse-string core/decode)
@@ -2693,8 +2709,11 @@ this a self-contained namespace if desired</p>
 (def decode-stream parse-stream)
 (def decode-smile parse-smile)</pre></tr><tr><td class="docs"><p>aliases for encoding</p>
 </td><td class="codes" /><pre class="brush: clojure">(def generate-string encode)
+(def generate-string* encode*)
 (def generate-stream encode-stream)
-(def generate-smile encode-smile)</pre></tr><tr><td class="docs"><p>Generic encoders, these can be used by someone writing a custom
+(def generate-stream* encode-stream*)
+(def generate-smile encode-smile)
+(def generate-smile* encode-smile*)</pre></tr><tr><td class="docs"><p>Generic encoders, these can be used by someone writing a custom
 encoder if so desired, after transforming an arbitrary data
 structure into a clojure one, these can just be called.</p>
 </td><td class="codes" /><pre class="brush: clojure">(defn encode-nil
@@ -2709,6 +2728,10 @@ structure into a clojure one, these can just be called.</p>
   &quot;Encode anything implementing java.lang.Number to the json generator.&quot;
   [^java.lang.Number n ^JsonGenerator jg]
   (.writeNumber jg n))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn encode-long
+  &quot;Encode anything implementing java.lang.Number to the json generator.&quot;
+  [^Long n ^JsonGenerator jg]
+  (.writeNumber jg (long n)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn encode-ratio
   &quot;Encode a clojure.lang.Ratio to the json generator.&quot;
   [^clojure.lang.Ratio n ^JsonGenerator jg]
@@ -2747,14 +2770,9 @@ structure into a clojure one, these can just be called.</p>
     (to-json v jg))
   (.writeEndObject jg))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn encode-symbol
-  &quot;Encode a clojure symbol to the json generator. Symbols will be encoded as
-  &lt;namespace&gt;/&lt;symbol-name&gt;&quot;
+  &quot;Encode a clojure symbol to the json generator.&quot;
   [^clojure.lang.Symbol s ^JsonGenerator jg]
-  (.writeString jg (if-let [sym (resolve s)]
-                     (str (:ns (meta sym))
-                          &quot;/&quot;
-                          (:name (meta sym)))
-                     (str s))))</pre></tr><tr><td class="docs"><p>extended implementations for clojure datastructures</p>
+  (.writeString jg (str s)))</pre></tr><tr><td class="docs"><p>extended implementations for clojure datastructures</p>
 </td><td class="codes" /><pre class="brush: clojure">(extend nil
   JSONable
   {:to-json encode-nil})</pre></tr><tr><td class="docs">
@@ -2772,6 +2790,9 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(extend clojure.lang.Ratio
   JSONable
   {:to-json encode-ratio})</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(extend Long
+  JSONable
+  {:to-json encode-long})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend java.lang.Number
   JSONable
   {:to-json encode-number})</pre></tr><tr><td class="docs">
@@ -2782,6 +2803,9 @@ in 1.3 clojure/core :-/</p>
   JSONable
   {:to-json encode-seq})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend clojure.lang.IPersistentSet
+  JSONable
+  {:to-json encode-seq})</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(extend clojure.lang.IPersistentList
   JSONable
   {:to-json encode-seq})</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(extend java.util.Date
@@ -2888,8 +2912,8 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :tag JsonFactory} *json-factory* nil)</pre></tr><tr><td class="docs"><p>dynamically rebindable smile factory, if desired</p>
 </td><td class="codes" /><pre class="brush: clojure">(def ^{:dynamic true :tag SmileFactory} *smile-factory* nil)</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.generate" name="cheshire.generate"><h1 class="project-name">cheshire.generate</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.generate
-  (:import (org.codehaus.jackson JsonGenerator)
-           (java.util List Date SimpleTimeZone UUID)
+  (:import (org.codehaus.jackson JsonGenerator JsonGenerationException)
+           (java.util Date Map List Set SimpleTimeZone UUID)
            (java.sql Timestamp)
            (java.text SimpleDateFormat)
            (java.math BigInteger)
@@ -2897,8 +2921,8 @@ in 1.3 clojure/core :-/</p>
 </td><td class="codes" /><pre class="brush: clojure">(definline write-string [^JsonGenerator jg ^String str]
   `(.writeString ~jg ~str))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(definline fail [obj]
-  `(throw (Exception. (str &quot;Cannot JSON encode object of class: &quot;
-                           (class ~obj) &quot;: &quot; ~obj))))</pre></tr><tr><td class="docs">
+  `(throw (JsonGenerationException. (str &quot;Cannot JSON encode object of class: &quot;
+                                         (class ~obj) &quot;: &quot; ~obj))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defmacro number-dispatch [^JsonGenerator jg obj]
   (if (&lt; 2 (:minor *clojure-version*))
     (do
@@ -2923,33 +2947,38 @@ in 1.3 clojure/core :-/</p>
          BigDecimal (.writeNumber ~jg ^BigDecimal ~obj)
          Ratio (.writeNumber ~jg (double ~obj))
          (fail ~obj)))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(declare generate)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(definline generate-map [^JsonGenerator jg obj ^String date-format]
+  `(do
+     (.writeStartObject ~jg)
+     (doseq [[k# v#] ~obj]
+       (.writeFieldName ~jg (if (keyword? k#)
+                              (.substring (str k#) 1)
+                              (str k#)))
+       (generate ~jg v# ~date-format))
+     (.writeEndObject ~jg)))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(definline generate-array [^JsonGenerator jg obj ^String date-format]
+  `(do
+     (.writeStartArray ~jg)
+     (doseq [item# ~obj]
+       (generate ~jg item# ~date-format))
+     (.writeEndArray ~jg)))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn generate [^JsonGenerator jg obj ^String date-format]
   (condp instance? obj
     IPersistentCollection (condp instance? obj
                             clojure.lang.IPersistentMap
-                            (do
-                              (.writeStartObject jg)
-                              (doseq [[k v] obj
-                                      :let [field-name (if (keyword? k)
-                                                         (name k)
-                                                         (str k))]]
-                                (.writeFieldName jg field-name)
-                                (generate jg v date-format))
-                              (.writeEndObject jg))
+                            (generate-map jg obj date-format)
                             clojure.lang.IPersistentVector
-                            (do
-                              (.writeStartArray jg)
-                              (dotimes [i (count obj)]
-                                (generate jg (.get ^List obj i) date-format))
-                              (.writeEndArray jg))
+                            (generate-array jg obj date-format)
                             clojure.lang.IPersistentSet
                             (generate jg (seq obj) date-format)
+                            clojure.lang.IPersistentList
+                            (generate-array jg obj date-format)
                             clojure.lang.ISeq
-                            (do
-                              (.writeStartArray jg)
-                              (doseq [item obj]
-                                (generate jg item date-format))
-                              (.writeEndArray jg)))
+                            (generate-array jg obj date-format))
+    Map (generate-map jg obj date-format)
+    List (generate-array jg obj date-format)
+    Set (generate jg (seq obj) date-format)
     Number (number-dispatch ^JsonGenerator jg obj)
     String (write-string ^JsonGenerator jg ^String obj)
     Keyword (write-string ^JsonGenerator jg
@@ -2957,11 +2986,7 @@ in 1.3 clojure/core :-/</p>
                             (str ns &quot;/&quot; (name obj))
                             (name obj)))
     UUID (write-string ^JsonGenerator jg (.toString ^UUID obj))
-    Symbol (write-string ^JsonGenerator jg (if-let [sym (resolve obj)]
-                                             (str (:ns (meta sym))
-                                                  &quot;/&quot;
-                                                  (:name (meta sym)))
-                                             (.toString ^Symbol obj)))
+    Symbol (write-string ^JsonGenerator jg (.toString ^Symbol obj))
     Boolean (.writeBoolean ^JsonGenerator jg ^Boolean obj)
     Date (let [sdf (doto (SimpleDateFormat. date-format)
                      (.setTimeZone (SimpleTimeZone. 0 &quot;UTC&quot;)))]
@@ -2978,8 +3003,12 @@ in 1.3 clojure/core :-/</p>
         (catch Exception e (fail obj))))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#cheshire.parse" name="cheshire.parse"><h1 class="project-name">cheshire.parse</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(ns cheshire.parse
   (:import (org.codehaus.jackson JsonParser JsonToken)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(declare parse)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(definline parse-object [^JsonParser jp fst? keywords? eof array-coerce-fn]
+</td><td class="codes" /><pre class="brush: clojure">(declare parse*)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(def ^{:doc &quot;Flag to determine whether float values should be returned as
+             BigDecimals to retain precision. Defaults to false.&quot;
+       :dynamic true}
+  *use-bigdecimals?* false)</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(definline parse-object [^JsonParser jp keywords? bd? array-coerce-fn]
   `(do
      (.nextToken ~jp)
      (loop [mmap# (transient {})]
@@ -2990,15 +3019,12 @@ in 1.3 clojure/core :-/</p>
                key# (if ~keywords?
                       (keyword key-str#)
                       key-str#)
-               mmap# (assoc!
-                      mmap#
-                      key#
-                      (parse
-                       ~jp ~false ~keywords? ~eof ~array-coerce-fn))]
+               mmap# (assoc! mmap# key#
+                             (parse* ~jp ~keywords? ~bd? ~array-coerce-fn))]
            (.nextToken ~jp)
            (recur mmap#))
          (persistent! mmap#)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(definline parse-array [^JsonParser jp fst? keywords? eof array-coerce-fn]
+</td><td class="codes" /><pre class="brush: clojure">(definline parse-array [^JsonParser jp keywords? bd? array-coerce-fn]
   `(let [array-field-name# (.getCurrentName ~jp)]
      (.nextToken ~jp)
      (loop [coll# (transient (if ~array-coerce-fn
@@ -3006,39 +3032,29 @@ in 1.3 clojure/core :-/</p>
                                []))]
        (if-not (= (.getCurrentToken ~jp)
                   JsonToken/END_ARRAY)
-         (let [coll# (conj!
-                     coll#
-                     (parse
-                      ~jp
-                      false
-                      ~keywords?
-                      ~eof
-                      ~array-coerce-fn))]
+         (let [coll# (conj! coll#(parse* ~jp ~keywords? ~bd? ~array-coerce-fn))]
            (.nextToken ~jp)
            (recur coll#))
          (persistent! coll#)))))</pre></tr><tr><td class="docs">
+</td><td class="codes" /><pre class="brush: clojure">(defn parse* [^JsonParser jp keywords? bd? array-coerce-fn]
+  (condp = (.getCurrentToken jp)
+    JsonToken/START_OBJECT (parse-object jp keywords? bd? array-coerce-fn)
+    JsonToken/START_ARRAY (parse-array jp keywords? bd? array-coerce-fn)
+    JsonToken/VALUE_STRING (.getText jp)
+    JsonToken/VALUE_NUMBER_INT (.getNumberValue jp)
+    JsonToken/VALUE_NUMBER_FLOAT (if bd?
+                                   (.getDecimalValue jp)
+                                   (.getNumberValue jp))
+    JsonToken/VALUE_TRUE true
+    JsonToken/VALUE_FALSE false
+    JsonToken/VALUE_NULL nil
+    (throw
+     (Exception.
+      (str &quot;Cannot parse &quot; (pr-str (.getCurrentToken jp)))))))</pre></tr><tr><td class="docs">
 </td><td class="codes" /><pre class="brush: clojure">(defn parse [^JsonParser jp fst? keywords? eof array-coerce-fn]
-  (let [fst? (boolean fst?)
-        keywords? (boolean keywords?)
-        x (if fst?
-            (do
-              (.nextToken jp)
-              (if (nil? (.getCurrentToken jp))
-                eof
-                (Object.)))
-            (Object.))]
-    (if (= x eof)
+  (let [keywords? (boolean keywords?)]
+    (.nextToken jp)
+    (if (nil? (.getCurrentToken jp))
       eof
-      (case (.toString (.getCurrentToken jp))
-            &quot;START_OBJECT&quot; (parse-object jp fst? keywords? eof array-coerce-fn)
-            &quot;START_ARRAY&quot; (parse-array jp fst? keywords? eof array-coerce-fn)
-            &quot;VALUE_STRING&quot; (.getText jp)
-            &quot;VALUE_NUMBER_INT&quot; (.getNumberValue jp)
-            &quot;VALUE_NUMBER_FLOAT&quot; (.getDoubleValue jp)
-            &quot;VALUE_TRUE&quot; true
-            &quot;VALUE_FALSE&quot; false
-            &quot;VALUE_NULL&quot; nil
-            (throw
-             (Exception.
-              (str &quot;Cannot parse &quot; (pr-str (.getCurrentToken jp)))))))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_cheshire.core">cheshire.core</li><li class="floating-toc-li" id="floating-toc_cheshire.custom">cheshire.custom</li><li class="floating-toc-li" id="floating-toc_cheshire.factory">cheshire.factory</li><li class="floating-toc-li" id="floating-toc_cheshire.generate">cheshire.generate</li><li class="floating-toc-li" id="floating-toc_cheshire.parse">cheshire.parse</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
+      (parse* jp keywords? *use-bigdecimals?* array-coerce-fn))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_cheshire.core">cheshire.core</li><li class="floating-toc-li" id="floating-toc_cheshire.custom">cheshire.custom</li><li class="floating-toc-li" id="floating-toc_cheshire.factory">cheshire.factory</li><li class="floating-toc-li" id="floating-toc_cheshire.generate">cheshire.generate</li><li class="floating-toc-li" id="floating-toc_cheshire.parse">cheshire.parse</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>
