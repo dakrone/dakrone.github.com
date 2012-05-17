@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Natural Language Processing with Clojure, library for opennlp.
-                http://github.com/dakrone/clojure-opennlp" name="description" /><style type="text/css">/**
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Natural Language Processing with Clojure, library for opennlp." name="description" /><style type="text/css">/**
  * SyntaxHighlighter
  * http://alexgorbatchev.com/SyntaxHighlighter
  *
@@ -35,7 +34,7 @@
   height: auto !important;
   left: auto !important;
   line-height: 1.1em !important;
-  margin: 0 !important;
+/*  margin: 0 !important; */
   outline: 0 !important;
   overflow: visible !important;
   padding: 0 !important;
@@ -227,10 +226,6 @@
   color: black !important;
 }
 </style><style type="text/css">.syntaxhighlighter{overflow:hidden !important;}</style><style type="text/css">/**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
- *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
  * @version
@@ -340,9 +335,6 @@
   color: red !important;
 }
 
-.syntaxhighlighter .keyword {
-  font-weight: bold !important;
-}
 .syntaxhighlighter .xml .keyword {
   color: #3f7f7f !important;
   font-weight: normal !important;
@@ -354,7 +346,43 @@
   font-style: italic !important;
   color: #2a00ff !important;
 }
-</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><script type="text/javascript">/*!
+
+.clojure.syntaxhighlighter .invalid { 
+   background-color: #FAA !important;
+}
+
+.clojure.syntaxhighlighter .quoted {      
+    font-style: italic !important;
+}
+
+.syntaxhighlighter .clojure.variable,
+.syntaxhighlighter .clojure.symbol,
+.syntaxhighlighter .clojure.value
+{
+    color: #006060 !important;
+}
+
+.syntaxhighlighter .clojure.string {
+    color: #55B !important;
+}
+
+.syntaxhighlighter .clojure.functions {
+    color: black !important;
+}
+
+.syntaxhighlighter .clojure.color1 {
+    color: #666 !important;
+}
+
+.syntaxhighlighter .clojure.color3 {
+    color: #900 !important;
+}
+
+.syntaxhighlighter .clojure.constants {
+    color: #1A734D !important;
+}
+
+</style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{display:inline;font-size:34px;}h2.project-version{display:inline;margin-left:10px;margin-top:0;font-size:18px;}.toc-link{margin-left:10px;color:#252519;font-size:12px;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{margin:0;font-size:34px;}.docs-header{margin-bottom:25px;padding-bottom:10px;border-bottom:dotted #aaa 1px;}.toc h1{font-size:24px;}.toc{margin-bottom:40px;border-bottom:solid #bbb 1px;}.toc ul{padding-left:0px;margin-left:20px;margin-top:0;padding-top:0;}.toc li{padding-left:0;list-style-type:none;}.dependencies{}.dependencies table{border:none;width:99.99%;margin-left:20px;font-size:16px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{padding-left:0px;margin-left:20px;margin-top:0;padding-top:0;}.plugins li{padding-left:0;list-style-type:none;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;text-align:right;overflow:hidden;top:10px;right:20px;height:20px;}#floating-toc li{margin:0;padding:0;list-style-type:none;}</style><style type="text/css">body{margin:0;padding:0;color:#252519;font-size:16px;background-color:#F5F5FF;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;}h1{margin-top:0;font-size:20px;}a.anchor{color:#252519;text-decoration:none;}a.anchor:hover{color:#5050A6;}table{margin-bottom:10px;border-bottom:solid #ddd 1px;;border-spacing:0;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{border:none;margin:0px;padding-left:55px;width:410px;padding-right:20px;vertical-align:top;max-width:410px;background-color:#FFF;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;background-color:ghostWhite;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><script type="text/javascript">/*!
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
  *
@@ -2243,297 +2271,771 @@ return sh;
 
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
-</script><script type="text/javascript">/*!
- * Copyright © 2010 Sattvik Software & Technology Resources, Ltd. Co.
- * All rights reserved.
- *
- * sh-clojure may be used under the terms of either the GNU Lesser General Public
- * License (LGPL) or the Eclipse Public License (EPL).  As a recipient of
- * sh-clojure, you may choose which license to receive the code under.  See the
- * LICENSE file distributed with sh-clojure for details.
- *
- * Written by Daniel Solano Gómez
- *
- * Version 0.9.1 - 10 Apr 2010
- */
+</script><script type="text/javascript">// (inc clojure-brush) ;; an improved SyntaxHighlighter brush for clojure
+//
+// Copyright (C) 2011 Andrew Brehaut
+//
+// Distributed under the Eclipse Public License, the same as Clojure.
+//
+// https://github.com/brehaut/inc-clojure-brush
+//
+// Written by Andrew Brehaut
+// V0.9.1, November 2011
 
-function ClojureRegExp(pattern) {
-	pattern = pattern + '(?=[[\\]{}(),\\s])';
-	this.regex = new RegExp(pattern, 'g');
-	this.lookBehind = /[\[\]{}(),\s]$/;
-}
+if (typeof net == "undefined") net = {};
+if (!(net.brehaut)) net.brehaut = {};
 
-ClojureRegExp.prototype.exec = function (str) {
-	var match, leftContext;
-	while (match=this.regex.exec(str)) {
-		leftContext = str.substring(0, match.index);
-		if (this.lookBehind.test(leftContext)) {
-			return match;
-		}
-		else {
-			this.regex.lastIndex = match.index + 1;
-		}
-	}
-	return null;
-};
+net.brehaut.ClojureTools = (function (SH) {
+  "use strict";
+  // utiliies
+  if (!Object.create) Object.create = function object(o) {
+    function F() {};
+    F.prototype = o;  
+    return new F();
+  };
+        
+  // data
+  
+  function Token(value, index, tag, length) {
+    this.value = value;
+    this.index = index;
+    this.length = length || value.length;
+    this.tag = tag;
+    this.secondary_tags = {};
+  }
+  
+  // null_token exists so that LispNodes that have not had a closing tag attached
+  // can have a dummy token to simplify annotation
+  var null_token = new Token("", -1, "null", -1);
+  
+  /* LispNodes are aggregate nodes for sexpressions. 
+   *
+   */
+  function LispNode(tag, children, opening) {
+    this.tag = tag;            // current metadata for syntax inference
+    this.parent = null;        // the parent expression
+    this.list = children;      // all the child forms in order
+    this.opening = opening;    // the token that opens this form.
+    this.closing = null_token; // the token that closes this form.
+    this.meta = null;          // metadata nodes will be attached here if they are found
+  }
 
-SyntaxHighlighter.brushes.Clojure = function () {
-	var special_forms =
-			'. def do fn if let loop monitor-enter monitor-exit new quote recur set! ' +
-			'throw try var',
-	    clojure_core =
-			'* *1 *2 *3 *agent* *allow-unresolved-vars* *assert* *clojure-version* ' +
-			'*command-line-args* *compile-files* *compile-path* *e *err* *file* ' +
-			'*flush-on-newline* *in* *macro-meta* *math-context* *ns* *out* ' +
-			'*print-dup* *print-length* *print-level* *print-meta* *print-readably* ' +
-			'*read-eval* *source-path* *use-context-classloader* ' +
-			'*warn-on-reflection* + - -> -&gt; ->> -&gt;&gt; .. / < &lt; <= &lt;= = ' +
-			'== > &gt; >= &gt;= accessor aclone ' +
-			'add-classpath add-watch agent agent-errors aget alength alias all-ns ' +
-			'alter alter-meta! alter-var-root amap ancestors and apply areduce ' +
-			'array-map aset aset-boolean aset-byte aset-char aset-double aset-float ' +
-			'aset-int aset-long aset-short assert assoc assoc! assoc-in associative? ' +
-			'atom await await-for await1 bases bean bigdec bigint binding bit-and ' +
-			'bit-and-not bit-clear bit-flip bit-not bit-or bit-set bit-shift-left ' +
-			'bit-shift-right bit-test bit-xor boolean boolean-array booleans ' +
-			'bound-fn bound-fn* butlast byte byte-array bytes cast char char-array ' +
-			'char-escape-string char-name-string char? chars chunk chunk-append ' +
-			'chunk-buffer chunk-cons chunk-first chunk-next chunk-rest chunked-seq? ' +
-			'class class? clear-agent-errors clojure-version coll? comment commute ' +
-			'comp comparator compare compare-and-set! compile complement concat cond ' +
-			'condp conj conj! cons constantly construct-proxy contains? count ' +
-			'counted? create-ns create-struct cycle dec decimal? declare definline ' +
-			'defmacro defmethod defmulti defn defn- defonce defstruct delay delay? ' +
-			'deliver deref derive descendants destructure disj disj! dissoc dissoc! ' +
-			'distinct distinct? doall doc dorun doseq dosync dotimes doto double ' +
-			'double-array doubles drop drop-last drop-while empty empty? ensure ' +
-			'enumeration-seq eval even? every? false? ffirst file-seq filter find ' +
-			'find-doc find-ns find-var first float float-array float? floats flush ' +
-			'fn fn? fnext for force format future future-call future-cancel ' +
-			'future-cancelled? future-done? future? gen-class gen-interface gensym ' +
-			'get get-in get-method get-proxy-class get-thread-bindings get-validator ' +
-			'hash hash-map hash-set identical? identity if-let if-not ifn? import ' +
-			'in-ns inc init-proxy instance? int int-array integer? interleave intern ' +
-			'interpose into into-array ints io! isa? iterate iterator-seq juxt key ' +
-			'keys keyword keyword? last lazy-cat lazy-seq let letfn line-seq list ' +
-			'list* list? load load-file load-reader load-string loaded-libs locking ' +
-			'long long-array longs loop macroexpand macroexpand-1 make-array ' +
-			'make-hierarchy map map? mapcat max max-key memfn memoize merge ' +
-			'merge-with meta method-sig methods min min-key mod name namespace neg? ' +
-			'newline next nfirst nil? nnext not not-any? not-empty not-every? not= ' +
-			'	ns ns-aliases ns-imports ns-interns ns-map ns-name ns-publics ' +
-			'ns-refers ns-resolve ns-unalias ns-unmap nth nthnext num number? odd? ' +
-			'or parents partial partition pcalls peek persistent! pmap pop pop! ' +
-			'pop-thread-bindings pos? pr pr-str prefer-method prefers ' +
-			'primitives-classnames print print-ctor print-doc print-dup print-method ' +
-			'print-namespace-doc print-simple print-special-doc print-str printf ' +
-			'println println-str prn prn-str promise proxy proxy-call-with-super ' +
-			'proxy-mappings proxy-name proxy-super push-thread-bindings pvalues quot ' +
-			'rand rand-int range ratio? rational? rationalize re-find re-groups ' +
-			're-matcher re-matches re-pattern re-seq read read-line read-string ' +
-			'reduce ref ref-history-count ref-max-history ref-min-history ref-set ' +
-			'refer refer-clojure release-pending-sends rem remove remove-method ' +
-			'remove-ns remove-watch repeat repeatedly replace replicate require ' +
-			'reset! reset-meta! resolve rest resultset-seq reverse reversible? rseq ' +
-			'rsubseq second select-keys send send-off seq seq? seque sequence ' +
-			'sequential? set set-validator! set? short short-array shorts ' +
-			'shutdown-agents slurp some sort sort-by sorted-map sorted-map-by ' +
-			'sorted-set sorted-set-by sorted? special-form-anchor special-symbol? ' +
-			'split-at split-with str stream? string? struct struct-map subs subseq ' +
-			'subvec supers swap! symbol symbol? sync syntax-symbol-anchor take ' +
-			'take-last take-nth take-while test the-ns time to-array to-array-2d ' +
-			'trampoline transient tree-seq true? type unchecked-add unchecked-dec ' +
-			'unchecked-divide unchecked-inc unchecked-multiply unchecked-negate ' +
-			'unchecked-remainder unchecked-subtract underive unquote ' +
-			'unquote-splicing update-in update-proxy use val vals var-get var-set ' +
-			'var? vary-meta vec vector vector? when when-first when-let when-not ' +
-			'while with-bindings with-bindings* with-in-str with-loading-context ' +
-			'with-local-vars with-meta with-open with-out-str with-precision xml-seq ' +
-			'zero? zipmap ';
+  var null_lispnode = new LispNode("null", [], null_token);
 
-	this.getKeywords = function (keywordStr) {
-		// quote special characters
-		keywordStr = keywordStr.replace(/[\-\[\]{}()*+?.\\\^$|,#]/g, "\\$&");
-		// trim whitespace and convert to alternatives
-		keywordStr = keywordStr.replace(/^\s+|\s+$/g, '').replace(/\s+/g, '|');
-		// create pattern
-		return '(?:' + keywordStr + ')';
-	};
+  
+  function PrefixNode(tag, token, attached_node) {
+    this.tag = tag;
+    this.token = token;
+    this.attached_node = attached_node;
+    this.parent = null;
+  }
 
-	this.regexList = [
-		// comments
-		{ regex: new RegExp(';.*$', 'gm'),
-			css: 'comments' },
-		// strings
-		{ regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString,
-			css: 'string' },
-		// regular expressions
-		{ regex: /#"(?:\.|(\\\")|[^\""\n])*"/g,
-			css: 'string' },
-		// vectors
-		{ regex: /\[|\]/g,
-			css: 'keyword' },
-		// amperstands
-		{ regex: /&(amp;)?/g,
-			css: 'keyword' },
-		// sets and maps
-		{ regex: /#?\{|\}/g,
-			css: 'keyword' },
-		// metadata
-		{ regex: /#\^\{/g,
-			css: 'keyword' },
-		// anonymous fn syntactic sugar
-		{ regex: /#\(|%/g,
-			css: 'keyword' },
-		// deref reader macro
-		{ regex: /@/g,
-			css: 'keyword' },
-		// (un)quoted sexprs
-		{ regex: /(['`]|~@?)[\[({]/g,
-			css: 'keyword' },
-		// lists
-		{ regex: /\(|\)/g,
-			css: 'keyword' },
-		// character literals
-		{ regex: /\\.\b/g,
-			css: 'value' },
-		// hexadecimal literals
-		{ regex: /[+\-]?\b0x[0-9A-F]+\b/gi,
-			css: 'value' },
-		// integer/octal/float/bigdecimal literals
-		{ regex: new ClojureRegExp("[+-]?\\b\\d+(\\.\\d*)?([eE][+-]?\\d+|M)?\\b"),
-			css: 'value' },
-		{ regex: /^[+\-]?\b\d+(\.\d*)?([eE][+\-]?\d+|M)?\b/g,
-			css: 'value' },
-		// booleans+nil
-		{ regex: /\b(true|false|nil)\b/g,
-			css: 'value' },
-		// (un)quoted symbols
-		{ regex: /(`|#?'|~@?)[\w-.A-Za-z0-9_&lt;&gt;\-]+/g,
-			css: 'color1' },
-		// keywords
-		{ regex: /:[A-Za-z0-9_\-]+/g,
-			css: 'constants' },
-		// special forms
-		{ regex: new ClojureRegExp(this.getKeywords(special_forms)),
-			css: 'preprocessor' },
-		// type hints
-		{ regex: /\#\^[A-Za-z]\w*/g,
-			css: 'preprocessor' },
-		// clojure.core
-		{ regex: new ClojureRegExp(this.getKeywords(clojure_core)),
-			css: 'functions' },
-                { regex: /[A-Za-z0-9_&lt;&gt;\-]+/g,  css: 'plain'}
-	];
+  
+  
+  // tokenize
 
-	this.forHtmlScript(SyntaxHighlighter.regexLib.scriptScriptTags);
-};
-
-SyntaxHighlighter.brushes.Clojure.prototype = new SyntaxHighlighter.Highlighter();
-SyntaxHighlighter.brushes.Clojure.aliases   = ['clojure', 'Clojure', 'clj'];
-
-// vim: ts=2 sw=2 noet
-</script><script type="text/javascript">
-// hackity-hack
-
-$(document).ready(function() {
-    var ft = $("#floating-toc")
-    var ul = ft.find('ul')
-    var lis = ft.find('li')
-
-    ul.css('maring', '0px')
-
-    var liHeight = $(lis.get(0)).height()
-
-    ft.css('height', (liHeight) + 'px')
-
-
-    showNs = function(ns) {
-        //this is killing performance, lookup table.
-        //var el = $("[id='floating-toc_" + ns + "']")
-        //var index = lis.index(el)
-
-        var index = 0
-
-        for(i in nsPositions.nss) {
-            if(ns == nsPositions.nss[i]) index = i
-        }
-
-        console.log(index)
-
-        if(index == lastNsIndex) return;
-
-        lastNsIndex = index
-
-
-        ul.animate({marginTop: (-1 * liHeight * index) + 'px'},
-               300)
-        //        ul.css('margin-top', (-1 * liHeight * index) + 'px')
-
-    }
-
-    var calcNsPositions = function() {
-        var nss = []
-        var anchors = []
-        var positions = []
-        $.each(lis, function(i, el) {
-            var ns = $(el).attr('id').split('_')[1]
-            nss.push(ns)
-            var a = $("a[name='"+ns+"']")
-            anchors.push(a)
-            positions.push(a.offset().top)
-            console.log(a.offset().top)
-        });
-
-        return {nss: nss, positions: positions}
-    }
-
-    var nsPositions = calcNsPositions()
-
-    console.log(nsPositions)
-
-    var lastNsIndex = -1
-
-    var $window = $(window)
-
-    var currentSection = function(nsp) {
-
-        var ps = nsp.positions
-        var nss = nsp.nss
-        var scroll = $window.scrollTop() + 300
-        var nsIndex = -1
-        for(var i in ps) {
-            var p = ps[i]
-            if(p >= scroll) {
-                nsIndex = i-1
-                break;
-            }
+  function tokenize(code) {
+    var tokens = [];
+    var tn = 0;
+    
+    var zero = "0".charCodeAt(0);
+    var nine = "9".charCodeAt(0); 
+    var lower_a = "a".charCodeAt(0);
+    var lower_f = "f".charCodeAt(0);    
+    var upper_a = "A".charCodeAt(0);
+    var upper_f = "F".charCodeAt(0);
+    
+    var dispatch = false; // have we just seen a # character?
+    
+    // i tracks the start of the current window
+    // extent is the window for slicing
+    
+    for (var i = 0, 
+             extent = i, 
+             j = code.length; 
+             i < j && extent <= j;) {          
                 
+      var c = code[i];
+      
+      // we care about capturing the whole token when dispatch is used, so back up the
+      // starting index by 1
+      if (dispatch) i--; 
+      
+      switch (c) {
+        // dispatch alters the value of the next thing read
+        case "#":
+          dispatch = true;
+          i++;
+          extent++;
+          continue;
+          
+        case " ":    // ignore whitespace
+        case "\t":
+        case "\n":
+        case "\r":
+        case ",":   
+          extent++
+          break; 
+          
+        // simple terms
+        case "^":
+        case "`":
+        case ")":
+        case "[":
+        case "]":
+        case "}":
+        case "@":
+          tokens[tn++] = new Token(c, i, c, ++extent - i);
+          break;
+        
+        case "'":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "#'" : "'", extent - i);
+          break
+        
+        case "(":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, "(", extent - i);
+          break;          
+          
+        case "{":
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "#{" : "{", extent - i);
+          break;  
+        
+        case "\\":
+          if (code.slice(i + 1, i + 8) === "newline") {
+            tokens[tn++] = new Token("\\newline", i, "value", 8);
+            extent = i + 9; 
+          }
+          else if (code.slice(i + 1, i + 6) === "space") {
+            tokens[tn++] = new Token("\\space", i, "value", 6);
+            extent = i + 6;
+          }
+          else if (code.slice(i + 1, i + 4) === "tab") {
+            tokens[tn++] = new Token("\\tab", i, "value", 4);
+            extent = i + 5;
+          } // work around fun bug with &,>,< in character literals
+          else if (code.slice(i + 1, i + 6) === "&amp;") {
+            tokens[tn++] = new Token("\\&amp;", i, "value", 6);
+            extent = i + 6; 
+          }
+          else if (code.slice(i + 1, i + 5) === "&lt;") {
+            tokens[tn++] = new Token("\\&lt;", i, "value", 5);
+            extent = i + 5;
+          }
+          else if (code.slice(i + 1, i + 5) === "&gt;") {
+            tokens[tn++] = new Token("\\&gt;", i, "value", 5);
+            extent = i + 5;
+          }
+          
+          else {
+            extent += 2;
+            tokens[tn++] = new Token(code.slice(i, extent), i, "value", 2);
+          }
+          break;
+        
+        case "~": // slice
+          if (code[i + 1] === "@") {
+            extent += 2;
+            tokens[tn++] = new Token(code.slice(i, extent), i, "splice", 2);
+          }
+          else {
+            tokens[tn++] = new Token(code.slice(i, ++extent), i, "unquote", 2);
+          }
+          break;
+        
+        // complicated terms
+        case "\"": // strings and regexps
+          for (extent++; extent <= j; extent++) {
+            if (code[extent] === "\\") extent++;
+            else if (code[extent] === "\"") break;
+          }
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, dispatch ? "regexp" : "string", extent - i);       
+          break;
+          
+        case ";":
+          for (; extent <= j && code[extent] !== "\n" && code[extent] !== "\r"; extent++);
+          tokens[tn++] = new Token(code.slice(i, ++extent), i, "comments", extent - i);   
+          break;
+        
+        case "+": // numbers; fall through to symbol for + and - not prefixing a number
+        case "-":
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        // todo: exponents, hex
+        // http://my.safaribooksonline.com/9781449310387/14?reader=pf&readerfullscreen=&readerleftmenu=1
+          var c2 = code.charCodeAt(i + 1);
+          if (((c === "+" || c === "-") && (c2 >= zero && c2 <= nine)) // prefixes
+              || (c !== "+" && c !== "-")) {
+            if (c === "+" || c === "-") extent++; 
+            for (; extent <= j; extent++) {
+              var charCode = code.charCodeAt(extent);
+              if (charCode < zero || charCode > nine) break;
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "r" || c === "R" || c === "/" || c === ".") // interstitial characters
+                && (c2 >= zero && c2 <= nine)) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (charCode < zero || charCode > nine) break;
+              }
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "x" || c === "X") && 
+                ((c2 >= zero && c2 <= nine) 
+                 || (c2 >= lower_a && c2 <= lower_f)
+                 || (c2 >= upper_a && c2 <= upper_f))) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (((charCode >= zero && charCode <= nine) 
+                    || (charCode >= lower_a && charCode <= lower_f)
+                    || (charCode >= upper_a && charCode <= upper_f))) continue;
+                break;
+              }
+            }
+            
+            c = code[extent];
+            c2 = code.charCodeAt(extent + 1);
+            if ((c === "e" || c === "E") 
+                && (c2 >= zero && c2 <= nine)) {
+              for (extent++; extent <= j; extent++) {
+                var charCode = code.charCodeAt(extent);
+                if (charCode < zero || charCode > nine) break;
+              }
+            }
+            
+            c = code[extent];
+            if (c === "N" || c === "M") extent++;
+
+            tokens[tn++] = new Token(code.slice(i, extent), i, "value", extent - i);
+            break;
+          }
+
+        case "_":
+          if (dispatch && c === "_") {
+            tokens[tn++] = new Token(code.slice(i, ++extent), i, "skip", extent - i);
+            break;
+          } // if not a skip, fall through to symbols
+        
+        // Allow just about any other symbol as a symbol. This is far more permissive than 
+        // clojure actually allows, but should catch any weirdo crap that accidentally gets
+        // into the code.
+        default: 
+          for (extent++; extent <= j; extent++) {
+            switch (code[extent]) {
+              case " ":
+              case "\t":
+              case "\n":
+              case "\r":
+              case "\\":
+              case ",":
+              case "{":
+              case "}":
+              case "(":
+              case ")":
+              case "[":
+              case "]":
+              case "^":
+              case "`":
+              case "@":   
+                break;
+              case ";":   
+                // theres a weird bug via syntax highligher that gives us escaped entities.
+                // need to watch out for these
+                if (code.slice(extent-3, extent+1) === "&lt;"
+                    ||code.slice(extent-3, extent+1) === "&gt;"
+                    ||code.slice(extent-4, extent+1) === "&amp;") {
+                  continue;
+                }
+                break;
+              default:
+                continue;
+            }
+            break;
+          }
+          
+          var value = code.slice(i, extent);
+          var tag = "symbol";
+          if (value[0] == ":") {
+            tag = "keyword";
+          }
+          else if (value === "true" || value === "false" || value === "nil") {
+            tag = "value";
+          }
+          tokens[tn++] = new Token(value, i, tag, extent - i);
+      }
+      
+      dispatch = false;
+      i = extent;
+    } 
+
+    return tokens;
+  }
+
+
+  function build_tree(tokens) {
+    var toplevel = {
+      list: [], 
+      tag: "toplevel", 
+      parent: null, 
+      opening: null,
+      closing: null,
+      depth: -1
+    };
+    
+    // loop variables hoisted out as semi globals to track position in token stream
+    var i = -1;
+    var j = tokens.length;
+    
+    function parse_one(t) {
+      // ignore special tokens and forms that dont belong in the tree
+      for (; t && (t.tag === "comments" || t.tag === "invalid" || t.tag == "skip") && i < j; ) {
+        if (t.tag === "skip") {
+          t.tag = "preprocessor";
+          annotate_comment(parse_one(tokens[++i]));
         }
-
-        if(nsIndex == -1 && scroll >= ps[0]) {
-            nsIndex = ps.length-1
-        }
-
-        if(nsIndex == -1) nsIndex = 0
-
-        return nss[nsIndex]
+        t = tokens[++i];
+      }
+      
+      if (!t) return {}; // hackity hack
+      
+      switch (t.tag) {
+        case "{":
+          return build_aggregate(new LispNode("map", [], t), "}");
+        case "(":
+          return build_aggregate(new LispNode("list", [], t), ")");
+        case "#{":
+          return build_aggregate(new LispNode("set", [], t), "}");
+        case "[":
+          return build_aggregate(new LispNode("vector", [], t), "]");
+        case "'":
+          return new PrefixNode("quote", t, parse_one(tokens[++i]));
+        case "#'":
+          return new PrefixNode("varquote", t, parse_one(tokens[++i]));  
+        case "@":
+          return new PrefixNode("deref", t, parse_one(tokens[++i]));  
+        case "`":
+          return new PrefixNode("quasiquote", t, parse_one(tokens[++i]));  
+        case "unquote":
+          return new PrefixNode("unquote", t, parse_one(tokens[++i]));
+        case "splice":
+          return new PrefixNode("splice", t, parse_one(tokens[++i]));  
+        case "^":
+          t.tag = "meta";
+          var meta = parse_one(tokens[++i]);
+          var next = parse_one(tokens[++i]);
+          next.meta = meta;
+          return next;
+      }
+      
+      return t;
     }
+    
+    // build_aggregate collects to ether sub forms for one aggregate for. 
+    function build_aggregate(current, expected_closing) {
+      for (i++; i < j; i++) {
+        var t = tokens[i];
 
-    $(window).scroll(function(e) {
-        showNs(currentSection(nsPositions))
-    })
+        if (t.tag === "}" || t.tag === ")" || t.tag === "]") {
+          if (t.tag !== expected_closing) t.tag = "invalid";
+          current.closing = t;
+          if (expected_closing) return current;
+        }
+        var node = parse_one(t);
 
-    ul.css('margin-top', '0px')
+        node.parent = current;
+        current.list[current.list.length] = node;
+      }
+      
+      return current;
+    }
+    
+    build_aggregate(toplevel, null);
+    
+    return toplevel;
+  }
 
-})
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.8-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.
-                http://github.com/dakrone/clojure-opennlp</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.0</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.1-incubating</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">slamhound</td><td class="dotted"><hr /></td><td class="dep-version">1.1.1</td></tr><tr><td class="dep-name">lein-marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.6.0</td></tr><tr><td class="dep-name">lein-multi</td><td class="dotted"><hr /></td><td class="dep-version">1.0.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
+  // annotation rules to apply to a form based on its head
+
+  var show_locals = true;  // HACK. would rather not use a (semi)-global.
+
+  /* annotate_comment is a special case annotation. 
+   * in addition to its role in styling specific forms, it is called by parse_one to
+   * ignore any forms skipped with #_
+   */ 
+  function annotate_comment(exp) {
+    exp.tag = "comments";
+
+    if (exp.list) {
+      exp.opening.tag = "comments";
+      exp.closing.tag = "comments";
+    
+      for (var i = 0; i < exp.list.length; i++) {
+        var child = exp.list[i];
+        if (child.list) {
+          annotate_comment(child);
+        }
+        if (child.attached_node) {
+          annotate_comment(child.attached_node);
+        }
+        else {
+          child.tag = "comments";
+        }
+      }
+    }
+  }
+
+  /* custom annotation rules are stored here */
+  var annotation_rules = {};
+  
+  // this function is exposed to allow ad hoc extension of the customisation rules
+  function register_annotation_rule(names, rule) {
+    for (var i = 0; i < names.length; i++) {
+      annotation_rules[names[i]] = rule;
+    }
+  }
+
+
+  function annotate_destructuring (exp, scope) {
+    if (exp.list) {
+      if (exp.tag === "vector") {
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_destructuring(exp.list[i], scope);
+        }
+      } 
+      else if (exp.tag === "map") {
+        for (var i = 0; i < exp.list.length; i += 2) {
+          var key = exp.list[i];
+          var val = exp.list[i + 1];
+          
+          if (key.tag === "keyword" && val.tag === "vector") {
+            for (var ii = 0, jj = val.list.length; ii < jj; ii++) {
+              if (val.list[ii].tag !== "symbol") continue;
+              val.list[ii].tag = "variable";
+              scope[val.list[ii].value] = true;
+            }
+          }
+          else {
+            annotate_destructuring(key, scope);
+            annotate_expressions(val, scope);
+          }
+        } 
+      }
+    } 
+    else if (exp.tag === "symbol" && (exp.value !== "&" && exp.value !== "&amp;")){
+      exp.tag = "variable";
+      scope[exp.value] = true;
+    }
+  }
+
+  function _annotate_binding_vector (exp, scope) {
+    if (exp.tag !== "vector") return;
+  
+    var bindings = exp.list;
+
+    if (bindings.length % 2 === 1) return;
+    
+    for (var i = 0; i < bindings.length; i += 2) {
+      annotate_destructuring(bindings[i], scope);
+      annotate_expressions(bindings[i + 1], scope);
+    }    
+  }
+
+  function annotate_binding (exp, scope) {
+    var bindings = exp.list[1];
+    if (!show_locals) return; // HACK
+
+    if (bindings) {
+      scope = Object.create(scope);
+      _annotate_binding_vector(bindings, scope);
+    }
+    for (var i = 2; i < exp.list.length; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+  
+  function _annotate_function_body (exp, scope, start_idx) {
+    var argvec = exp.list[start_idx];
+    if (argvec.tag !== "vector") return;
+
+    scope = Object.create(scope);
+
+    for (var i = 0, j = argvec.list.length; i < j; i++) {
+      annotate_destructuring(argvec.list[i], scope);
+    }
+    
+    for (var i = start_idx, j = exp.list.length; i < j; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+  
+  function annotate_function (exp, scope) {
+    for (var i = 1, j = exp.list.length; i < j; i++) {
+      var child = exp.list[i];
+      
+      if (child.tag === "vector") {
+        _annotate_function_body (exp, scope, i);
+        return;
+      }
+      else if (child.tag === "list") {
+        _annotate_function_body(child, scope, 0)
+      }
+    }
+  }
+  
+  function annotate_letfn (exp, scope) {
+    scope = Object.create(scope);
+    var bindings = exp.list[1];
+    
+    var fn;
+    for (var i = 0, j = bindings.list.length; i < j; i++) {
+      fn = bindings.list[i];
+      if (!fn.list[0]) continue;
+      fn.list[0].tag = "variable";
+      scope[fn.list[0].value] = true;
+    }
+    
+    for (i = 0, j = bindings.list.length; i < j; i++) {
+      var fn = bindings.list[i];
+      annotate_function(fn, scope);
+    }
+    
+    for (i = 2, j = exp.list.length; i < j; i++) {
+      annotate_expressions(exp.list[i], scope);
+    }
+  }
+
+  register_annotation_rule(
+    ["comment"],
+    annotate_comment
+  );
+  
+  register_annotation_rule(
+    ["let", "when-let", "if-let", "binding", "doseq", "for", "dotimes", "let*"],
+    annotate_binding
+  );
+  
+  register_annotation_rule(
+    ["defn", "defn-", "fn", "bound-fn", "defmacro", "fn*", "defmethod"],
+    annotate_function
+  );
+  
+  register_annotation_rule(
+    ["letfn"],
+    annotate_letfn
+  );
+
+  // standard annotations
+
+  function _annotate_metadata_recursive(meta, scope) {
+    if (!meta) return;
+
+    if (meta.list !== undefined && meta.list !== null) {
+      for (var i = 0, j = meta.list.length; i < j; i++) {
+        meta.opening.secondary_tags.meta = true
+        meta.closing.secondary_tags.meta = true
+        _annotate_metadata_recursive(meta.list[i], scope);
+      }
+    }
+    else if (meta.attached_node) {
+      meta.token.secondary_tags.meta = true;
+      _annotate_metadata_recursive(meta.attached_node, scope);
+    }
+    else {
+      meta.secondary_tags.meta = true;
+    }
+  }
+  
+  function annotate_metadata(exp) {
+    if (!(exp && exp.meta)) return;
+    var meta = exp.meta;
+    
+     annotate_expressions(meta, {});    
+    _annotate_metadata_recursive(meta, {});
+  }
+
+
+  function annotate_quoted(exp, scope) {
+    if (!exp) return;
+
+    if (exp.list !== undefined && exp.list !== null) {
+      for (var i = 0, j = exp.list.length; i < j; i++) {
+        exp.opening.secondary_tags.quoted = true
+        exp.closing.secondary_tags.quoted = true
+        annotate_quoted(exp.list[i], scope);
+      }
+    }
+    else if (exp.attached_node) {
+      if (exp.tag === "unquote" || exp.tag === "splice") return;
+      exp.token.secondary_tags.quoted = true;
+      annotate_quoted(exp.attached_node, scope);
+    }
+    else {
+      exp.secondary_tags.quoted = true;
+    }
+  }
+
+
+  function annotate_expressions(exp, scope) {
+    annotate_metadata(exp);
+    
+    switch (exp.tag) {
+      case "toplevel": 
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_expressions(exp.list[i], scope);
+        }
+        break;
+      
+      case "list": // functions, macros, special forms, comments
+        var head = exp.list[0];
+      
+        if (head) {
+          if (head.tag === "list" || head.tag === "vector" 
+           || head.tag === "map" || head.tag === "set") {
+            annotate_expressions(head, scope);
+          }
+          else if (head.attached_node) {
+            annotate_expressions(head.attached_node, scope);
+          }
+          else {
+            head.tag = (head.value.match(/(^\.)|(\.$)|[A-Z].*\//)
+                        ? "method"
+                        : "function");
+          }
+
+          // apply specific rules
+          if (annotation_rules.hasOwnProperty(head.value)) {
+            annotation_rules[head.value](exp, scope);
+          } 
+          else {
+            for (var i = 1; i < exp.list.length; i++) {
+              annotate_expressions(exp.list[i], scope);
+            }
+          } 
+        }
+        else { // empty list
+          exp.opening.tag = "value";
+          exp.closing.tag = "value";
+        }
+      
+        break;
+      
+      case "vector": // data
+      case "map":
+      case "set":
+        for (var i = 0; i < exp.list.length; i++) {
+          annotate_expressions(exp.list[i], scope);
+        }
+        break;
+      
+      case "symbol":
+        if (exp.value.match(/[A-Z].*\/[A-Z_]+/)) {
+          exp.tag = "constant";
+        }
+        else if (show_locals && scope[exp.value]) {
+          exp.tag = "variable";
+        }
+        else if (exp.tag === "symbol" && exp.value.match(/([A-Z].*\/)?[A-Z_]+/)) {
+          exp.tag = "type";
+        }
+        break;
+      
+      case "quote":
+      case "quasiquote":
+        annotate_quoted(exp.attached_node, scope);
+        
+      default:
+        if (exp.attached_node) annotate_expressions(exp.attached_node, scope);
+    }
+  }
+
+  // translation of tag to css:
+  var css_translation = {
+    "constant":     "constants",
+    "keyword":      "constants",
+    "method":       "color1",
+    "type":         "color3", 
+    "function":     "functions",
+    "string":       "string",
+    "regexp":       "string",
+    "value":        "value",
+    "comments":     "comments",
+    "symbol":       "symbol",
+    "variable":     "variable",
+    "splice":       "preprocessor", 
+    "unquote":      "preprocessor",     
+    "preprocessor": "preprocessor",
+    "meta":         "preprocessor", 
+    "'":            "preprocessor", 
+    "#'":           "preprocessor",    
+    "(":            "plain",
+    ")":            "plain",
+    "{":            "keyword",
+    "}":            "keyword",
+    "#{":           "keyword",   
+    "[":            "keyword",
+    "]":            "keyword",
+    "invalid":      "invalid",
+    "@":            "plain" 
+  };
+  
+  function translate_tags_to_css(tokens) {
+    for (var i = 0, j = tokens.length; i < j; i++) {
+      var token = tokens[i];
+      token.css = css_translation[token.tag];
+      for (var k in token.secondary_tags) if (token.secondary_tags.hasOwnProperty(k))
+        token.css += " " + k ;
+    };
+  }
+  
+  
+  // create the new brush
+
+  SH.brushes.Clojure = function () {};
+  SH.brushes.Clojure.prototype = new SyntaxHighlighter.Highlighter();
+  
+  SH.brushes.Clojure.prototype.findMatches = function find_matches (regexpList, code) {
+    // this is a nasty global hack. need to resolve this
+    if (this.params && this.params.locals) {
+      show_locals = this.params.locals === true || this.params.locals === "true"; 
+    }
+    else {
+      show_locals = true;
+    }
+    
+    var tokens = tokenize(code);
+    annotate_expressions(build_tree(tokens), {});
+    translate_tags_to_css(tokens);
+
+    return tokens;
+  };
+  
+  SH.brushes.Clojure.aliases = ['clojure', 'Clojure', 'clj'];
+  SH.brushes.Clojure.register_annotation_rule = register_annotation_rule;
+
+  return {
+    tokenize: tokenize,
+    build_tree: build_tree
+  };
+})(SyntaxHighlighter);
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.1.11-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.4.0</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.1-incubating</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns opennlp.nlp
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.nlp
   (:use [clojure.java.io :only [input-stream]])
   (:import
+   (opennlp.tools.doccat DoccatModel
+                         DocumentCategorizerME)
    (opennlp.tools.namefind NameFinderME TokenNameFinderModel)
    (opennlp.tools.postag POSModel POSTaggerME)
    (opennlp.tools.sentdetect SentenceDetectorME SentenceModel)
@@ -2542,18 +3044,18 @@ $(document).ready(function() {
                            Detokenizer$DetokenizationOperation
                            DictionaryDetokenizer
                            TokenizerME
-                           TokenizerModel)))</pre></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
+                           TokenizerModel)
+   (opennlp.tools.util Span)))</pre></td></tr><tr><td class="docs"><p>OpenNLP property for pos-tagging. Meant to be rebound before
 calling the tagging creators</p>
-</td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *beam-size* 3)</pre></tr><tr><td class="docs"><p>Caching to use for pos-tagging</p>
-</td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *cache-size* 1024)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-sentence-detector
-  &quot;Return a function for splitting sentences given a model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-sentence-detector :default
+</td><td class="codes"><pre class="brush: clojure">(def #^{:dynamic true} *beam-size* 3)</pre></td></tr><tr><td class="docs"><p>Caching to use for pos-tagging</p>
+</td><td class="codes"><pre class="brush: clojure">(def #^{:dynamic true} *cache-size* 1024)</pre></td></tr><tr><td class="docs"><p>Return a function for splitting sentences given a model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-sentence-detector
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-sentence-detector :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-sentence-detector (SentenceModel. model-stream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-sentence-detector SentenceModel
+    (make-sentence-detector (SentenceModel. model-stream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-sentence-detector SentenceModel
   [model]
   (fn sentence-detector
     [text]
@@ -2563,15 +3065,14 @@ calling the tagging creators</p>
           probs (seq (.getSentenceProbabilities detector))]
       (with-meta
         (into [] sentences)
-        {:probabilities probs}))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-tokenizer
-  &quot;Return a function for tokenizing a sentence based on a given model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-tokenizer :default
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for tokenizing a sentence based on a given model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-tokenizer
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-tokenizer :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-tokenizer (TokenizerModel. model-stream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-tokenizer TokenizerModel
+    (make-tokenizer (TokenizerModel. model-stream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-tokenizer TokenizerModel
   [model]
   (fn tokenizer
     [sentence]
@@ -2585,15 +3086,14 @@ calling the tagging creators</p>
       (with-meta
         (into [] tokens)
         {:probabilities probs
-         :spans spans}))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-pos-tagger
-  &quot;Return a function for tagging tokens based on a givel model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-pos-tagger :default
+         :spans spans}))))</pre></td></tr><tr><td class="docs"><p>Return a function for tagging tokens based on a givel model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-pos-tagger
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-pos-tagger :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-pos-tagger (POSModel. model-stream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-pos-tagger POSModel
+    (make-pos-tagger (POSModel. model-stream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-pos-tagger POSModel
   [model]
   (fn pos-tagger
     [tokens]
@@ -2604,16 +3104,15 @@ calling the tagging creators</p>
           probs (seq (.probs tagger))]
       (with-meta
         (map vector tokens tags)
-        {:probabilities probs}))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-name-finder
-  &quot;Return a function for finding names from tokens based on a given
-   model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-name-finder :default
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for finding names from tokens based on a given
+   model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-name-finder
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-name-finder :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-name-finder (TokenNameFinderModel. model-stream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-name-finder TokenNameFinderModel
+    (make-name-finder (TokenNameFinderModel. model-stream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-name-finder TokenNameFinderModel
   [model]
   (fn name-finder
     [tokens &amp; contexts]
@@ -2623,18 +3122,17 @@ calling the tagging creators</p>
           matches (.find finder (into-array String tokens))
           probs (seq (.probs finder))]
       (with-meta
-        (distinct (map #(get tokens (.getStart %)) matches))
-        {:probabilities probs}))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-detokenizer
-  &quot;Retun a functin for taking tokens and recombining them into a sentence
-  based on a given model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-detokenizer :default
+        (distinct (Span/spansToStrings matches (into-array String tokens)))
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Return a function for taking tokens and recombining them into a sentence
+  based on a given model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-detokenizer
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-detokenizer :default
   [modelfile]
   (with-open [model-stream (input-stream modelfile)]
-    (make-detokenizer (DetokenizationDictionary. model-stream))))</pre></tr><tr><td class="docs"><p>TODO: clean this up, recursion is a smell
+    (make-detokenizer (DetokenizationDictionary. model-stream))))</pre></td></tr><tr><td class="docs"><p>TODO: clean this up, recursion is a smell
 TODO: remove debug printlns once I'm satisfied</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn- collapse-tokens
+</td><td class="codes"><pre class="brush: clojure">(defn- collapse-tokens
   [tokens detoken-ops]
   (let [sb (StringBuilder.)
         token-set (atom #{})]
@@ -2669,8 +3167,8 @@ TODO: remove debug printlns once I'm satisfied</p>
          (.append sb (str (first ts) &quot; &quot;)))
         (when (and op op2)
           (recur (next ts) (next dt-ops)))))
-    (.toString sb)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-detokenizer DetokenizationDictionary
+    (.toString sb)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-detokenizer DetokenizationDictionary
   [model]
   (fn detokenizer
     [tokens]
@@ -2678,65 +3176,79 @@ TODO: remove debug printlns once I'm satisfied</p>
            (every? #(= (class %) String) tokens)]}
     (let [detoken (DictionaryDetokenizer. model)
           ops (.detokenize detoken (into-array String tokens))]
-      (collapse-tokens tokens ops))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace used for filtering POS-tagged datastructures by grammatical
+      (collapse-tokens tokens ops))))</pre></td></tr><tr><td class="docs"><p>Return a function for determining a category given a model.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-document-categorizer
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-document-categorizer :default
+  [modelfile]
+  (with-open [model-stream (input-stream modelfile)]
+    (make-document-categorizer (DoccatModel. model-stream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-document-categorizer DoccatModel
+  [model]
+  (fn document-categorizer
+    [text]
+    {:pre [(string? text)]}
+    (let [categorizer (DocumentCategorizerME. model)
+          outcomes (.categorize categorizer text)]
+      (.getBestCategory categorizer outcomes))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace used for filtering POS-tagged datastructures by grammatical
   classification. Also provides methods for building your own filters.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defmacro pos-filter
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></td></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro pos-filter
   [n r]
   (let [docstring (str &quot;Given a list of pos-tagged elements, &quot;
                        &quot;return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
        ~docstring
        [elements#]
-       (filter (fn [t#] (re-find ~r (second t#))) elements#))))</pre></tr><tr><td class="docs"><p>Declare a filter for treebank-chunked lists with the given name and regex.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defmacro chunk-filter
+       (filter (fn [t#] (re-find ~r (second t#))) elements#))))</pre></td></tr><tr><td class="docs"><p>Declare a filter for treebank-chunked lists with the given name and regex.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmacro chunk-filter
   [n r]
   (let [docstring (str &quot;Given a list of treebank-chunked elements, &quot;
                        &quot;return only the &quot; n &quot; in a list.&quot;)]
     `(defn ~n
        ~docstring
        [elements#]
-       (filter (fn [t#] (re-find ~r (:tag t#))) elements#))))</pre></tr><tr><td class="docs"><p>It's easy to define your own filters!</p>
-</td><td class="codes" /><pre class="brush: clojure">(pos-filter nouns #&quot;^NN&quot;)
+       (filter (fn [t#] (re-find ~r (:tag t#))) elements#))))</pre></td></tr><tr><td class="docs"><p>It's easy to define your own filters!</p>
+</td><td class="codes"><pre class="brush: clojure">(pos-filter nouns #&quot;^NN&quot;)
 (pos-filter nouns-and-verbs #&quot;^(NN|VB)&quot;)
 (pos-filter proper-nouns #&quot;^NNP&quot;)
-(pos-filter verbs #&quot;^VB&quot;)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(chunk-filter verb-phrases #&quot;^VP$&quot;)
+(pos-filter verbs #&quot;^VB&quot;)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(chunk-filter verb-phrases #&quot;^VP$&quot;)
 (chunk-filter noun-phrases #&quot;^NP$&quot;)
 (chunk-filter adverb-phrases #&quot;^ADVP$&quot;)
-(chunk-filter adjective-phrases #&quot;^ADJP$&quot;)</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.lazy" name="opennlp.tools.lazy"><h1 class="project-name">opennlp.tools.lazy</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Tools for lazily separating, tokenizing and tagging sentences.</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.lazy)</pre></tr><tr><td class="docs"><p>Given a sequence of texts and a sentence-finder, return a lazy sequence of
+(chunk-filter adjective-phrases #&quot;^ADJP$&quot;)</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.lazy" name="opennlp.tools.lazy"><h1 class="project-name">opennlp.tools.lazy</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Tools for lazily separating, tokenizing and tagging sentences.</p>
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.lazy)</pre></td></tr><tr><td class="docs"><p>Given a sequence of texts and a sentence-finder, return a lazy sequence of
   sentences for each text.</p>
 
 <p>TODO: collapse these 3 functions into a generic one</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn lazy-get-sentences
+</td><td class="codes"><pre class="brush: clojure">(defn lazy-get-sentences
   [text sentence-finder]
   (lazy-seq
    (when-let [s (seq text)]
      (cons (sentence-finder (first text))
-           (lazy-get-sentences (rest s) sentence-finder)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, and a tokenizer, return a lazy sequence of
+           (lazy-get-sentences (rest s) sentence-finder)))))</pre></td></tr><tr><td class="docs"><p>Given a sequence of sentences, and a tokenizer, return a lazy sequence of
   tokenized sentences.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn lazy-tokenize
+</td><td class="codes"><pre class="brush: clojure">(defn lazy-tokenize
   [sentences tokenizer]
   (lazy-seq
    (when-let [s (seq sentences)]
-     (cons (tokenizer (first s)) (lazy-tokenize (rest s) tokenizer)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer and a pos-tagger, return a lazy
+     (cons (tokenizer (first s)) (lazy-tokenize (rest s) tokenizer)))))</pre></td></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer and a pos-tagger, return a lazy
   sequence of pos-tagged sentences.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn lazy-tag
+</td><td class="codes"><pre class="brush: clojure">(defn lazy-tag
   [sentences tokenizer pos-tagger]
   (lazy-seq
    (when-let [s (seq sentences)]
      (cons (pos-tagger (tokenizer (first s)))
-           (lazy-tag (rest s) tokenizer pos-tagger)))))</pre></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer, a pos-tagger and a chunker,
+           (lazy-tag (rest s) tokenizer pos-tagger)))))</pre></td></tr><tr><td class="docs"><p>Given a sequence of sentences, a tokenizer, a pos-tagger and a chunker,
   return a lazy sequence of treebank-chunked sentences.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn lazy-chunk
+</td><td class="codes"><pre class="brush: clojure">(defn lazy-chunk
   [sentences tokenizer pos-tagger chunker]
   (lazy-seq
    (when-let [s (seq sentences)]
      (cons (chunker (pos-tagger (tokenizer (first s))))
-           (lazy-chunk (rest s) tokenizer pos-tagger chunker)))))</pre></tr><tr><td class="docs"><p>lazily read sentences from rdr as a lazy sequence of strings using the
+           (lazy-chunk (rest s) tokenizer pos-tagger chunker)))))</pre></td></tr><tr><td class="docs"><p>lazily read sentences from rdr as a lazy sequence of strings using the
   given sentence-finder. rdr must implement java.io.BufferedReader.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn sentence-seq
+</td><td class="codes"><pre class="brush: clojure">(defn sentence-seq
   [^java.io.BufferedReader rdr sentence-finder]
   (.mark rdr 0)
   (let [sb (StringBuilder.)]
@@ -2750,8 +3262,8 @@ TODO: remove debug printlns once I'm satisfied</p>
                           (lazy-seq (sentence-seq rdr sentence-finder))))
                 (do (.mark rdr 0)
                     (recur (.read rdr))))))
-        [(.trim (.toString sb))]))))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
-</td><td class="codes" /><pre class="brush: clojure">(ns opennlp.tools.train
+        [(.trim (.toString sb))]))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.train" name="opennlp.tools.train"><h1 class="project-name">opennlp.tools.train</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This namespace contains tools used to train OpenNLP models</p>
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.train
   (:use [clojure.java.io :only [output-stream reader]])
   (:import (opennlp.tools.util PlainTextByLineStream)
            (opennlp.tools.util.model BaseModel ModelType)
@@ -2774,23 +3286,23 @@ TODO: remove debug printlns once I'm satisfied</p>
                                  POSModel
                                  POSDictionary
                                  WordTagSampleStream
-                                 POSContextGenerator)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn write-model
-  &quot;Write a model to disk&quot;
+                                 POSContextGenerator)
+           (opennlp.tools.doccat DoccatModel
+                                 DocumentCategorizerME
+                                 DocumentSampleStream)))</pre></td></tr><tr><td class="docs"><p>Write a model to disk</p>
+</td><td class="codes"><pre class="brush: clojure">(defn write-model
   [#^BaseModel model out-stream]
-  (.serialize model (output-stream out-stream)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn build-dictionary
-  &quot;Build a Dictionary based on file in appropriate format&quot;
+  (.serialize model (output-stream out-stream)))</pre></td></tr><tr><td class="docs"><p>Build a Dictionary based on file in appropriate format</p>
+</td><td class="codes"><pre class="brush: clojure">(defn build-dictionary
   [in]
-  (Dictionary/parseOneEntryPerLine (reader in)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn build-posdictionary
-  &quot;Build a POSDictionary based on file in appropriate format
-   A POSDictionary records which part-of-speech tags a word
-   may be assigned&quot;
+  (Dictionary/parseOneEntryPerLine (reader in)))</pre></td></tr><tr><td class="docs"><p>Build a POSDictionary based on file in appropriate format</p>
+
+<p>   A POSDictionary records which part-of-speech tags a word
+   may be assigned</p>
+</td><td class="codes"><pre class="brush: clojure">(defn build-posdictionary
   [in]
-  (POSDictionary/create (reader in)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^ChunkerModel train-treebank-chunker
-  &quot;Returns a treebank chunker based on given training file&quot;
+  (POSDictionary/create (reader in)))</pre></td></tr><tr><td class="docs"><p>Returns a treebank chunker based on given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^ChunkerModel train-treebank-chunker
   ([in] (train-treebank-chunker &quot;en&quot; in))
   ([lang in] (train-treebank-chunker lang in 100 5))
   ([lang in iter cut] (ChunkerME/train
@@ -2798,9 +3310,8 @@ TODO: remove debug printlns once I'm satisfied</p>
                        (ChunkSampleStream.
                         (PlainTextByLineStream.
                          (reader in)))
-                       cut iter)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^ParserModel train-treebank-parser
-  &quot;Returns a treebank parser based a training file and a set of head rules&quot;
+                       cut iter)))</pre></td></tr><tr><td class="docs"><p>Returns a treebank parser based a training file and a set of head rules</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^ParserModel train-treebank-parser
   ([in headrules] (train-treebank-parser &quot;en&quot; in headrules))
   ([lang in headrules] (train-treebank-parser lang in headrules 100 5))
   ([lang in headrules iter cut]
@@ -2809,9 +3320,8 @@ TODO: remove debug printlns once I'm satisfied</p>
       (ParseSampleStream.
        (PlainTextByLineStream.
         (.getChannel (java.io.FileInputStream. in)) &quot;UTF-8&quot;))
-      (HeadRules. (reader headrules)) iter cut)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^TokenNameFinderModel train-name-finder
-  &quot;Returns a name finder based on a given training file&quot;
+      (HeadRules. (reader headrules)) iter cut)))</pre></td></tr><tr><td class="docs"><p>Returns a name finder based on a given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^TokenNameFinderModel train-name-finder
   ([in] (train-name-finder &quot;en&quot; in))
   ([lang in] (train-name-finder lang in 100 5))
   ([lang in iter cut]
@@ -2823,9 +3333,8 @@ TODO: remove debug printlns once I'm satisfied</p>
            (NameSampleDataStream.))
       {}
       iter
-      cut)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^TokenizerModel train-tokenizer
-  &quot;Returns a tokenizer based on given training file&quot;
+      cut)))</pre></td></tr><tr><td class="docs"><p>Returns a tokenizer based on given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^TokenizerModel train-tokenizer
   ([in] (train-tokenizer &quot;en&quot; in))
   ([lang in] (train-tokenizer lang in 100 5))
   ([lang in iter cut]
@@ -2836,9 +3345,8 @@ TODO: remove debug printlns once I'm satisfied</p>
            (TokenSampleStream.))
       false
       cut
-      iter)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^POSModel train-pos-tagger
-  &quot;Returns a pos-tagger based on given training file&quot;
+      iter)))</pre></td></tr><tr><td class="docs"><p>Returns a pos-tagger based on given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^POSModel train-pos-tagger
   ([in] (train-pos-tagger &quot;en&quot; in))
   ([lang in] (train-pos-tagger lang in nil))
   ([lang in tagdict] (train-pos-tagger lang in tagdict 100 5))
@@ -2850,9 +3358,8 @@ TODO: remove debug printlns once I'm satisfied</p>
       tagdict
       nil
       cut
-      iter)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn ^SentenceModel train-sentence-detector
-  &quot;Returns a sentence model based on a given training file&quot;
+      iter)))</pre></td></tr><tr><td class="docs"><p>Returns a sentence model based on a given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^SentenceModel train-sentence-detector
   ([in] (train-sentence-detector &quot;en&quot; in))
   ([lang in]
      (SentenceDetectorME/train lang
@@ -2860,23 +3367,32 @@ TODO: remove debug printlns once I'm satisfied</p>
                                     (PlainTextByLineStream.)
                                     (SentenceSampleStream.))
                                true
-                               nil)))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.treebank" name="opennlp.treebank"><h1 class="project-name">opennlp.treebank</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(ns #^{:doc 
+                               nil)))</pre></td></tr><tr><td class="docs"><p>Returns a classification model based on a given training file</p>
+</td><td class="codes"><pre class="brush: clojure">(defn ^DoccatModel train-document-categorization
+  ([in] (train-document-categorization &quot;en&quot; in 1 100))
+  ([lang in] (train-document-categorization &quot;en&quot; in 1 100))
+  ([lang in cutoff iterations]
+     (DocumentCategorizerME/train lang
+                                  (-&gt;&gt; (reader in)
+                                       (PlainTextByLineStream.)
+                                       (DocumentSampleStream.))
+                                  cutoff iterations)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.treebank" name="opennlp.treebank"><h1 class="project-name">opennlp.treebank</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace containing tools pertaining to the treebank NLP tools.
+             This includes treebank chuncking, parsing and linking (coref).</p>
+</td><td class="codes"><pre class="brush: clojure">(ns #^{:doc 
        :author &quot;Lee Hinman&quot;}
   opennlp.treebank
   (:use [opennlp.nlp :only [*beam-size*]]
-        [clojure.java.io :only [input-stream]]) 
+        [clojure.java.io :only [input-stream]])
   (:import (opennlp.tools.chunker ChunkerModel ChunkerME)
            (opennlp.tools.cmdline.parser ParserTool)
            (opennlp.tools.parser Parse ParserModel
                                  ParserFactory AbstractBottomUpParser)
            (opennlp.tools.parser.chunking Parser)
            (opennlp.tools.coref.mention Mention DefaultParse)
-           (opennlp.tools.coref LinkerMode DefaultLinker)))</pre></tr><tr><td class="docs"><p>Default advance percentage as defined by
+           (opennlp.tools.coref LinkerMode DefaultLinker)))</pre></td></tr><tr><td class="docs"><p>Default advance percentage as defined by
 AbstractBottomUpParser.defaultAdvancePercentage</p>
-</td><td class="codes" /><pre class="brush: clojure">(def #^{:dynamic true} *advance-percentage* 0.95)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- split-chunks
-  &quot;Partition a sequence of treebank chunks by their phrases.&quot;
+</td><td class="codes"><pre class="brush: clojure">(def #^{:dynamic true} *advance-percentage* 0.95)</pre></td></tr><tr><td class="docs"><p>Partition a sequence of treebank chunks by their phrases.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- split-chunks
   [chunks]
   (let [seqnum    (atom 0)
         splitfunc (fn
@@ -2884,35 +3400,32 @@ AbstractBottomUpParser.defaultAdvancePercentage</p>
                     (if (.startsWith item &quot;B-&quot;)
                       (swap! seqnum inc)
                       @seqnum))]
-    (partition-by splitfunc (pop chunks))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- size-chunk
-  &quot;Given a chunk ('B-NP' 'I-NP' 'I-NP' ...), return a vector of the
+    (partition-by splitfunc (pop chunks))))</pre></td></tr><tr><td class="docs"><p>Given a chunk ('B-NP' 'I-NP' 'I-NP' ...), return a vector of the
   chunk type and item count.
-  So, for ('B-NP' 'I-NP' 'I-NP') it would return ['B-NP' 3].&quot;
+  So, for ('B-NP' 'I-NP' 'I-NP') it would return ['B-NP' 3].</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- size-chunk
   [tb-chunk]
   (let [chunk-type  (second (re-find #&quot;B-(.*)&quot; (first tb-chunk)))
         chunk-count (count tb-chunk)]
-    [chunk-type chunk-count]))</pre></tr><tr><td class="docs"><p>Thanks chouser</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn- split-with-size
+    [chunk-type chunk-count]))</pre></td></tr><tr><td class="docs"><p>Thanks chouser</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- split-with-size
   [[v &amp; vs] s]
   (if-not v
     (list s)
-    (cons (take v s) (split-with-size vs (drop v s)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- de-interleave
-  &quot;De-interleave a sequence, returning a vector of the two resulting
-  sequences.&quot;
+    (cons (take v s) (split-with-size vs (drop v s)))))</pre></td></tr><tr><td class="docs"><p>De-interleave a sequence, returning a vector of the two resulting
+  sequences.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- de-interleave
   [s]
-  [(map first s) (map last s)])</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defstruct treebank-phrase :phrase :tag)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-treebank-chunker
-  &quot;Return a function for chunking phrases from pos-tagged tokens based on
-  a given model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-treebank-chunker :default
+  [(map first s) (map last s)])</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defstruct treebank-phrase :phrase :tag)</pre></td></tr><tr><td class="docs"><p>Return a function for chunking phrases from pos-tagged tokens based on
+  a given model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-treebank-chunker
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-treebank-chunker :default
   [modelfile]
   (with-open [modelstream (input-stream modelfile)]
-    (make-treebank-chunker (ChunkerModel. modelstream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-treebank-chunker ChunkerModel
+    (make-treebank-chunker (ChunkerModel. modelstream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-treebank-chunker ChunkerModel
   [model]
   (fn treebank-chunker
     [pos-tagged-tokens]
@@ -2926,63 +3439,58 @@ AbstractBottomUpParser.defaultAdvancePercentage</p>
       (with-meta
         (map #(struct treebank-phrase (into [] (last %)) (first %))
              (partition 2 (interleave types token-chunks)))
-        {:probabilities probs}))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn phrases
-  &quot;Given the chunks from a treebank-chunker, return just a list of phrase
-  word-lists.&quot;
+        {:probabilities probs}))))</pre></td></tr><tr><td class="docs"><p>Given the chunks from a treebank-chunker, return just a list of phrase
+  word-lists.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn phrases
   [phrases]
-  (map :phrase phrases))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn phrase-strings
-  &quot;Given the chunks from a treebank-chunker, return a list of phrase strings.&quot;
+  (map :phrase phrases))</pre></td></tr><tr><td class="docs"><p>Given the chunks from a treebank-chunker, return a list of phrase strings.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn phrase-strings
   [phrase-chunks]
-  (map #(apply str (interpose &quot; &quot; %)) (phrases phrase-chunks)))</pre></tr><tr><td class="docs"><p>Docs for treebank chunking:</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>(def chunker (make-treebank-chunker "models/EnglishChunk.bin.gz"))
+  (map #(apply str (interpose &quot; &quot; %)) (phrases phrase-chunks)))</pre></td></tr><tr><td class="docs"><p>Docs for treebank chunking:</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>(def chunker (make-treebank-chunker "models/EnglishChunk.bin.gz"))
 (pprint (chunker (pos-tag (tokenize "The override system is meant to
 deactivate the accelerator when the brake pedal is pressed."))))</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>(map size-chunk (split-chunks (chunker (pos-tag (tokenize "The
+</td><td class="codes"></td></tr><tr><td class="docs"><p>(map size-chunk (split-chunks (chunker (pos-tag (tokenize "The
 override system is meant to deactivate the accelerator when the
 brake pedal is pressed.")))))</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>opennlp.nlp=> (split-with-size (sizes (map size-chunk (split-chunks
+</td><td class="codes"></td></tr><tr><td class="docs"><p>opennlp.nlp=> (split-with-size (sizes (map size-chunk (split-chunks
 (chunker (pos-tag (tokenize "The override system is meant to
 deactivate the accelerator when the brake pedal is pressed."))))))
 (tokenize "The override system is meant to deactivate the
 accelerator when the brake pedal is pressed."))  (("The" "override"
 "system") ("is" "meant" "to" "deactivate") ("the" "accelerator")
 ("when") ("the" "brake" "pedal") ("is" "pressed") ("."))</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>(["NP" 3] ["VP" 4] ["NP" 2] ["ADVP" 1] ["NP" 3] ["VP" 2])</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>opennlp.nlp=> (pprint (chunker (pos-tag (tokenize "The override
+</td><td class="codes"></td></tr><tr><td class="docs"><p>(["NP" 3] ["VP" 4] ["NP" 2] ["ADVP" 1] ["NP" 3] ["VP" 2])</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>opennlp.nlp=> (pprint (chunker (pos-tag (tokenize "The override
 system is meant to deactivate the accelerator when the brake pedal
 is pressed."))))  #&lt;ArrayList [B-NP, I-NP, I-NP, B-VP, I-VP, I-VP,
 I-VP, B-NP, I-NP, B-ADVP, B-NP, I-NP, I-NP, B-VP, I-VP, O]></p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>So, B-* starts a sequence, I-* continues it. New phrase starts when
+</td><td class="codes"></td></tr><tr><td class="docs"><p>So, B-* starts a sequence, I-* continues it. New phrase starts when
 B-* is encountered</p>
-</td><td class="codes" /></tr><tr><td class="docs"><p>Treebank parsing</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- strip-parens
-  &quot;Treebank-parser does not like parens and braces, so replace them.&quot;
+</td><td class="codes"></td></tr><tr><td class="docs"><p>Treebank parsing</p>
+</td><td class="codes"></td></tr><tr><td class="docs"><p>Treebank-parser does not like parens and braces, so replace them.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- strip-parens
   [s]
   (-&gt; s
       (.replaceAll &quot;\\(&quot; &quot;-LRB-&quot;)
       (.replaceAll &quot;\\)&quot; &quot;-RRB-&quot;)
       (.replaceAll &quot;\\{&quot; &quot;-LCB-&quot;)
-      (.replaceAll &quot;\\}&quot; &quot;-RCB-&quot;)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- parse-line
-  &quot;Given a line and Parser object, return a list of Parses.&quot;
+      (.replaceAll &quot;\\}&quot; &quot;-RCB-&quot;)))</pre></td></tr><tr><td class="docs"><p>Given a line and Parser object, return a list of Parses.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- parse-line
   [line parser]
   (let [line (strip-parens line)
         results (StringBuffer.)
         parse-num 1]
     (.show (first (ParserTool/parseLine line parser parse-num)) results)
-    (.toString results)))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmulti make-treebank-parser
-  &quot;Return a function for treebank parsing a sequence of sentences, based on
-  a given model file.&quot;
-  class)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-treebank-parser :default
+    (.toString results)))</pre></td></tr><tr><td class="docs"><p>Return a function for treebank parsing a sequence of sentences, based on
+  a given model file.</p>
+</td><td class="codes"><pre class="brush: clojure">(defmulti make-treebank-parser
+  class)</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-treebank-parser :default
   [modelfile]
   (with-open [modelstream (input-stream modelfile)]
-    (make-treebank-parser (ParserModel. modelstream))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defmethod make-treebank-parser ParserModel
+    (make-treebank-parser (ParserModel. modelstream))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod make-treebank-parser ParserModel
   [model]
   (fn treebank-parser
     [text]
@@ -2990,13 +3498,12 @@ B-* is encountered</p>
                                        *beam-size*
                                        *advance-percentage*)
           parses (map #(parse-line % parser) text)]
-      (vec parses))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn- strip-funny-chars
-  &quot;Strip out some characters that might cause trouble parsing the tree.&quot;
+      (vec parses))))</pre></td></tr><tr><td class="docs"><p>Strip out some characters that might cause trouble parsing the tree.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- strip-funny-chars
   [s]
   (-&gt; s
       (.replaceAll &quot;'&quot; &quot;-SQUOTE-&quot;)
-      (.replaceAll &quot;\ &quot;-DQUOTE-&quot;)
+      (.replaceAll &quot;\&quot;&quot; &quot;-DQUOTE-&quot;)
       (.replaceAll &quot;~&quot; &quot;-TILDE-&quot;)
       (.replaceAll &quot;`&quot; &quot;-BACKTICK-&quot;)
       (.replaceAll &quot;,&quot; &quot;-COMMA-&quot;)
@@ -3004,35 +3511,50 @@ B-* is encountered</p>
       (.replaceAll &quot;\\/&quot; &quot;-FSLASH-&quot;)
       (.replaceAll &quot;\\^&quot; &quot;-CARROT-&quot;)
       (.replaceAll &quot;@&quot; &quot;-ATSIGN-&quot;)
-      (.replaceAll &quot;#&quot; &quot;-HASH-&quot;)))</pre></tr><tr><td class="docs"><p>Credit for this function goes to carkh in #clojure</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn- tr
-  &quot;Generate a tree from the string output of a treebank-parser.&quot;
+      (.replaceAll &quot;#&quot; &quot;-HASH-&quot;)
+      (.replaceAll &quot;;&quot; &quot;-SEMICOLON-&quot;)
+      (.replaceAll &quot;:&quot; &quot;-COLON-&quot;)))</pre></td></tr><tr><td class="docs"><p>Un-strip out some characters that might cause trouble parsing the tree.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- unstrip-funny-chars
+  [s]
+  (-&gt; s
+      (.replaceAll &quot;-SQUOTE-&quot; &quot;'&quot;)
+      (.replaceAll &quot;-DQUOTE-&quot; &quot;\&quot;&quot;)
+      (.replaceAll &quot;-TILDE-&quot; &quot;~&quot;)
+      (.replaceAll &quot;-BACKTICK-&quot; &quot;`&quot;)
+      (.replaceAll &quot;-COMMA-&quot; &quot;,&quot;)
+      (.replaceAll &quot;-BSLASH-&quot; &quot;\\\\&quot;)
+      (.replaceAll &quot;-FSLASH-&quot; &quot;\\/&quot;)
+      (.replaceAll &quot;-CARROT-&quot; &quot;\\^&quot;)
+      (.replaceAll &quot;-ATSIGN-&quot; &quot;@&quot;)
+      (.replaceAll &quot;-HASH-&quot; &quot;#&quot;)
+      (.replaceAll &quot;-SEMICOLON-&quot; &quot;;&quot;)
+      (.replaceAll &quot;-COLON-&quot; &quot;:&quot;)))</pre></td></tr><tr><td class="docs"><p>Generate a tree from the string output of a treebank-parser.</p>
+
+<p>Credit for this function goes to carkh in #clojure</p>
+</td><td class="codes"><pre class="brush: clojure">(defn- tr
   [to-parse]
-  (cond (symbol? to-parse) (str to-parse)
-        (seq to-parse) (let [[tag &amp; body] to-parse]
-                         `{:tag ~tag :chunk ~(if (&gt; (count body) 1)
-                                               (map tr body)
-                                               (tr (first body)))})))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn make-tree
-  &quot;Make a tree from the string output of a treebank-parser.&quot;
+  (if (seq? to-parse)
+    {:tag (first to-parse) :chunk (map tr (rest to-parse))}
+    (str to-parse)))</pre></td></tr><tr><td class="docs"><p>Make a tree from the string output of a treebank-parser.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn make-tree
   [tree-text]
   (let [text (strip-funny-chars tree-text)]
-    (tr (read-string text))))</pre></tr><tr><td class="docs"><h2>------------------------------------------------------------------------</h2>
+    (tr (read-string text))))</pre></td></tr><tr><td class="docs"><h2>------------------------------------------------------------------------</h2>
 
 <p>Treebank Linking
 WIP, do not use yet.</p>
-</td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(declare print-parse)</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn print-child
-  &quot;Given a child, parent and start, print out the child parse.&quot;
+</td><td class="codes"></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(declare print-parse)</pre></td></tr><tr><td class="docs"><p>Given a child, parent and start, print out the child parse.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn print-child
   [c p start]
   (let [s (.getSpan c)]
     (if (&lt; @start (.getStart s))
       (print (.substring (.getText p) start (.getStart s))))
     (print-parse c)
-    (reset! start (.getEnd s))))</pre></tr><tr><td class="docs"><p>This is broken, don't use this.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn print-parse
-  &quot;Given a parse and the EntityMentions-to-parse map, print out the parse.&quot;
+    (reset! start (.getEnd s))))</pre></td></tr><tr><td class="docs"><p>Given a parse and the EntityMentions-to-parse map, print out the parse.</p>
+
+<p>This is broken, don't use this.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn print-parse
   [p parse-map]
   (let [start (atom (.getStart (.getSpan p)))
         children (.getChildren p)]
@@ -3046,41 +3568,39 @@ WIP, do not use yet.</p>
     ;; FIXME: don't use substring
     (print (.substring (.getText p) @start (.getEnd (.getSpan p))))
     (if-not (= Parser/TOK_NODE (.getType p))
-      (print &quot;)&quot;))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn add-mention!
-  &quot;Add a single mention to the parse-map with index.&quot;
+      (print &quot;)&quot;))))</pre></td></tr><tr><td class="docs"><p>Add a single mention to the parse-map with index.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn add-mention!
   [mention index parse-map]
   (let [mention-parse (.getParse (.getParse mention))]
-    (swap! parse-map assoc mention-parse (+ index 1))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn add-mentions!
-  &quot;Add mentions to the parse map.&quot;
+    (swap! parse-map assoc mention-parse (+ index 1))))</pre></td></tr><tr><td class="docs"><p>Add mentions to the parse map.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn add-mentions!
   [entity index parse-map]
   (dorun (map #(add-mention! % index parse-map)
-              (iterator-seq (.getMentions entity)))))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn add-entities
-  &quot;Given a list of entities, return a map of parses to entities.&quot;
+              (iterator-seq (.getMentions entity)))))</pre></td></tr><tr><td class="docs"><p>Given a list of entities, return a map of parses to entities.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn add-entities
   [entities]
   (let [parse-map (atom {})
         i-entities (map vector (iterate inc 0) entities)]
     (dorun (map (fn [[index entity]] (add-mentions! entity index parse-map))
                 i-entities))
-    @parse-map))</pre></tr><tr><td class="docs"><p>This is intended to actually be called.</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn show-parses
-  &quot;Given a list of parses and entities, print them out.&quot;
+    @parse-map))</pre></td></tr><tr><td class="docs"><p>Given a list of parses and entities, print them out.</p>
+
+<p>This is intended to actually be called.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn show-parses
   [parse entities]
   (let [parse-map (add-entities entities)]
     (println &quot;parse-map:&quot; parse-map)
     (println &quot;parse:&quot; parse)
     (print-parse parse parse-map)
-    parse-map))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn coref-extent
+    parse-map))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn coref-extent
   [extent p index]
   (if (nil? extent)
     (let [snp (Parse. (.getText p) (.getSpan extent) &quot;NML&quot; 1.0 0)]
       (.insert p snp) ; FIXME
       (.setParse extent (DefaultParse. snp index)))
-    nil))</pre></tr><tr><td class="docs">
-</td><td class="codes" /><pre class="brush: clojure">(defn coref-sentence
+    nil))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn coref-sentence
   [sentence parses index tblinker]
   (let [p (Parse/parseParse sentence)
         extents (.getMentions (.getMentionFinder tblinker)
@@ -3088,10 +3608,11 @@ WIP, do not use yet.</p>
     (swap! parses #(assoc % (count %) p))
     (map #(coref-extent % p index) extents)
     ;;(println :es (map #(println (bean %)) extents))
-    (map bean extents)))</pre></tr><tr><td class="docs"><p>TODO: fix this function, currently doesn't parse correctly</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn parse-extent
-  &quot;Given an coref extent, a treebank linker, a parses atom and the index of
-  the extent, return a tuple of the coresponding parse and discourse entities&quot;
+    (map bean extents)))</pre></td></tr><tr><td class="docs"><p>Given an coref extent, a treebank linker, a parses atom and the index of
+  the extent, return a tuple of the coresponding parse and discourse entities</p>
+
+<p>TODO: fix this function, currently doesn't parse correctly</p>
+</td><td class="codes"><pre class="brush: clojure">(defn parse-extent
   [extent tblinker parses pindex]
   (println :ext (bean extent))
   (let [e (filter #(not (nil? (:parse (bean %)))) extent)
@@ -3099,9 +3620,10 @@ WIP, do not use yet.</p>
         mention-array (into-array Mention e)
         entities (.getEntities tblinker mention-array)]
     (println :entities (seq entities) (bean (first entities)))
-    [(get @parses pindex) (seq entities)]))</pre></tr><tr><td class="docs"><p>Second Attempt</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn make-treebank-linker
-  &quot;Make a TreebankLinker, given a model directory.&quot;
+    [(get @parses pindex) (seq entities)]))</pre></td></tr><tr><td class="docs"><p>Make a TreebankLinker, given a model directory.</p>
+
+<p>Second Attempt</p>
+</td><td class="codes"><pre class="brush: clojure">(defn make-treebank-linker
   [modeldir]
   (let [tblinker (DefaultLinker. modeldir LinkerMode/TEST)]
     (fn treebank-linker
@@ -3114,17 +3636,18 @@ WIP, do not use yet.</p>
             i-extents (map vector (iterate inc 0) extents)]
         #_(map #(parse-extent %1 tblinker parses %2) i-extents)
         (doall (map println extents))
-        extents))))</pre></tr><tr><td class="docs"><p>this is used for the treebank linking, it is a system property for
+        extents))))</pre></td></tr><tr><td class="docs"><p>Set the location of the WordNet 'dict' directory</p>
+
+<p>this is used for the treebank linking, it is a system property for
 the location of the wordnet installation 'dict' directory
 see: http://wordnet.princeton.edu/wordnet/</p>
-</td><td class="codes" /><pre class="brush: clojure">(defn set-wordnet-location!
-  &quot;Set the location of the WordNet 'dict' directory&quot;
+</td><td class="codes"><pre class="brush: clojure">(defn set-wordnet-location!
   [location]
-  (System/setProperty &quot;WNSEARCHDIR&quot; location))</pre></tr><tr><td class="docs"><p>What I really need is a good way to express this in Clojure's datastructures.</p>
-</td><td class="codes" /><pre class="brush: clojure">(comment
+  (System/setProperty &quot;WNSEARCHDIR&quot; location))</pre></td></tr><tr><td class="docs"><p> What I really need is a good way to express this in Clojure's datastructures.</p>
+</td><td class="codes"><pre class="brush: clojure">(comment
   (def tbl (make-treebank-linker &quot;coref&quot;))
   (def treebank-parser
     (make-treebank-parser &quot;parser-model/en-parser-chunking.bin&quot;))
   (def s (treebank-parser [&quot;Mary said she liked me .&quot;]))
-  (tbl s))</pre></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_opennlp.nlp">opennlp.nlp</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.filters">opennlp.tools.filters</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.lazy">opennlp.tools.lazy</li><li class="floating-toc-li" id="floating-toc_opennlp.tools.train">opennlp.tools.train</li><li class="floating-toc-li" id="floating-toc_opennlp.treebank">opennlp.treebank</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
+  (tbl s))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
        SyntaxHighlighter.all()</script></body></html>
