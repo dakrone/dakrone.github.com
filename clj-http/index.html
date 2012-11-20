@@ -3028,8 +3028,8 @@ net.brehaut.ClojureTools = (function (SH) {
     build_tree: build_tree
   };
 })(SyntaxHighlighter);
-</script><title>clj-http -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clj-http</h1><h2 class="project-version">0.5.6-SNAPSHOT</h2><br /><p>A Clojure HTTP library wrapping the Apache HttpComponents client.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.apache.httpcomponents/httpclient</td><td class="dotted"><hr /></td><td class="dep-version">4.2.1</td></tr><tr><td class="dep-name">org.apache.httpcomponents/httpmime</td><td class="dotted"><hr /></td><td class="dep-version">4.2.1</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.6</td></tr><tr><td class="dep-name">commons-io</td><td class="dotted"><hr /></td><td class="dep-version">2.4</td></tr><tr><td class="dep-name">slingshot</td><td class="dotted"><hr /></td><td class="dep-version">0.10.3</td></tr><tr><td class="dep-name">cheshire</td><td class="dotted"><hr /></td><td class="dep-version">4.0.3</td></tr><tr><td class="dep-name">crouton</td><td class="dotted"><hr /></td><td class="dep-version">0.1.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#clj-http.client">clj-http.client</a></li><li><a href="#clj-http.conn-mgr">clj-http.conn-mgr</a></li><li><a href="#clj-http.cookies">clj-http.cookies</a></li><li><a href="#clj-http.core">clj-http.core</a></li><li><a href="#clj-http.links">clj-http.links</a></li><li><a href="#clj-http.multipart">clj-http.multipart</a></li><li><a href="#clj-http.util">clj-http.util</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#clj-http.client" name="clj-http.client"><h1 class="project-name">clj-http.client</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Batteries-included HTTP client.</p>
+</script><title>clj-http -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clj-http</h1><h2 class="project-version">0.5.9-SNAPSHOT</h2><br /><p>A Clojure HTTP library wrapping the Apache HttpComponents client.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.apache.httpcomponents/httpcore</td><td class="dotted"><hr /></td><td class="dep-version">4.2.2</td></tr><tr><td class="dep-name">org.apache.httpcomponents/httpclient</td><td class="dotted"><hr /></td><td class="dep-version">4.2.2</td></tr><tr><td class="dep-name">org.apache.httpcomponents/httpmime</td><td class="dotted"><hr /></td><td class="dep-version">4.2.2</td></tr><tr><td class="dep-name">commons-codec</td><td class="dotted"><hr /></td><td class="dep-version">1.6</td></tr><tr><td class="dep-name">commons-io</td><td class="dotted"><hr /></td><td class="dep-version">2.4</td></tr><tr><td class="dep-name">slingshot</td><td class="dotted"><hr /></td><td class="dep-version">0.10.3</td></tr><tr><td class="dep-name">cheshire</td><td class="dotted"><hr /></td><td class="dep-version">4.0.3</td></tr><tr><td class="dep-name">crouton</td><td class="dotted"><hr /></td><td class="dep-version">0.1.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#clj-http.client">clj-http.client</a></li><li><a href="#clj-http.conn-mgr">clj-http.conn-mgr</a></li><li><a href="#clj-http.cookies">clj-http.cookies</a></li><li><a href="#clj-http.core">clj-http.core</a></li><li><a href="#clj-http.links">clj-http.links</a></li><li><a href="#clj-http.multipart">clj-http.multipart</a></li><li><a href="#clj-http.util">clj-http.util</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#clj-http.client" name="clj-http.client"><h1 class="project-name">clj-http.client</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Batteries-included HTTP client.</p>
 </td><td class="codes"><pre class="brush: clojure">(ns clj-http.client
   (:use [clj-http.cookies :only [wrap-cookies wrap-cookie-store]]
         [clj-http.links :only [wrap-links]]
@@ -3043,8 +3043,8 @@ net.brehaut.ClojureTools = (function (SH) {
   (:import (java.io InputStream File)
            (java.net URL UnknownHostException)
            (org.apache.http.conn.params ConnPerRouteBean)
-           (org.apache.http.entity ByteArrayEntity InputStreamEntity
-                                   FileEntity StringEntity))
+           (org.apache.http.entity BufferedHttpEntity ByteArrayEntity
+                                   InputStreamEntity FileEntity StringEntity))
   (:refer-clojure :exclude (get)))</pre></td></tr><tr><td class="docs"><p>Cheshire is an optional dependency, so we check for it at compile time.</p>
 </td><td class="codes"><pre class="brush: clojure">(def json-enabled?
   (try
@@ -3246,7 +3246,12 @@ decompressing response bodies</p>
     (let [{:keys [body] :as resp} (client req)]
       (if body
         (coerce-response-body as resp)
-        resp))))</pre></td></tr><tr><td class="docs"><p>Middleware coercing the :body of a request from a number of formats into an
+        resp))))</pre></td></tr><tr><td class="docs"><p>Wrap an HttpEntity in a BufferedHttpEntity if warranted.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn maybe-wrap-entity
+  [{:keys [entity-buffering]} entity]
+  (if (and entity-buffering (not= BufferedHttpEntity (class entity)))
+    (BufferedHttpEntity. entity)
+    entity))</pre></td></tr><tr><td class="docs"><p>Middleware coercing the :body of a request from a number of formats into an
   Apache Entity. Currently supports Strings, Files, InputStreams
   and byte-arrays.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn wrap-input-coercion
@@ -3256,24 +3261,28 @@ decompressing response bodies</p>
     (if body
       (cond
        (string? body)
-       (client (-&gt; req (assoc :body (StringEntity. ^String body
-                                                   ^String body-encoding)
+       (client (-&gt; req (assoc :body (maybe-wrap-entity
+                                     req (StringEntity. ^String body
+                                                        ^String body-encoding))
                               :character-encoding (or body-encoding
                                                       &quot;UTF-8&quot;))))
        (instance? File body)
-       (client (-&gt; req (assoc :body (FileEntity. ^File body
-                                                 ^String body-encoding))))
+       (client (-&gt; req (assoc :body (maybe-wrap-entity
+                                     req (FileEntity. ^File body
+                                                      ^String body-encoding)))))
        ;; A length of -1 instructs HttpClient to use chunked encoding.
        (instance? InputStream body)
        (client (-&gt; req (assoc :body
-                         (InputStreamEntity. body (or length -1)))))
+                         (if length
+                           (InputStreamEntity. body length)
+                           (maybe-wrap-entity
+                            req (InputStreamEntity. body -1))))))
        (instance? (Class/forName &quot;[B&quot;) body)
-       (client (-&gt; req (assoc :body (ByteArrayEntity. body))))
+       (client (-&gt; req (assoc :body (maybe-wrap-entity
+                                     req (ByteArrayEntity. body)))))
        :else
        (client req))
       (client req))))</pre></td></tr><tr><td class="docs"><p>Given a map of body content, return a map of header-name to header-value.</p>
-
-<p>TODO: support HTML 5's <meta charset="UTF-8" /> header, not just HTML 4.01's</p>
 </td><td class="codes"><pre class="brush: clojure">(defn get-headers-from-body
   [body-map]
   (let [;; parse out HTML content
@@ -3285,10 +3294,16 @@ decompressing response bodies</p>
         attrs (map :attrs (filter #(= (:tag %) :meta) heads))
         ;; parse out the 'http-equiv' meta head tags
         http-attrs (filter :http-equiv attrs)
+        ;; parse out HTML5 charset meta tags
+        html5-charset (filter :charset attrs)
         ;; convert http-attributes into map of headers (lowercased)
         headers (apply merge (map (fn [{:keys [http-equiv content]}]
                                     {(.toLowerCase http-equiv) content})
-                                  http-attrs))]
+                                  http-attrs))
+        ;; merge in html5 charset setting
+        headers (merge headers
+                       (when-let [cs (:charset (first html5-charset))]
+                         {&quot;content-type&quot; (str &quot;text/html; charset=&quot; cs)}))]
     headers))</pre></td></tr><tr><td class="docs"><p>Middleware that parses additional http headers from the body of a
   web page, adding them into the headers map of the response if any
   are found. Only looks at the body if the :decode-body-headers option
@@ -3612,16 +3627,40 @@ the URL is nil</p>
 </td><td class="codes"><pre class="brush: clojure">(ns clj-http.conn-mgr
   (:require [clojure.java.io :as io])
   (:import (java.security KeyStore)
-           (org.apache.http.conn.ssl SSLSocketFactory TrustStrategy)
+           (java.security.cert X509Certificate)
+           (javax.net.ssl SSLSession SSLSocket)
+           (org.apache.http.conn.ssl AllowAllHostnameVerifier SSLSocketFactory
+                                     TrustStrategy X509HostnameVerifier)
            (org.apache.http.conn.scheme PlainSocketFactory
                                         SchemeRegistry Scheme)
            (org.apache.http.impl.conn SingleClientConnManager
                                       SchemeRegistryFactory)
            (org.apache.http.impl.conn.tsccm ThreadSafeClientConnManager)))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def ^SSLSocketFactory insecure-socket-factory
-  (doto (SSLSocketFactory. (reify TrustStrategy
-                             (isTrusted [_ _ _] true)))
-    (.setHostnameVerifier SSLSocketFactory/ALLOW_ALL_HOSTNAME_VERIFIER)))</pre></td></tr><tr><td class="docs">
+  (SSLSocketFactory. (reify TrustStrategy
+                       (isTrusted [_ _ _] true))
+                     (reify X509HostnameVerifier
+                       (^void verify [this ^String host ^SSLSocket sock]
+                         ;; for some strange reason, only TLSv1 really
+                         ;; works here, if you know why, tell me.
+                         (.setEnabledProtocols
+                          sock (into-array String [&quot;TLSv1&quot;]))
+                         (.setWantClientAuth sock false)
+                         (let [session (.getSession sock)]
+                           (when-not session
+                             (.startHandshake sock))
+                           (aget (.getPeerCertificates session) 0)
+                           ;; normally you'd want to verify the cert
+                           ;; here, but since this is an insecure
+                           ;; socketfactory, we don't
+                           nil))
+                       (^void verify [_ ^String _ ^X509Certificate _]
+                         nil)
+                       (^void verify [_ ^String _ ^&quot;[Ljava.lang.String;&quot; _
+                                      ^&quot;[Ljava.lang.String;&quot; _]
+                         nil)
+                       (^boolean verify [_ ^String _ ^SSLSession _]
+                         true))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def insecure-scheme-registry
   (doto (SchemeRegistry.)
     (.register (Scheme. &quot;http&quot; 80 (PlainSocketFactory/getSocketFactory)))
@@ -3650,10 +3689,10 @@ the URL is nil</p>
 </td><td class="codes"><pre class="brush: clojure">(defn ^SingleClientConnManager make-regular-conn-manager
   [{:keys [insecure? keystore trust-store] :as req}]
   (cond
-    (or keystore trust-store)
-    (SingleClientConnManager. (get-keystore-scheme-registry req))
-    insecure? (SingleClientConnManager. insecure-scheme-registry)
-    :else (SingleClientConnManager.)))</pre></td></tr><tr><td class="docs"><p>Given an timeout and optional insecure? flag, create a
+   (or keystore trust-store)
+   (SingleClientConnManager. (get-keystore-scheme-registry req))
+   insecure? (SingleClientConnManager. insecure-scheme-registry)
+   :else (SingleClientConnManager.)))</pre></td></tr><tr><td class="docs"><p>Given an timeout and optional insecure? flag, create a
   ThreadSafeClientConnManager with <timeout> seconds set as the timeout value.</p>
 
 <p>need the fully qualified class name because this fn is later used in a
@@ -3662,10 +3701,10 @@ macro from a different ns</p>
   make-reusable-conn-manager
   [{:keys [timeout insecure? keystore trust-store] :as config}]
   (let [registry (cond
-                   insecure? insecure-scheme-registry
-                   (or keystore trust-store)
-                   (get-keystore-scheme-registry config)
-                   :else regular-scheme-registry)]
+                  insecure? insecure-scheme-registry
+                  (or keystore trust-store)
+                  (get-keystore-scheme-registry config)
+                  :else regular-scheme-registry)]
     (ThreadSafeClientConnManager.
      registry timeout java.util.concurrent.TimeUnit/SECONDS)))</pre></td></tr><tr><td class="docs"><p>connection manager to be rebound during request execution</p>
 </td><td class="codes"><pre class="brush: clojure">(def ^{:dynamic true} *connection-manager* nil)</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#clj-http.cookies" name="clj-http.cookies"><h1 class="project-name">clj-http.cookies</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
@@ -3971,7 +4010,10 @@ macro from a different ns</p>
       (when (instance? SingleClientConnManager conn-mgr)
         (.addHeader http-req &quot;Connection&quot; &quot;close&quot;))
       (doseq [[header-n header-v] headers]
-        (.addHeader http-req header-n header-v))
+        (if (coll? header-v)
+          (doseq [header-vth header-v]
+            (.addHeader http-req header-n header-vth))
+          (.addHeader http-req header-n header-v)))
       (if multipart
         (.setEntity #^HttpEntityEnclosingRequest http-req
                     (mp/create-multipart-entity multipart))
