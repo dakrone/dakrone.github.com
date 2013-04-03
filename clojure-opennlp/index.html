@@ -3028,8 +3028,8 @@ net.brehaut.ClojureTools = (function (SH) {
     build_tree: build_tree
   };
 })(SyntaxHighlighter);
-</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.2.1-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.4.0</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.2-incubating</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.span">opennlp.span</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
+</script><title>clojure-opennlp -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">clojure-opennlp</h1><h2 class="project-version">0.2.2-SNAPSHOT</h2><br /><p>Natural Language Processing with Clojure, library for opennlp.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.5.1</td></tr><tr><td class="dep-name">org.apache.opennlp/opennlp-tools</td><td class="dotted"><hr /></td><td class="dep-version">1.5.2-incubating</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#opennlp.nlp">opennlp.nlp</a></li><li><a href="#opennlp.sample">opennlp.sample</a></li><li><a href="#opennlp.span">opennlp.span</a></li><li><a href="#opennlp.tools.filters">opennlp.tools.filters</a></li><li><a href="#opennlp.tools.lazy">opennlp.tools.lazy</a></li><li><a href="#opennlp.tools.train">opennlp.tools.train</a></li><li><a href="#opennlp.treebank">opennlp.treebank</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.nlp" name="opennlp.nlp"><h1 class="project-name">opennlp.nlp</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>The main namespace for the clojure-opennlp project. Functions for
   creating NLP performers can be created with the tools in this namespace.</p>
 </td><td class="codes"><pre class="brush: clojure">(ns opennlp.nlp
   (:use [clojure.java.io :only [input-stream]])
@@ -3247,7 +3247,48 @@ TODO: remove debug printlns once I'm satisfied</p>
         {:best-category (.getBestCategory categorizer outcomes)}
         {:probabilities (parse-categories
                          (.getAllResults categorizer outcomes)
-                         outcomes)}))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.span" name="opennlp.span"><h1 class="project-name">opennlp.span</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+                         outcomes)}))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.sample" name="opennlp.sample"><h1 class="project-name">opennlp.sample</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(ns opennlp.sample
+  (:require [clojure.java.io :as io])
+  (:import (opennlp.tools.doccat DocumentSample)
+           (opennlp.tools.util ObjectStream)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn print-sample [sample ^java.io.Writer w]
+  (.write w &quot;#opennlp/sample {&quot;)
+  (.write w &quot;:category &quot;)
+  (binding [*out* w]
+    (pr (.getCategory sample)))
+  (.write w &quot; :text &quot;)
+  (binding [*out* w]
+    (pr (vec (.getText sample))))
+  (.write w &quot;}&quot;))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod print-method DocumentSample
+  [sample w]
+  (print-sample sample w))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defmethod print-dup DocumentSample
+  [sample w]
+  (print-sample sample w))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn read-document-sample [{:keys [category text]}]
+  (DocumentSample. category (into-array String text)))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn clojure-document-sample-stream [in]
+  (let [i (java.io.PushbackReader. (io/reader in))
+        buf (atom [])
+        pos (atom 0)]
+    (reify
+      ObjectStream
+      (read [_]
+        (if (= @pos (count @buf))
+          (when-let [obj (read i false nil)]
+            (swap! buf conj obj)
+            (swap! pos inc)
+            obj)
+          (let [p @pos]
+            (swap! pos inc)
+            (nth @buf p))))
+      (close [_]
+        (.close i)
+        (.close in))
+      (reset [_]
+        (reset! pos 0)))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.span" name="opennlp.span"><h1 class="project-name">opennlp.span</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns opennlp.span)</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defrecord Span [start end type])</pre></td></tr><tr><td class="docs"><p>Make a native span object.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn make-span
@@ -3270,16 +3311,19 @@ TODO: remove debug printlns once I'm satisfied</p>
   (== (dec (:end span)) k))</pre></td></tr><tr><td class="docs"><p>Given two overlapping spans where the first comes before the second, return a
   merged span with the type of the first.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn merge-spans
-  [A B] (assoc A :end (:end B)))</pre></td></tr><tr><td class="docs"><p>Return true of A does not overlap B.</p>
+  [A B]
+  (assoc A :end (:end B)))</pre></td></tr><tr><td class="docs"><p>Return true of A does not overlap B.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn span-disjoint?
   [A B]
   (or (&lt;= (:end A) (:start B)) (&gt;= (:start A) (:end B))))</pre></td></tr><tr><td class="docs"><p>Return true if A overlaps B.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn span-overlaps?
-  [A B] (not (span-disjoint? A B)))</pre></td></tr><tr><td class="docs"><p>Return the intersection of two spans as a span.</p>
+  [A B]
+  (not (span-disjoint? A B)))</pre></td></tr><tr><td class="docs"><p>Return the intersection of two spans as a span. Type of new span is
+  :intersection.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn intersection-span
   [A B]
   {:pre [(not (span-disjoint? A B))]}
-  (make-span (max (:start A) (:start B)) (min (:end A) (:end B)) nil))</pre></td></tr><tr><td class="docs"><p>Return the length of the span.</p>
+  (-&gt;Span (max (:start A) (:start B)) (min (:end A) (:end B)) :intersection))</pre></td></tr><tr><td class="docs"><p>Return the length of the span.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn span-length
   [s]
   (- (:end s) (:start s)))</pre></td></tr><tr><td class="docs"><p>Return the substring corresponding to the span.</p>
@@ -3288,12 +3332,12 @@ TODO: remove debug printlns once I'm satisfied</p>
   (subs s (:start span) (:end span)))</pre></td></tr><tr><td class="docs"><p>Shift a span by i positions.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn shift-span
   [span i]
-  (make-span (+ (:start span) i) (+ (:end span) i) (:type span)))</pre></td></tr><tr><td class="docs"><p>Return a span of the area between two spans A and B. Precondition: (:end A)
-  &lt; (:start B).</p>
+  (-&gt;Span (+ (:start span) i) (+ (:end span) i) (:type span)))</pre></td></tr><tr><td class="docs"><p>Return a span of the area between two spans A and B. Type of new span is
+  :between.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn between-span
   [a b]
-  {:pre [(&lt; (:end a) (:start b))]}
-  (make-span (:end a) (:start b) :between))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace used for filtering POS-tagged datastructures by grammatical
+  {:pre [(&lt;= (:end a) (:start b))]}
+  (-&gt;Span (:end a) (:start b) :between))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#opennlp.tools.filters" name="opennlp.tools.filters"><h1 class="project-name">opennlp.tools.filters</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Namespace used for filtering POS-tagged datastructures by grammatical
   classification. Also provides methods for building your own filters.</p>
 </td><td class="codes"><pre class="brush: clojure">(ns opennlp.tools.filters)</pre></td></tr><tr><td class="docs"><p>Declare a filter for pos-tagged vectors with the given name and regex.</p>
 </td><td class="codes"><pre class="brush: clojure">(defmacro pos-filter
