@@ -1,1 +1,55 @@
-hi
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="[page title]">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="resources/css/index.css">
+</head>
+<body>
+  <div id="header"  class="container">
+      <div class="row">
+          <span class="span12 boxed">
+              <div class="row">
+                  <span class="span6" id="gh-user"></span>
+                  <span class="span6" id="twitter-activity"></span>
+              </div>
+         </span>
+      </div>
+  </div>
+
+  <div role="main" class="container">
+      <div class="row" id="gh-repositories">
+      </div>
+  </div>
+
+  <footer>
+  </footer>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="resources/js/mehub.js"></script>
+
+  <script type="text/javascript">
+      mehub.core.init({
+        modules: {
+          github: {
+            user: 'dakrone'
+            , 'repo-selector': "#gh-repositories"
+            , 'user-selector': "#gh-user"
+            , 'activity-selector': "#gh-activity"
+          }
+          , twitter: {
+              selector: '#twitter-activity'
+              , user: 'thnetos'
+              , 'max-tweets': 3
+          }
+        }
+      })
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+@import "_base";
+
+
+/* .c1 { background: #F00; } */
+/* .c2 { background: #F80; } */
+/* .c3 { background: #FF0;} */
+/* .c4 { background: #0F0; } */
+/* .c5 { background: #0F8; } */
+/* .c6 { background: #0FF; } */
+/* .c7 { background: #08F; } */
+/* .c8 { background: #00F; } */
+/* .c9 { background: #F0F;  } */
+/* .c10{ background: #F08; } */
+
+@import url(http://fonts.googleapis.com/css?family=Jura);
+@linkColor: @orange;
+@primary-color: #568c58 ;
+@secondary-color: lighten(@primary-color, 20%);
+@light-gray: #999;
+@box-bg-color: #000;
+@box-padding: 15px;
+
+body{
+    background: #1D1F20 url(../images/bg.png);
+    color: @light-gray;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.boxed{
+    background: #000;
+    border: darken(@primary-color, 10%);
+    margin-bottom: 26px;
+    overflow: hidden;
+    .box-shadow(0px 0px 5px 1px rgba(0, 0, 0, 0.2));
+    .border-radius(8px);
+}
+
+.lighty{
+    font-weight: bold;
+    color: @primary-color;
+    &:hover{
+        text-shadow: 0 0 2px lighten(@primary-color, 1%) , 0 0 2px lighten(@primary-color, 1%);
+    }
+    a{
+        color: @primary-color;
+        display: block;
+    }
+}
+
+#twitter-activity{
+    h2{
+        .lighty();
+        margin-top: 0;
+        font-size: 26px;
+        font-family: 'Jura', sans-serif;
+        a{
+            padding: @box-padding;
+        }
+    }
+    ul{
+        margin: -15px 0 -5px 0 ;
+        padding: 0 @box-padding @box-padding @box-padding ;
+        list-style: none;
+        font-size: @baseFontSize + 2;
+        li{
+            .timestamp{
+                color: @primary-color;
+            }
+            .text{
+                color: lighten(@primary-color, 15%);
+            }
+            margin: 10px 0;
+        }
+    }
+}
+
+#gh-user{
+    .user{
+        padding: @box-padding;
+    }
+    h2{
+        margin-top: 0;
+        .lighty();
+        font-size: 26px;
+        font-family: 'Jura', sans-serif;
+    }
+    .icon{
+        margin-bottom: 10px;
+        position: absolute;
+        img{
+            .border-radius(8px);
+            width: 80px;
+            height: 80px;
+            margin-right: 5px;
+            vertical-align: top;
+        }
+        line-height: 20px;
+        font-size: @baseFontSize + 2;
+    }
+    p{
+        margin: 5px 5px 5px  90px ;
+        position:relative;
+        padding: 0 0 0 25px;
+        font-size: @baseFontSize + 2;
+        i{
+            position: absolute;
+            left: 0px;
+            width: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.repo{
+
+    .boxed();
+    position: relative;
+    height: 180;
+    a{
+        text-decoration: none;
+        min-height: 135px;
+        display: block;
+        position: relative;
+        color: @primary-color;
+        &:hover {
+            h2{
+                text-shadow: 0 0 2px lighten(@primary-color, 1%) , 0 0 2px lighten(@primary-color, 1%);
+            }
+        }
+        padding-bottom: 35px;
+    }
+
+    h2{
+        padding: @box-padding - 5 @box-padding 0 @box-padding;
+        margin: 0;
+        font-size: @baseFontSize + 8;
+        line-height: @baseLineHeight + 8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: @baseLineHeight + 8;
+        font-family: 'Jura', sans-serif;
+    }
+    h3{
+        padding: 0 @box-padding;
+        margin: 0;
+        font-size: @baseFontSize;
+        line-height: @baseLineHeight;
+        font-weight: normal;
+        color: @light-gray;
+    }
+
+    p{
+        color: @secondary-color;
+        margin: @box-padding;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        height: 53px;
+    }
+
+    .ribbon{
+        .rotate(45deg);
+        height: 15px;
+        width: 60px;
+        position:absolute;
+        right: -15px;
+        top: 8px;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        line-height: @baseLineHeight - 1;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .fork-ribbon{
+        background: green;
+        .box-shadow(1px 1px 5px 1px darken(green, 20%));
+    }
+
+    .owner-ribbon{
+        background: @orange;
+        .box-shadow(1px 1px 5px 1px darken(@orange, 20%));
+
+    }
+
+    &.fork{
+
+    }
+
+    .meta{
+        position: absolute;
+        bottom:15px;
+        left: 5px;
+        font-size: @baseFontSize + 2;
+        span{
+            line-height: @baseLineHeight;
+            margin: 0  0 0 10px;
+            color: @light-gray;
+            i{
+                margin-right: .3em;
+            }
+        }
+    }
+}
