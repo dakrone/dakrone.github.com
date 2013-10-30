@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Writing literate-programming style Elasticsearch shell scripts with Emacs</title>
+<!-- 2013-10-29 Tue 20:38 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Lee Hinman" />
+<meta  name="keywords" content="elasticsearch literate programming shell scripts org-mode org-babel" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<style> body {margin-right:15%; margin-left:15%;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Writing literate-programming style Elasticsearch shell scripts with Emacs</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Introduction</a></li>
+<li><a href="#sec-2">Breaking the pieces apart</a>
+<ul>
+<li><a href="#sec-2-1">The script header</a></li>
+<li><a href="#sec-2-2">Creating the index</a></li>
+<li><a href="#sec-2-3">Indexing documents</a></li>
+<li><a href="#sec-2-4">Refreshing the index</a></li>
+<li><a href="#sec-2-5">Performing queries</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Wrapping up</a></li>
+<li><a href="#sec-4">Addendum</a></li>
+<li><a href="#sec-5">Contact</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In this article I am going to demonstrate how I use Emacs to write
+literate programming-style shell scripts for <a href="http://elasticsearch.com">Elasticsearch</a>.  The
+information in this article focuses on writing shell scripts for
+Elasticsearch, but it is easily generalized to writing any language
+in general, and is more of a "here's how I use <a href="http://orgmode.org">org-mode</a> and
+<a href="http://orgmode.org/worg/org-contrib/babel/">org-babel</a> for <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>" example.
+</p>
+
+<p>
+A large portion of my time goes into writing one-off scripts to test
+things people bring up in IRC, work on examples for the book, or run
+small development tests from the command line (for
+submitting/testing bugs).  Originally I was writing all of these
+scripts by hand, usually copying and pasting the contents that were
+common from an older script to a newer one to be as fast as
+possible.  For a frame of reference, here's a small example script
+that I recently wrote to test whether nested objects are include in
+the _all field of a parent by default:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">env</span><span style="color: #b22222;"> zsh</span>
+
+curl -XDELETE <span style="color: #8b2252;">'localhost:9200/ntest'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "mappings": {</span>
+<span style="color: #8b2252;">    "doc": {</span>
+<span style="color: #8b2252;">      "properties": {</span>
+<span style="color: #8b2252;">        "body": {</span>
+<span style="color: #8b2252;">          "type": "nested",</span>
+<span style="color: #8b2252;">          "properties": {</span>
+<span style="color: #8b2252;">            "text": {"type": "string"}</span>
+<span style="color: #8b2252;">          }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">      }</span>
+<span style="color: #8b2252;">    }</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+<span style="color: #483d8b;">echo</span>
+
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/doc/1'</span> -d<span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">{"body": [{"text": "foo"}, {"text": "eggplant"}]}'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/doc/2'</span> -d<span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">{"body": [{"text": "bar"}, {"text": "eggplant"}]}'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/_refresh'</span>
+<span style="color: #483d8b;">echo</span>
+
+curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "foo"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+
+curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "bar"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+
+curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "eggplant"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Breaking the pieces apart</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Let's examine the pieces of this script individually:
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">The script header</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">env</span><span style="color: #b22222;"> zsh</span>
+</pre>
+</div>
+
+<p>
+For starters, I need to indicate what shell I want to run this on.
+I use zsh for my dotfiles, so I know it exists, I end up using <code>env</code>
+to locate it, however, since it's location may vary depending on
+what machine I'm on.  This is constant for every shell script I
+write.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Creating the index</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">curl -XDELETE <span style="color: #8b2252;">'localhost:9200/ntest'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "mappings": {</span>
+<span style="color: #8b2252;">    "doc": {</span>
+<span style="color: #8b2252;">      "properties": {</span>
+<span style="color: #8b2252;">        "body": {</span>
+<span style="color: #8b2252;">          "type": "nested",</span>
+<span style="color: #8b2252;">          "properties": {</span>
+<span style="color: #8b2252;">            "text": {"type": "string"}</span>
+<span style="color: #8b2252;">          }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">      }</span>
+<span style="color: #8b2252;">    }</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+<span style="color: #483d8b;">echo</span>
+</pre>
+</div>
+
+<p>
+Which, when run produces this output (give or take, depending on
+whether the index already exists):
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">{<span style="color: #8b2252;">"error"</span>:<span style="color: #8b2252;">"IndexMissingException[[ntest] missing]"</span>,<span style="color: #8b2252;">"status"</span>:404}
+{<span style="color: #8b2252;">"ok"</span>:true,<span style="color: #8b2252;">"acknowledged"</span>:true}
+</pre>
+</div>
+
+<p>
+The next section of code should look familiar to anyone who's
+probably written a script for Elasticsearch before.  The very first
+thing I do is to delete an index called 'ntest' (to make sure the
+script starts cleanly), then I create an Elasticsearch index called
+'ntest' with the mappings for the particular functionality I want to
+test.  In this case I wanted to test nested objects, so I created an
+ES type called <code>doc</code> that has a single nested field called <code>body</code>
+containing a string field named <code>text</code>.  If you are wondering about
+the extraneous <code>echo</code> commands, I insert them because by default
+Elasticsearch does not return a newline in the body of a response,
+and I'd like to cleanly break each curl command into separate lines.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Indexing documents</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/doc/1'</span> -d<span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">{"body": [{"text": "foo"}, {"text": "eggplant"}]}'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/doc/2'</span> -d<span style="color: #8b2252;">'</span>
+<span style="color: #8b2252;">{"body": [{"text": "bar"}, {"text": "eggplant"}]}'</span>
+<span style="color: #483d8b;">echo</span>
+</pre>
+</div>
+
+<p>
+Which outputs:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">{<span style="color: #8b2252;">"ok"</span>:true,<span style="color: #8b2252;">"_index"</span>:<span style="color: #8b2252;">"ntest"</span>,<span style="color: #8b2252;">"_type"</span>:<span style="color: #8b2252;">"doc"</span>,<span style="color: #8b2252;">"_id"</span>:<span style="color: #8b2252;">"1"</span>,<span style="color: #8b2252;">"_version"</span>:1}
+{<span style="color: #8b2252;">"ok"</span>:true,<span style="color: #8b2252;">"_index"</span>:<span style="color: #8b2252;">"ntest"</span>,<span style="color: #8b2252;">"_type"</span>:<span style="color: #8b2252;">"doc"</span>,<span style="color: #8b2252;">"_id"</span>:<span style="color: #8b2252;">"2"</span>,<span style="color: #8b2252;">"_version"</span>:1}
+</pre>
+</div>
+
+<p>
+After the index is created, the next thing I do (in most cases) is
+to index some example documents.  In this example I'm indexing two
+documents into the newly created 'ntest' index.  Again, I add an
+<code>echo</code> command to put each response on a new line.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Refreshing the index</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest/_refresh'</span>
+<span style="color: #483d8b;">echo</span>
+</pre>
+</div>
+
+<p>
+Once the documents are indexed, I refresh the index so they will
+show up in searches
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">Performing queries</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Next, I search to see whether I can find documents containing "foo"
+in the <code>_all</code> field.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "foo"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+</pre>
+</div>
+
+<p>
+And the output:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">{
+  <span style="color: #8b2252;">"took"</span> : 51,
+  <span style="color: #8b2252;">"timed_out"</span> : false,
+  <span style="color: #8b2252;">"_shards"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 5,
+    <span style="color: #8b2252;">"successful"</span> : 5,
+    <span style="color: #8b2252;">"failed"</span> : 0
+  },
+  <span style="color: #8b2252;">"hits"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 1,
+    <span style="color: #8b2252;">"max_score"</span> : 0.8784157,
+    <span style="color: #8b2252;">"hits"</span> : [ {
+      <span style="color: #8b2252;">"_index"</span> : <span style="color: #8b2252;">"ntest"</span>,
+      <span style="color: #8b2252;">"_type"</span> : <span style="color: #8b2252;">"doc"</span>,
+      <span style="color: #8b2252;">"_id"</span> : <span style="color: #8b2252;">"1"</span>,
+      <span style="color: #8b2252;">"_score"</span> : 0.8784157, <span style="color: #8b2252;">"_source"</span> :
+{<span style="color: #8b2252;">"body"</span>: [{<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"foo"</span>}, {<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"eggplant"</span>}]}
+    } ]
+  }
+}
+</pre>
+</div>
+
+<p>
+And a few other queries, just to be sure:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "bar"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+
+curl <span style="color: #8b2252;">'localhost:9200/ntest/_search?pretty'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "query": {</span>
+<span style="color: #8b2252;">    "match": {"_all": "eggplant"}</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+</pre>
+</div>
+
+<p>
+With their output:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">{
+  <span style="color: #8b2252;">"took"</span> : 3,
+  <span style="color: #8b2252;">"timed_out"</span> : false,
+  <span style="color: #8b2252;">"_shards"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 5,
+    <span style="color: #8b2252;">"successful"</span> : 5,
+    <span style="color: #8b2252;">"failed"</span> : 0
+  },
+  <span style="color: #8b2252;">"hits"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 1,
+    <span style="color: #8b2252;">"max_score"</span> : 0.8784157,
+    <span style="color: #8b2252;">"hits"</span> : [ {
+      <span style="color: #8b2252;">"_index"</span> : <span style="color: #8b2252;">"ntest"</span>,
+      <span style="color: #8b2252;">"_type"</span> : <span style="color: #8b2252;">"doc"</span>,
+      <span style="color: #8b2252;">"_id"</span> : <span style="color: #8b2252;">"2"</span>,
+      <span style="color: #8b2252;">"_score"</span> : 0.8784157, <span style="color: #8b2252;">"_source"</span> :
+{<span style="color: #8b2252;">"body"</span>: [{<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"bar"</span>}, {<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"eggplant"</span>}]}
+    } ]
+  }
+}
+{
+  <span style="color: #8b2252;">"took"</span> : 1,
+  <span style="color: #8b2252;">"timed_out"</span> : false,
+  <span style="color: #8b2252;">"_shards"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 5,
+    <span style="color: #8b2252;">"successful"</span> : 5,
+    <span style="color: #8b2252;">"failed"</span> : 0
+  },
+  <span style="color: #8b2252;">"hits"</span> : {
+    <span style="color: #8b2252;">"total"</span> : 2,
+    <span style="color: #8b2252;">"max_score"</span> : 0.8784157,
+    <span style="color: #8b2252;">"hits"</span> : [ {
+      <span style="color: #8b2252;">"_index"</span> : <span style="color: #8b2252;">"ntest"</span>,
+      <span style="color: #8b2252;">"_type"</span> : <span style="color: #8b2252;">"doc"</span>,
+      <span style="color: #8b2252;">"_id"</span> : <span style="color: #8b2252;">"2"</span>,
+      <span style="color: #8b2252;">"_score"</span> : 0.8784157, <span style="color: #8b2252;">"_source"</span> :
+{<span style="color: #8b2252;">"body"</span>: [{<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"bar"</span>}, {<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"eggplant"</span>}]}
+    }, {
+      <span style="color: #8b2252;">"_index"</span> : <span style="color: #8b2252;">"ntest"</span>,
+      <span style="color: #8b2252;">"_type"</span> : <span style="color: #8b2252;">"doc"</span>,
+      <span style="color: #8b2252;">"_id"</span> : <span style="color: #8b2252;">"1"</span>,
+      <span style="color: #8b2252;">"_score"</span> : 0.8784157, <span style="color: #8b2252;">"_source"</span> :
+{<span style="color: #8b2252;">"body"</span>: [{<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"foo"</span>}, {<span style="color: #8b2252;">"text"</span>: <span style="color: #8b2252;">"eggplant"</span>}]}
+    } ]
+  }
+}
+</pre>
+</div>
+
+<p>
+So, why am I going through all this? It's pretty apparent what the
+script does, right?
+</p>
+
+<p>
+The point of this is to demonstrate an actual literate programming
+example. So let's break down how I'd do this in a literate style
+(hint: this page itself is the output of the literate program).
+</p>
+
+<p>
+This assumes you're not squeamish about reading about Emacs, and
+explaining how to get set up with Emacs, org-mode, and org-babel is
+outside the scope of this article.
+</p>
+
+<p>
+In org-mode, there is a neat feature that allows you to embed
+pieces of code that can be edited, run, exported, tangled
+individually. So for our script, we write the first part (where the
+index is deleted and created) inside of <code>#+BEGIN_SRC</code> and
+<code>#+END_SRC</code> blocks. I also write a little description of what I'm
+actually doing:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #0000ff; font-weight: bold;">* Testing whether nested documents are included in _all</span>
+  The first thing I need to do is delete the old index and create the
+  new one:
+
+<span style="color: #b22222;">#+BEGIN_SRC sh</span>
+curl -XDELETE <span style="color: #8b2252;">'localhost:9200/ntest'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "mappings": {</span>
+<span style="color: #8b2252;">    "doc": {</span>
+<span style="color: #8b2252;">      "properties": {</span>
+<span style="color: #8b2252;">        "body": {</span>
+<span style="color: #8b2252;">          "type": "nested",</span>
+<span style="color: #8b2252;">          "properties": {</span>
+<span style="color: #8b2252;">            "text": {"type": "string"}</span>
+<span style="color: #8b2252;">          }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">      }</span>
+<span style="color: #8b2252;">    }</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+<span style="color: #483d8b;">echo</span>
+<span style="color: #b22222;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+Now, org-mode has a few neat features here, I can hit =C-c C-'= and
+edit the code block in the appropriate major mode (shell-mode in
+this case), or I can hit <code>C-c C-c</code> while the cursor is placed
+inside the code block to execute just this particular code. When I
+hit <code>C-c C-c</code>, the results are added to the buffer in a new
+section<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #0000ff; font-weight: bold;">* Testing whether nested documents are included in _all</span>
+  The first thing I need to do is delete the old index and create the
+  new one:
+
+<span style="color: #b22222;">#+BEGIN_SRC sh</span>
+curl -XDELETE <span style="color: #8b2252;">'localhost:9200/ntest'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "mappings": {</span>
+<span style="color: #8b2252;">    "doc": {</span>
+<span style="color: #8b2252;">      "properties": {</span>
+<span style="color: #8b2252;">        "body": {</span>
+<span style="color: #8b2252;">          "type": "nested",</span>
+<span style="color: #8b2252;">          "properties": {</span>
+<span style="color: #8b2252;">            "text": {"type": "string"}</span>
+<span style="color: #8b2252;">          }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">      }</span>
+<span style="color: #8b2252;">    }</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+<span style="color: #483d8b;">echo</span>
+<span style="color: #b22222;">#+END_SRC</span>
+
+<span style="color: #b22222;">#+RESULTS:</span>
+<span style="color: #b22222;">#+BEGIN_SRC sh</span>
+{<span style="color: #8b2252;">"error"</span>:<span style="color: #8b2252;">"IndexMissingException[[ntest] missing]"</span>,<span style="color: #8b2252;">"status"</span>:404}
+{<span style="color: #8b2252;">"ok"</span>:true,<span style="color: #8b2252;">"acknowledged"</span>:true}
+<span style="color: #b22222;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+Fantastic! I now have a "section" of a script that I can re-run as
+many times as I want. This allows me to access one of the great
+benefits of writing like this - being able to selectively re-run
+any individual part of a script without having to copy and paste
+a part into a separate program or shell!
+</p>
+
+<p>
+So this is fantastic, I can write documentation into the org-mode
+file around my code, leaving myself notes when I (inevitably) forget
+what a script does. However, this doesn't really help when I need to
+publish the script to a Github issue (for reproducing a bug), or
+sending to a customer for something they can run for
+themselves. Fortunately org-babel has an ability called "tangling"
+which can take chunks of code in a human-readable file like the
+example and export them into any number of other files. So let's
+make our script tangle-able:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #0000ff; font-weight: bold;">* Testing whether nested documents are included in _all</span>
+  The first thing I need to do is delete the old index and create the
+  new one:
+
+<span style="color: #b22222;">#+BEGIN_SRC sh :tangle issue-182.sh</span>
+curl -XDELETE <span style="color: #8b2252;">'localhost:9200/ntest'</span>
+<span style="color: #483d8b;">echo</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/ntest'</span> -d<span style="color: #8b2252;">'{</span>
+<span style="color: #8b2252;">  "mappings": {</span>
+<span style="color: #8b2252;">    "doc": {</span>
+<span style="color: #8b2252;">      "properties": {</span>
+<span style="color: #8b2252;">        "body": {</span>
+<span style="color: #8b2252;">          "type": "nested",</span>
+<span style="color: #8b2252;">          "properties": {</span>
+<span style="color: #8b2252;">            "text": {"type": "string"}</span>
+<span style="color: #8b2252;">          }</span>
+<span style="color: #8b2252;">        }</span>
+<span style="color: #8b2252;">      }</span>
+<span style="color: #8b2252;">    }</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">}'</span>
+<span style="color: #483d8b;">echo</span>
+<span style="color: #b22222;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+All I did was add the <code>:tangle issue-182.sh</code> line to the source
+block, this tells org-babel the name of the file this block should
+be tangled to, running <code>org-babel-tangle</code> on the file now generates
+this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">&#8756; cat issue-182.sh
+#!/usr/bin/env zsh
+
+curl -XDELETE 'localhost:9200/ntest'
+echo
+curl -XPOST 'localhost:9200/ntest' -d'{
+  "mappings": {
+    "doc": {
+      "properties": {
+        "body": {
+          "type": "nested",
+          "properties": {
+            "text": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}'
+echo
+</pre>
+</div>
+
+<p>
+Fantastic! Now I can write documentation that is exportable to
+something I can give any of my colleagues to run!
+</p>
+
+<p>
+The last thing I'll show off is reusable pieces of code with the
+<code>noweb</code> feature<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>. The <code>noweb</code> feature allows you to reuse
+pieces of code in other code blocks by naming a piece, for
+example, something that is done frequently in ES scripts is to
+refresh, so we can have a block named "refresh" that looks like
+this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #b22222;">#+NAME: refresh</span>
+<span style="color: #b22222;">#+BEGIN_SRC sh</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/_refresh'</span>
+<span style="color: #483d8b;">echo</span>
+<span style="color: #b22222;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+Which can be used in other blocks, like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #b22222;">#+BEGIN_SRC sh</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/thing/doc/1'</span> -d<span style="color: #8b2252;">'{"body": "foo"}'</span>
+curl -XPOST <span style="color: #8b2252;">'localhost:9200/thing/doc/2'</span> -d<span style="color: #8b2252;">'{"body": "bar"}'</span>
+&lt;&lt;refresh&gt;&gt;
+<span style="color: #b22222;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+Pretty neat! Reusable code!
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Wrapping up</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+So now I have the best of both (all?) worlds, I have individual
+blocks of code that can be run independently while I'm testing
+something, Code tangling that can produce a script to give to
+others, and reusable blocks of code for cutting down on boilerplate!
+Plus, I can embed multiple languages into a script, need to write a
+simple function in python for something? Easily done. This has been
+fantastic for writing code examples for <a href="http://manning.com/hinman/">the book</a>, as well as
+writing up and testing things for customers. Color me pleased.
+</p>
+
+<p>
+There really isn't a point to this article other than me wanting to
+show some of the neat things I've been using lately, and hopefully
+convince you to take a look at literate programming in general. If
+you aren't afraid of Emacs, check out <a href="http://orgmode.org/">org-mode</a> and <a href="http://orgmode.org/worg/org-contrib/babel/">org-babel</a>!
+</p>
+
+<p>
+One more thing to note, this entirely article was written on
+org-mode, and tangles to produce the ZSH script that I was using in
+a file called <code>literate-example.zsh</code>, check out the <a href="http://dakrone.github.io/writing-literate-elasticsearch-scripts.org">raw .org file</a>
+and see for yourself!
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Addendum</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Wait? Aren't you the guy who <a href="http://writequit.org">owns a domain named after a Vim
+command</a>?
+</li>
+</ul>
+
+<p>
+Yes, for the last 3 years I've been using Emacs daily first for my
+work (Clojure), and then later on for the power. I still love Vim
+dearly (especially vim bindings with things like vimperator), but
+since I do so much Clojure and org-mode these days, I don't see
+myself going back to Vim for general programming anytime soon.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Contact</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Feedback?
+</p>
+<ul class="org-ul">
+<li><a href="https://twitter.com/thnetos">@thnetos</a> on twitter
+</li>
+<li><a href="https://github.com/dakrone">dakrone</a> on github
+</li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+It's slightly more complex than this because I'm simplifying some
+of the Emacs configuration.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+Again, I'm skipping some noweb config in the interest of
+actually being able to finish this article.
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Lee Hinman</p>
+<p class="date">Created: 2013-10-29 Tue 20:38</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

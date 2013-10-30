@@ -1,0 +1,503 @@
+#+TITLE:    Writing literate-programming style Elasticsearch shell scripts with Emacs
+#+AUTHOR:   Lee Hinman
+#+CATEGORY: blog
+#+KEYWORDS: elasticsearch literate programming shell scripts org-mode org-babel
+#+STARTUP:  align fold nodlcheck oddeven lognotestate
+#+OPTIONS:  H:4 num:nil toc:t \n:nil @:t ::t |:t ^:{} -:t f:t *:t
+#+OPTIONS:  skip:nil d:(HIDE) tags:not-in-toc
+#+PROPERTY: header-args :results code :exports both :noweb yes
+#+HTML_HEAD: <style> body {margin-right:15%; margin-left:15%;} </style>
+#+LANGUAGE: en
+
+* Introduction
+  In this article I am going to demonstrate how I use Emacs to write
+  literate programming-style shell scripts for [[http://elasticsearch.com][Elasticsearch]].  The
+  information in this article focuses on writing shell scripts for
+  Elasticsearch, but it is easily generalized to writing any language
+  in general, and is more of a "here's how I use [[http://orgmode.org][org-mode]] and
+  [[http://orgmode.org/worg/org-contrib/babel/][org-babel]] for [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]" example.
+
+  A large portion of my time goes into writing one-off scripts to test
+  things people bring up in IRC, work on examples for the book, or run
+  small development tests from the command line (for
+  submitting/testing bugs).  Originally I was writing all of these
+  scripts by hand, usually copying and pasting the contents that were
+  common from an older script to a newer one to be as fast as
+  possible.  For a frame of reference, here's a small example script
+  that I recently wrote to test whether nested objects are include in
+  the _all field of a parent by default:
+
+#+BEGIN_SRC sh :exports code
+  #!/usr/bin/env zsh
+
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+
+  curl -XPOST 'localhost:9200/ntest/doc/1' -d'
+  {"body": [{"text": "foo"}, {"text": "eggplant"}]}'
+  echo
+  curl -XPOST 'localhost:9200/ntest/doc/2' -d'
+  {"body": [{"text": "bar"}, {"text": "eggplant"}]}'
+  echo
+  curl -XPOST 'localhost:9200/ntest/_refresh'
+  echo
+
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "foo"}
+    }
+  }'
+
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "bar"}
+    }
+  }'
+
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "eggplant"}
+    }
+  }'
+#+END_SRC
+
+* Breaking the pieces apart
+
+  Let's examine the pieces of this script individually:
+
+** The script header
+
+#+BEGIN_SRC sh :exports code
+#!/usr/bin/env zsh
+#+END_SRC
+
+   For starters, I need to indicate what shell I want to run this on.
+   I use zsh for my dotfiles, so I know it exists, I end up using =env=
+   to locate it, however, since it's location may vary depending on
+   what machine I'm on.  This is constant for every shell script I
+   write.
+
+** Creating the index
+
+#+BEGIN_SRC sh :exports both :tangle literate-example.zsh
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+#+END_SRC
+
+   Which, when run produces this output (give or take, depending on
+   whether the index already exists):
+
+   #+RESULTS:
+#+BEGIN_SRC sh
+{"error":"IndexMissingException[[ntest] missing]","status":404}
+{"ok":true,"acknowledged":true}
+#+END_SRC
+
+   The next section of code should look familiar to anyone who's
+   probably written a script for Elasticsearch before.  The very first
+   thing I do is to delete an index called 'ntest' (to make sure the
+   script starts cleanly), then I create an Elasticsearch index called
+   'ntest' with the mappings for the particular functionality I want to
+   test.  In this case I wanted to test nested objects, so I created an
+   ES type called =doc= that has a single nested field called =body=
+   containing a string field named =text=.  If you are wondering about
+   the extraneous =echo= commands, I insert them because by default
+   Elasticsearch does not return a newline in the body of a response,
+   and I'd like to cleanly break each curl command into separate lines.
+
+** Indexing documents
+
+#+BEGIN_SRC sh :exports both :tangle literate-example.zsh
+  curl -XPOST 'localhost:9200/ntest/doc/1' -d'
+  {"body": [{"text": "foo"}, {"text": "eggplant"}]}'
+  echo
+  curl -XPOST 'localhost:9200/ntest/doc/2' -d'
+  {"body": [{"text": "bar"}, {"text": "eggplant"}]}'
+  echo
+#+END_SRC
+
+   Which outputs:
+
+   #+RESULTS:
+#+BEGIN_SRC sh
+{"ok":true,"_index":"ntest","_type":"doc","_id":"1","_version":1}
+{"ok":true,"_index":"ntest","_type":"doc","_id":"2","_version":1}
+#+END_SRC
+
+   After the index is created, the next thing I do (in most cases) is
+   to index some example documents.  In this example I'm indexing two
+   documents into the newly created 'ntest' index.  Again, I add an
+   =echo= command to put each response on a new line.
+
+** Refreshing the index
+
+#+BEGIN_SRC sh :exports both :tangle literate-example.zsh
+  curl -XPOST 'localhost:9200/ntest/_refresh'
+  echo
+#+END_SRC
+
+   Once the documents are indexed, I refresh the index so they will
+   show up in searches
+
+** Performing queries
+
+   Next, I search to see whether I can find documents containing "foo"
+   in the =_all= field.
+
+#+BEGIN_SRC sh :exports both :tangle literate-example.zsh
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "foo"}
+    }
+  }'
+#+END_SRC
+
+   And the output:
+
+   #+RESULTS:
+#+BEGIN_SRC sh
+{
+  "took" : 51,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.8784157,
+    "hits" : [ {
+      "_index" : "ntest",
+      "_type" : "doc",
+      "_id" : "1",
+      "_score" : 0.8784157, "_source" :
+{"body": [{"text": "foo"}, {"text": "eggplant"}]}
+    } ]
+  }
+}
+#+END_SRC
+
+   And a few other queries, just to be sure:
+
+#+BEGIN_SRC sh :exports both :tangle literate-example.zsh
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "bar"}
+    }
+  }'
+
+  curl 'localhost:9200/ntest/_search?pretty' -d'{
+    "query": {
+      "match": {"_all": "eggplant"}
+    }
+  }'
+#+END_SRC
+
+   With their output:
+
+   #+RESULTS:
+#+BEGIN_SRC sh
+{
+  "took" : 3,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.8784157,
+    "hits" : [ {
+      "_index" : "ntest",
+      "_type" : "doc",
+      "_id" : "2",
+      "_score" : 0.8784157, "_source" :
+{"body": [{"text": "bar"}, {"text": "eggplant"}]}
+    } ]
+  }
+}
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 0.8784157,
+    "hits" : [ {
+      "_index" : "ntest",
+      "_type" : "doc",
+      "_id" : "2",
+      "_score" : 0.8784157, "_source" :
+{"body": [{"text": "bar"}, {"text": "eggplant"}]}
+    }, {
+      "_index" : "ntest",
+      "_type" : "doc",
+      "_id" : "1",
+      "_score" : 0.8784157, "_source" :
+{"body": [{"text": "foo"}, {"text": "eggplant"}]}
+    } ]
+  }
+}
+#+END_SRC
+
+   So, why am I going through all this? It's pretty apparent what the
+   script does, right?
+
+   The point of this is to demonstrate an actual literate programming
+   example. So let's break down how I'd do this in a literate style
+   (hint: this page itself is the output of the literate program).
+
+   This assumes you're not squeamish about reading about Emacs, and
+   explaining how to get set up with Emacs, org-mode, and org-babel is
+   outside the scope of this article.
+
+   In org-mode, there is a neat feature that allows you to embed
+   pieces of code that can be edited, run, exported, tangled
+   individually. So for our script, we write the first part (where the
+   index is deleted and created) inside of =#+BEGIN_SRC= and
+   =#+END_SRC= blocks. I also write a little description of what I'm
+   actually doing:
+
+#+BEGIN_SRC org
+  ,* Testing whether nested documents are included in _all
+    The first thing I need to do is delete the old index and create the
+    new one:
+
+  ,#+BEGIN_SRC sh
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+  ,#+END_SRC
+#+END_SRC
+
+    Now, org-mode has a few neat features here, I can hit =C-c C-'= and
+    edit the code block in the appropriate major mode (shell-mode in
+    this case), or I can hit =C-c C-c= while the cursor is placed
+    inside the code block to execute just this particular code. When I
+    hit =C-c C-c=, the results are added to the buffer in a new
+    section[fn:1]:
+
+#+BEGIN_SRC org
+  ,* Testing whether nested documents are included in _all
+    The first thing I need to do is delete the old index and create the
+    new one:
+
+  ,#+BEGIN_SRC sh
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+  ,#+END_SRC
+
+  ,#+RESULTS:
+  ,#+BEGIN_SRC sh
+  {"error":"IndexMissingException[[ntest] missing]","status":404}
+  {"ok":true,"acknowledged":true}
+  ,#+END_SRC
+#+END_SRC
+
+  Fantastic! I now have a "section" of a script that I can re-run as
+  many times as I want. This allows me to access one of the great
+  benefits of writing like this - being able to selectively re-run
+  any individual part of a script without having to copy and paste
+  a part into a separate program or shell!
+
+  So this is fantastic, I can write documentation into the org-mode
+  file around my code, leaving myself notes when I (inevitably) forget
+  what a script does. However, this doesn't really help when I need to
+  publish the script to a Github issue (for reproducing a bug), or
+  sending to a customer for something they can run for
+  themselves. Fortunately org-babel has an ability called "tangling"
+  which can take chunks of code in a human-readable file like the
+  example and export them into any number of other files. So let's
+  make our script tangle-able:
+
+#+BEGIN_SRC org
+  ,* Testing whether nested documents are included in _all
+    The first thing I need to do is delete the old index and create the
+    new one:
+
+  ,#+BEGIN_SRC sh :tangle issue-182.sh
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+  ,#+END_SRC
+#+END_SRC
+
+    All I did was add the =:tangle issue-182.sh= line to the source
+    block, this tells org-babel the name of the file this block should
+    be tangled to, running =org-babel-tangle= on the file now generates
+    this:
+
+#+BEGIN_SRC text
+  ∴ cat issue-182.sh
+  #!/usr/bin/env zsh
+
+  curl -XDELETE 'localhost:9200/ntest'
+  echo
+  curl -XPOST 'localhost:9200/ntest' -d'{
+    "mappings": {
+      "doc": {
+        "properties": {
+          "body": {
+            "type": "nested",
+            "properties": {
+              "text": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }'
+  echo
+#+END_SRC
+
+    Fantastic! Now I can write documentation that is exportable to
+    something I can give any of my colleagues to run!
+
+    The last thing I'll show off is reusable pieces of code with the
+    =noweb= feature[fn:2]. The =noweb= feature allows you to reuse
+    pieces of code in other code blocks by naming a piece, for
+    example, something that is done frequently in ES scripts is to
+    refresh, so we can have a block named "refresh" that looks like
+    this:
+
+#+BEGIN_SRC org
+  ,#+NAME: refresh
+  ,#+BEGIN_SRC sh
+  curl -XPOST 'localhost:9200/_refresh'
+  echo
+  ,#+END_SRC
+#+END_SRC
+
+  Which can be used in other blocks, like this:
+
+#+BEGIN_SRC org
+  ,#+BEGIN_SRC sh
+  curl -XPOST 'localhost:9200/thing/doc/1' -d'{"body": "foo"}'
+  curl -XPOST 'localhost:9200/thing/doc/2' -d'{"body": "bar"}'
+  <<refresh>>
+  ,#+END_SRC
+#+END_SRC
+
+  Pretty neat! Reusable code!
+
+* Wrapping up
+
+  So now I have the best of both (all?) worlds, I have individual
+  blocks of code that can be run independently while I'm testing
+  something, Code tangling that can produce a script to give to
+  others, and reusable blocks of code for cutting down on boilerplate!
+  Plus, I can embed multiple languages into a script, need to write a
+  simple function in python for something? Easily done. This has been
+  fantastic for writing code examples for [[http://manning.com/hinman/][the book]], as well as
+  writing up and testing things for customers. Color me pleased.
+
+  There really isn't a point to this article other than me wanting to
+  show some of the neat things I've been using lately, and hopefully
+  convince you to take a look at literate programming in general. If
+  you aren't afraid of Emacs, check out [[http://orgmode.org/][org-mode]] and [[http://orgmode.org/worg/org-contrib/babel/][org-babel]]!
+
+  One more thing to note, this entirely article was written on
+  org-mode, and tangles to produce the ZSH script that I was using in
+  a file called =literate-example.zsh=, check out the [[http://dakrone.github.io/writing-literate-elasticsearch-scripts.org][raw .org file]]
+  and see for yourself!
+
+* Addendum
+  - Wait? Aren't you the guy who [[http://writequit.org][owns a domain named after a Vim
+    command]]?
+
+  Yes, for the last 3 years I've been using Emacs daily first for my
+  work (Clojure), and then later on for the power. I still love Vim
+  dearly (especially vim bindings with things like vimperator), but
+  since I do so much Clojure and org-mode these days, I don't see
+  myself going back to Vim for general programming anytime soon.
+
+* Contact
+  Feedback?
+  - [[https://twitter.com/thnetos][@thnetos]] on twitter
+  - [[https://github.com/dakrone][dakrone]] on github
+
+
+[fn:1] It's slightly more complex than this because I'm simplifying some
+  of the Emacs configuration.
+
+[fn:2] Again, I'm skipping some noweb config in the interest of
+  actually being able to finish this article.
