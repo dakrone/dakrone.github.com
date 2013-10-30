@@ -477,7 +477,7 @@
 
   One more thing to note, this entirely article was written on
   org-mode, and tangles to produce the ZSH script that I was using in
-  a file called =literate-example.zsh=, check out the [[http://dakrone.github.io/writing-literate-elasticsearch-scripts.org][raw .org file]]
+  a file called =literate-example.zsh=, check out the [[https://raw.github.com/dakrone/dakrone.github.com/master/writing-literate-elasticsearch-scripts.org][raw .org file]]
   and see for yourself!
 
 * Addendum
