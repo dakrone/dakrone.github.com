@@ -74,7 +74,7 @@ h1 {
     background: #369 none repeat scroll 0 0;
     color: #fff;
     font-family: "BitStream Vera Sans", Verdana;
-    font-size: 200%;
+    font-size: 230%;
     font-weight: bold;
     letter-spacing: 0.1em;
     margin: -1em -1em .2em;
@@ -82,18 +82,18 @@ h1 {
 }
 
 h2 {
-    font-size: 180%;
+    font-size: 200%;
     border-bottom: 1px solid #ccc;
     padding: .2em;
 }
 
 h3 {
-    font-size: 120%;
+    font-size: 170%;
     border-bottom: 1px solid #eee;
 }
 
 h4 {
-    font-size: 110%;
+    font-size: 140%;
     border-bottom: 1px solid #eee;
 }
 
