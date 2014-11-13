@@ -38,7 +38,7 @@ div#content {
 
 a {
     color: #139;
-    text-decoration: none;
+    text-decoration: underline;
     padding: 1px;
 }
 
