@@ -1,9 +1,9 @@
 body {
     padding: 0;
-    background: #ddd none repeat scroll 0 0;
+    background: #333 none repeat scroll 0 0;
     max-width: 1000px;
     margin: 0px auto;
-    padding: 2em;
+    padding: 1em;
     color: #000;
     font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     line-height: 1.5em;
