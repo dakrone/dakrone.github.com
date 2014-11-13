@@ -55,6 +55,7 @@ a:visited {
 #table-of-contents {
     margin: 1em 0;
     padding: .1em;
+    text-dectoraction: none;
 }
 
 div#content div#org-div-home-and-up {
