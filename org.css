@@ -16,6 +16,17 @@ code {
     background: #eee;
     font-size: 115%;
     border-radius: 2px;
+    line-height: 1em;
+}
+
+pre {
+    border: 1px solid #ccc;
+    background: #eee;
+    padding: .5em;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px #eee;
+    line-height: 1em;
 }
 
 div#content {
@@ -110,14 +121,6 @@ tt {
     margin: .5em 0;
 }
 
-pre {
-    border: 1px solid #ccc;
-    background: #eee;
-    padding: .5em;
-    overflow: auto;
-    border-radius: 4px;
-    box-shadow: 3px 3px 3px #eee;
-}
 .verbatim pre {
     margin: 0;
 }
