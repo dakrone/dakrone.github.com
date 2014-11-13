@@ -4,7 +4,7 @@ body {
     margin: 0px 15% auto;
     padding: 2em;
     color: #000;
-    font-family: "Bitstream Vera Sans", Verdana, sans-serif;
+    font-family: Georgia, serif;
     font-size: 85%;
 }
 
@@ -67,14 +67,12 @@ div.title {
     background: #369;
     color: #fff;
     padding: .75em 1em;
-    font-family: "BitStream Vera Sans", Verdana;
     letter-spacing: .1em;
 }
 
 h1 {
     background: #369 none repeat scroll 0 0;
     color: #fff;
-    font-family: "BitStream Vera Sans", Verdana;
     font-size: 230%;
     font-weight: bold;
     letter-spacing: 0.1em;
@@ -217,7 +215,7 @@ pre {
     border: 1pt solid #AEBDCC;
     background-color: #F3F5F7;
     padding: 5pt;
-    font-family: courier, monospace;
+    font-family: Inconsolata, monospace;
 }
 table { border-collapse: collapse; }
 td, th {
