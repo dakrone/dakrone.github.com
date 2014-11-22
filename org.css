@@ -38,11 +38,9 @@ div#content {
 }
 
 blockquote {
-    color: #00f;
     padding: 1px 1px 1px 1px;
     border: 1px solid #ddd;
     background: #eee;
-    font-size: 115%;
     box-shadow: 5px 5px 5px #eee;
     border-radius: 2px;
     line-height: 1em;
