@@ -1,6 +1,6 @@
 body {
     padding: 0;
-    background: #333 none repeat scroll 0 0;
+    background: #eee none repeat scroll 0 0;
     max-width: 1000px;
     margin: 0px auto;
     padding: 1em;
@@ -35,6 +35,17 @@ div#content {
     background: #fff;
     margin: 0;
     padding: 3em;
+}
+
+blockquote {
+    color: #00f;
+    padding: 1px 1px 1px 1px;
+    border: 1px solid #ddd;
+    background: #eee;
+    font-size: 115%;
+    box-shadow: 5px 5px 5px #eee;
+    border-radius: 2px;
+    line-height: 1em;
 }
 
 a {
