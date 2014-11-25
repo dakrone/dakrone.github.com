@@ -5,9 +5,9 @@ body {
     margin: 0px auto;
     padding: 1em;
     color: #000;
-    font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    line-height: 1.5em;
-    font-size: 108%;
+    font-family: "Open Sans", "Bitstream Vera Sans", "Verdana", sans-serif;
+    line-height: 1.4em;
+    font-size: 100%;
 }
 
 code {
