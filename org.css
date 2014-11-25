@@ -97,6 +97,7 @@ div.title {
 
 h1 {
     background: #369 none repeat scroll 0 0;
+    font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     color: #fff;
     font-size: 230%;
     font-weight: bold;
@@ -107,18 +108,23 @@ h1 {
 
 h2 {
     font-size: 200%;
+    font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     border-bottom: 1px solid #ccc;
     padding: .2em;
 }
 
 h3 {
     font-size: 170%;
+    font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     border-bottom: 1px solid #eee;
+    padding: .2em;
 }
 
 h4 {
     font-size: 140%;
+    font-family: "Cardo", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     border-bottom: 1px solid #eee;
+    padding: .2em;
 }
 
 /* h1, h2, h3, h4, h5, h6 {
