@@ -238,7 +238,7 @@ pre {
     border: 1pt solid #AEBDCC;
     background-color: #F3F5F7;
     padding: 5pt;
-    font-family: monospace;
+    font-family: mono;
 }
 table { border-collapse: collapse; }
 td, th {
