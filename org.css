@@ -20,16 +20,18 @@ code {
     font-size: 115%;
     border-radius: 2px;
     line-height: 1em;
+    font-family: monospace;
 }
 
 pre {
-    border: 1px solid #ccc;
+    border: 1pt solid #AEBDCC;
     background: #eee;
-    padding: .5em;
+    padding: 5pt;
     overflow: auto;
     border-radius: 4px;
     box-shadow: 3px 3px 3px #eee;
     line-height: 1em;
+    font-family: monospace;
 }
 
 div#content {
@@ -228,18 +230,15 @@ span.underline {
 /* Todo List Styles */
 
 .title { text-align: center; }
-.todo  { color: red; }
+.todo  {
+    font-family: monospace;
+    color: red;
+}
 .done { color: green; }
 .timestamp { color: gray }
 .timestamp-kwd { color: #f59ea0; }
 .tag { background-color:#add8e6; font-weight:normal }
 .target { background-color: #551a8b; }
-pre {
-    border: 1pt solid #AEBDCC;
-    background-color: #F3F5F7;
-    padding: 5pt;
-    font-family: mono;
-}
 table { border-collapse: collapse; }
 td, th {
     vertical-align: top;
