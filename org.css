@@ -32,6 +32,7 @@ pre {
     box-shadow: 3px 3px 3px #eee;
     line-height: 1em;
     font-family: monospace;
+    font-size: 115%;
 }
 
 div#content {
