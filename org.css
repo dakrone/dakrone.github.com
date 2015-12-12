@@ -238,7 +238,11 @@ span.underline {
 .done { color: green; }
 .timestamp { color: gray }
 .timestamp-kwd { color: #f59ea0; }
-.tag { background-color:#add8e6; font-weight:normal }
+.tag {
+    background-color:#add8e6;
+    font-weight:normal;
+    font-size: 50%;
+}
 .target { background-color: #551a8b; }
 table { border-collapse: collapse; }
 td, th {
