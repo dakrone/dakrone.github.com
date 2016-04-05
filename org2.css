@@ -177,27 +177,6 @@ tt {
     padding: .2em;
 }
 
-div#postamble {
-    text-align: left;
-    color: #888;
-    font-size: 80%;
-    padding: 0;
-    margin: 0;
-}
-
-div#postamble p {
-    padding: 0;
-    margin: 0;
-}
-
-div#postamble a {
-    color: #888;
-}
-
-div#postamble a:hover {
-    color: #900;
-}
-
 table {
     font-size: 100%;
     border-collapse: collapse;
