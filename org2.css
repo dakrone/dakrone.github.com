@@ -8,7 +8,8 @@
     font-size: 80%;
     padding: .1em;
     text-decoration: none;
-    overlow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #table-of-contents ul {
@@ -18,36 +19,41 @@
     padding-right: 20px;
 }
 
+dev#table-of-contents {
+    left: 2px;
+    top: 0;
+    width: 300px;
+    height: 90%;
+    overlow-x: hidden;
+    overlow-y: auto;
+}
+
 body {
     padding: 0;
-    /* background: #eee none repeat scroll 0 0; */
     max-width: 1500px;
-    margin-left: 300px
-    /* margin: 0px auto; */
     color: #000;
-    font-family: verdana;
+    font-family: sans;
     line-height: 1.4em;
     font-size: 90%;
 }
 
 div#content {
-    /* border-left: 1px solid #bbb; */
-    /* background: #fff; */
     margin-left: 300px;
     margin-top: 2em;
     padding: 3em;
     padding-top: 0;
+    height: 100%;
 }
 
 #postamble a {
     color: #525E9A;
 }
 #postamble {
-    text-align: center;
+    text-align: right;
     font-size: 0.7em;
-    border-top: 1px solid #ABA6A6;
     margin-top: 4em;
     color: #808080;
+    line-height: .8em;
 }
 #postamble p { width: 100%; }
 
@@ -230,11 +236,6 @@ span.underline {
 /* Todo List Styles */
 
 .title { text-align: center; }
-.todo  {
-    font-family: monospace;
-    color: red;
-}
-.done { color: green; }
 .timestamp { color: gray }
 .timestamp-kwd { color: #f59ea0; }
 .tag {
@@ -818,7 +819,7 @@ span.todo, span.done {
     font-size: 75%;
     text-decoration: none;
     border-radius: 5px;
-    padding: 3px;
+    padding: 2px;
     color: white;
 }
 span.todo { background: #dd0000; }
