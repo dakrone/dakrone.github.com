@@ -7,6 +7,10 @@
     padding-left: 20px;
     padding-right: 20px;
     font-size: 80%;
+    overlow-y: scroll;
+    height: 100%;
+    padding: .1em;
+    text-decoration: none;
 }
 
 #table-of-contents ul {
@@ -29,10 +33,12 @@ body {
 }
 
 div#content {
-    border-left: 1px solid #bbb;
+    /* border-left: 1px solid #bbb; */
     /* background: #fff; */
     margin-left: 300px;
+    margin-top: 2em;
     padding: 3em;
+    padding-top: 0;
 }
 
 #postamble a {
@@ -88,12 +94,6 @@ a {
 
 a:hover {
     color: #900;
-}
-
-#table-of-contents {
-    margin: 1em 0;
-    padding: .1em;
-    text-decoration: none;
 }
 
 div#content div#org-div-home-and-up {
