@@ -4,13 +4,11 @@
     left: 2px;
     top: 0;
     width: 300px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 80%;
-    overlow-y: scroll;
     height: 100%;
+    font-size: 80%;
     padding: .1em;
     text-decoration: none;
+    overlow-y: scroll;
 }
 
 #table-of-contents ul {
