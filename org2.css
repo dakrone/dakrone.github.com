@@ -1,8 +1,9 @@
 /* fixed menu */
 #table-of-contents {
-position: fixed;
-    left:2px;top:0;
-    width:300px;
+    position: fixed;
+    left: 2px;
+    top: 0;
+    width: 300px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -16,9 +17,10 @@ position: fixed;
 
 body {
     padding: 0;
-    background: #eee none repeat scroll 0 0;
+    /* background: #eee none repeat scroll 0 0; */
     max-width: 1000px;
-    margin: 0px auto;
+    margin-left: 300px
+    /* margin: 0px auto; */
     padding: 1em;
     color: #000;
     font-family: verdana;
