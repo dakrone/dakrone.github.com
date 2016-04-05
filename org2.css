@@ -18,7 +18,7 @@
 body {
     padding: 0;
     /* background: #eee none repeat scroll 0 0; */
-    max-width: 1000px;
+    max-width: 1500px;
     margin-left: 300px
     /* margin: 0px auto; */
     padding: 1em;
@@ -26,6 +26,13 @@ body {
     font-family: verdana;
     line-height: 1.4em;
     font-size: 90%;
+}
+
+div#content {
+    border-left: 1px solid #bbb;
+    /* background: #fff; */
+    margin-left: 300px;
+    padding: 3em;
 }
 
 code {
@@ -50,13 +57,6 @@ pre {
     line-height: 1em;
     font-family: monospace;
     font-size: 115%;
-}
-
-div#content {
-    /* border: 1px solid #bbb; */
-    /* background: #fff; */
-    margin-left: 300px;
-    padding: 3em;
 }
 
 blockquote {
@@ -125,7 +125,7 @@ h2 {
     font-size: 200%;
     font-family: palatino, serif;
     border-bottom: 1px solid #ccc;
-    padding: .2em;
+    padding-bottom: .2em;
     padding-left: 0;
 }
 
@@ -133,7 +133,7 @@ h3 {
     font-size: 170%;
     font-family: palatino, serif;
     border-bottom: 1px solid #eee;
-    padding: .2em;
+    padding-bottom: .2em;
     padding-left: 0;
 }
 
@@ -141,7 +141,7 @@ h4 {
     font-size: 140%;
     font-family: palatino, serif;
     border-bottom: 1px solid #eee;
-    padding: .2em;
+    padding-bottom: .2em;
     padding-left: 0;
 }
 
