@@ -3,6 +3,8 @@
 position: fixed;
     left:2px;top:0;
     width:300px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #table-of-contents ul {
