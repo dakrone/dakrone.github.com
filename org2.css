@@ -114,6 +114,7 @@ h1 {
     letter-spacing: 0.1em;
     margin: -1em -1em .2em;
     padding: 0.75em 1em;
+    padding-left: 0;
 }
 
 h2 {
@@ -121,6 +122,7 @@ h2 {
     font-family: palatino, serif;
     border-bottom: 1px solid #ccc;
     padding: .2em;
+    padding-left: 0;
 }
 
 h3 {
@@ -128,6 +130,7 @@ h3 {
     font-family: palatino, serif;
     border-bottom: 1px solid #eee;
     padding: .2em;
+    padding-left: 0;
 }
 
 h4 {
@@ -135,6 +138,7 @@ h4 {
     font-family: palatino, serif;
     border-bottom: 1px solid #eee;
     padding: .2em;
+    padding-left: 0;
 }
 
 tt {
