@@ -824,7 +824,7 @@ td, th {
 /* Start new */
 
 span.todo, span.done {
-    font-size: 50%;
+    font-size: 75%;
     text-decoration: none;
     border-radius: 5px;
     padding: 3px;
