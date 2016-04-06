@@ -1,31 +1,59 @@
 /* fixed menu */
-#table-of-contents {
-    position: fixed;
-    left: 2px;
-    top: 0;
-    width: 300px;
-    height: 100%;
-    font-size: 80%;
-    padding: .1em;
-    text-decoration: none;
-    overflow-x: hidden;
-    overflow-y: auto;
+
+/* Table of contents responsive CSS for small screens */
+@media screen and (max-width: 800px) {
+    #table-of-contents {
+        margin: 1em 0;
+        padding: .1em;
+        text-decoration: none;
+    }
+
+    div#content {
+        margin-top: 2em;
+        padding: 3em;
+        padding-top: 0;
+        height: 100%;
+    }
 }
 
-#table-of-contents ul {
-    padding: 0;
-    margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+/* Table of contents responsive CSS for large screens */
+@media screen and (min-width: 800px) {
+    #table-of-contents {
+        position: fixed;
+        left: 2px;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        font-size: 80%;
+        padding: .1em;
+        text-decoration: none;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
-dev#table-of-contents {
-    left: 2px;
-    top: 0;
-    width: 300px;
-    height: 90%;
-    overlow-x: hidden;
-    overlow-y: auto;
+    #table-of-contents ul {
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    dev#table-of-contents {
+        left: 2px;
+        top: 0;
+        width: 300px;
+        height: 90%;
+        overlow-x: hidden;
+        overlow-y: auto;
+    }
+
+    div#content {
+        margin-left: 300px;
+        margin-top: 2em;
+        padding: 3em;
+        padding-top: 0;
+        height: 100%;
+    }
 }
 
 body {
@@ -35,14 +63,6 @@ body {
     font-family: sans;
     line-height: 1.4em;
     font-size: 90%;
-}
-
-div#content {
-    margin-left: 300px;
-    margin-top: 2em;
-    padding: 3em;
-    padding-top: 0;
-    height: 100%;
 }
 
 #postamble a {
